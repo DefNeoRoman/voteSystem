@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS menu_meal;
 DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS global_seq;
 
-CREATE SEQUENCE global_seq START 100;
+CREATE SEQUENCE global_seq START 1;
 --начинать создание с users
 --1
 CREATE TABLE users
