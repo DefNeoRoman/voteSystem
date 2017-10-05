@@ -9,6 +9,25 @@
     <title>Document</title>
 </head>
 <body>
+<div class="container">
+    <h1>${users}</h1>
+    <h1>${meals}</h1>
+    <c:forEach items="${users}" var="user">
+        <jsp:useBean id="user" scope="page" type="model.User"/>
+        <tr>
+            <td><c:out value="${user.name}"/></td>
+
+        </tr>
+    </c:forEach>
+    <c:forEach items="${meals}" var="meal">
+        <jsp:useBean id="meal" scope="page" type="model.Meal"/>
+        <tr>
+            <td><c:out value="${meal.name}"/></td>
+
+        </tr>
+    </c:forEach>
+
+</div>
 <a href="home">home</a>
 <a href="another">another</a>
 </body>

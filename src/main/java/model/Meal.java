@@ -2,21 +2,14 @@ package model;
 
 public class Meal extends BaseEntity {
     private int price;
-    private int userId;
-
+    public Meal(int id, String name, int price) {
+        super(id, name);
+        this.price = price;
+    }
     public int getPrice() {
         return price;
     }
-
     public void setPrice(int price) {
         this.price = price;
     }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-}
+  }

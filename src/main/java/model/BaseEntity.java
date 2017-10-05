@@ -4,6 +4,14 @@ public class BaseEntity {
     private int id;
     private String name;
 
+    public BaseEntity() {
+    }
+
+    public BaseEntity(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
