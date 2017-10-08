@@ -70,6 +70,9 @@
     <script type="text/javascript" src="webjars/jquery/3.2.1/jquery.min.js"></script>
 
     <script type="text/javascript" src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" defer></script>
-    <script type="text/javascript" src="/js/meals.js" defer></script>
+    <script type="text/javascript" src="/resources/js/meals.js" defer></script>
+
+
+
 </body>
 </html>

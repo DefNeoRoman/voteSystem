@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-public class SpringServletConfig extends WebMvcConfigurerAdapter{
+public class SpringServletConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public InternalResourceViewResolver resolver() {
@@ -20,11 +20,13 @@ public class SpringServletConfig extends WebMvcConfigurerAdapter{
         vr.setSuffix(".jsp");
         return vr;
     }
+
     @Override
     public void configureDefaultServletHandling(
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
+
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 //        without this could not solve the problem with loading bootstrap
@@ -32,7 +34,9 @@ public class SpringServletConfig extends WebMvcConfigurerAdapter{
             registry.addResourceHandler("/webjars/**").addResourceLocations(
                     "classpath:/META-INF/resources/webjars/");
         }
-
-    // problem with resolving classpath directory
+//        registry
+//                .addResourceHandler("/resources/**")
+//                .addResourceLocations("/resources/");
+        // problem with resolving classpath directory
     }
 }
