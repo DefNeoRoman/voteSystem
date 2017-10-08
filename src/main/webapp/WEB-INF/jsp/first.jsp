@@ -22,19 +22,7 @@
     <a href="/users">Users</a>
     <a href="/voteStory">Vote story edit</a>
     <hr>
-    <c:forEach items="${meals}" var="meal">
-        <jsp:useBean id="meal" scope="page" type="model.Meal"/>
-        <tr>
 
-            <td><c:out value="${meal.name}"/></td>
-            <td><c:out value="${meal.price}"/></td>
-            <td><a href="/updateMeal?uuid=${meal.uuid}">редактировать</a></td>
-            <td><a href="/deleteMeal?uuid=${meal.uuid}">удалить</a></td>
-        </tr>
-        <br>
-    </c:forEach>
-    <a href="create">create meal</a>
-    <a href="another">another</a>
 </div>
 
 <script type="text/javascript" src="webjars/jquery/3.2.1/jquery.min.js"></script>

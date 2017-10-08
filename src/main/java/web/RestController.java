@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class RestController {
     private static SandBox sandBox = new SandBox();
-    static {
-        sandBox.fillRepositories();
-    }
+
     @RequestMapping(value = "/",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
     public String
     welcome(Model model) {

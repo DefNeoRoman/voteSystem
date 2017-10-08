@@ -17,6 +17,7 @@ public class RootController {
 
     @GetMapping("/meals")
     public String meals() {
+
         return "modelPages/meals";
     }
 

@@ -1,55 +1,57 @@
 package repository;
 
+import model.Meal;
 import model.User;
 import org.springframework.stereotype.Repository;
 import repository.interfaces.UserRepository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+
 @Repository
 public class UserRepositoryImpl implements UserRepository {
-    private List<User> users;
-    public UserRepositoryImpl() {
-        this.users = new ArrayList<>();
+    Map<String,User> storage = new HashMap<>();
+    @Override
+    public void save(User user, String searchKey) {
+        storage.put(searchKey,user);
     }
 
     @Override
-    public void save(User user) {
-
-       users.add(user);
+    public User get(String searchKey) {
+        return storage.get(searchKey);
     }
 
     @Override
-    public User get(int id) {
-        return users.get(id);
+    public void update(User user, String searchKey) {
+        storage.put(searchKey,user);
     }
 
     @Override
-    public void update(User user) {
-        Objects.requireNonNull(user);
-        if(users.contains(user)){
-            return;
-        }else{
-            users.add(user);
-        }
-    }
-
-    @Override
-    public boolean delete(int id) {
-        if(!users.contains(users.get(id))){
-            return false;
-        }
-        users.remove(id);
-        return true;
+    public void delete(String searchKey) {
+        storage.remove(searchKey);
     }
 
     @Override
     public List<User> getAll() {
-        return users;
+        return new ArrayList<>(storage.values());
     }
+
     @Override
-    public void clear(){
-        users.clear();
+    public void clear() {
+        storage.clear();
+    }
+
+    @Override
+    public int size() {
+        return storage.size();
+    }
+
+    @Override
+    public String getSearchKey(String uuid) {
+        return uuid;
+    }
+
+    @Override
+    public boolean isExist(String searchKey) {
+        return storage.containsKey(searchKey);
     }
 }

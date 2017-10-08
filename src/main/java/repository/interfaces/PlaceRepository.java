@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface PlaceRepository {
     void save(Place place, String searchKey);   //create
-    Place get(String searchKey);                     //read
+    Place get(String searchKey);                //read
     void update(Place place, String searchKey); //update
-    void delete(String searchKey);                      //delete
-    List<Place> getAll();                             //getAll
+    void delete(String searchKey);              //delete
+    List<Place> getAll();                       //getAll
     void clear();
     int size();
     String getSearchKey(String uuid);

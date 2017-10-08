@@ -12,8 +12,7 @@ public class BaseEntity {
         this.name = name;
     }
 
-    public BaseEntity(int id, String uuid, String name) {
-        this.id = id;
+    public BaseEntity(String uuid, String name) {
         this.uuid = uuid;
         this.name = name;
     }

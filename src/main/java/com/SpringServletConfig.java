@@ -12,6 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 public class SpringServletConfig extends WebMvcConfigurerAdapter{
+
     @Bean
     public InternalResourceViewResolver resolver() {
         InternalResourceViewResolver vr = new InternalResourceViewResolver();
@@ -31,10 +32,7 @@ public class SpringServletConfig extends WebMvcConfigurerAdapter{
             registry.addResourceHandler("/webjars/**").addResourceLocations(
                     "classpath:/META-INF/resources/webjars/");
         }
-        if (!registry.hasMappingForPattern("/**")) {
-            registry.addResourceHandler("/**").addResourceLocations(
-                    "classpath:/META-INF/");
-        }
+
     // problem with resolving classpath directory
     }
 }

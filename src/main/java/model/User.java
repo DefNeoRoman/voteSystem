@@ -11,8 +11,8 @@ public class User extends BaseEntity {
     private boolean canVote;
     private boolean enabled;
 
-    public User(Integer id,String uuid, String name,Role role) {
-        super(id, uuid, name);
+    public User(String uuid, String name,Role role) {
+        super(uuid, name);
         this.role = role;
     }
 
