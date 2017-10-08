@@ -8,8 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 
 @ComponentScan(basePackages = {
-        "web",
-        "com"}, basePackageClasses = SpringBootWebApplication.class)
+        "web","service","repository","com"},
+        basePackageClasses = SpringBootWebApplication.class)
 @SpringBootApplication
 public class SpringBootWebApplication extends SpringBootServletInitializer{
 

@@ -7,28 +7,37 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+
 </head>
 <body>
-<div class="container">
-    <h1>${users}</h1>
-    <h1>${meals}</h1>
-    <c:forEach items="${users}" var="user">
-        <jsp:useBean id="user" scope="page" type="model.User"/>
-        <tr>
-            <td><c:out value="${user.name}"/></td>
 
-        </tr>
-    </c:forEach>
+<div class="container">
+    Admin`s page <br>
+    <a href="/meals">Meals</a>
+    <a href="/menus">Menus</a>
+    <a href="/menuMeal">Menu-Meal</a>
+    <a href="/places">Places</a>
+    <a href="/placeMenu">Place-Menu</a>
+    <a href="/users">Users</a>
+    <a href="/voteStory">Vote story edit</a>
+    <hr>
     <c:forEach items="${meals}" var="meal">
         <jsp:useBean id="meal" scope="page" type="model.Meal"/>
         <tr>
+
             <td><c:out value="${meal.name}"/></td>
-
+            <td><c:out value="${meal.price}"/></td>
+            <td><a href="/updateMeal?uuid=${meal.uuid}">редактировать</a></td>
+            <td><a href="/deleteMeal?uuid=${meal.uuid}">удалить</a></td>
         </tr>
+        <br>
     </c:forEach>
-
+    <a href="create">create meal</a>
+    <a href="another">another</a>
 </div>
-<a href="home">home</a>
-<a href="another">another</a>
+
+<script type="text/javascript" src="webjars/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" defer></script>
 </body>
 </html>

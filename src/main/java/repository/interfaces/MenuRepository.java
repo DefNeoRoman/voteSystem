@@ -1,13 +1,18 @@
 package repository.interfaces;
 
+import model.Meal;
 import model.Menu;
 
 import java.util.List;
 
 public interface MenuRepository {
-    Menu save(Menu menu);   //create
-    Menu get(int id);       //read
-    void update(Menu menu); //update
-    boolean delete(int id); //delete
-    List<Menu> getAll();    //getAll
+    void save(Menu menu, String searchKey);   //create
+    Menu get(String searchKey);               //read
+    void update(Menu menu, String searchKey); //update
+    void delete(String searchKey);            //delete
+    List<Menu> getAll();                      //getAll
+    void clear();
+    int size();
+    String getSearchKey(String uuid);
+    boolean isExist(String searchKey);
 }

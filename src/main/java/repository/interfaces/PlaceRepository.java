@@ -1,14 +1,19 @@
 package repository.interfaces;
 
 import model.Place;
+import model.PlaceMenu;
 import model.User;
 
 import java.util.List;
 
 public interface PlaceRepository {
-    Place save(Place place);     //create
-    Place get(int id);          //read
-    void update(Place place);   //update
-    boolean delete(int id);     //delete
-    List<Place> getAll();        //getAll
+    void save(Place place, String searchKey);   //create
+    Place get(String searchKey);                     //read
+    void update(Place place, String searchKey); //update
+    void delete(String searchKey);                      //delete
+    List<Place> getAll();                             //getAll
+    void clear();
+    int size();
+    String getSearchKey(String uuid);
+    boolean isExist(String searchKey);
 }

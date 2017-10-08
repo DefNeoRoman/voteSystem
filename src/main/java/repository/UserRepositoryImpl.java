@@ -1,12 +1,13 @@
 package repository;
 
 import model.User;
+import org.springframework.stereotype.Repository;
 import repository.interfaces.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Repository
 public class UserRepositoryImpl implements UserRepository {
     private List<User> users;
     public UserRepositoryImpl() {
@@ -46,5 +47,9 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public List<User> getAll() {
         return users;
+    }
+    @Override
+    public void clear(){
+        users.clear();
     }
 }

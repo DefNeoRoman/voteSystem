@@ -1,38 +1,54 @@
 package web;
-
-import model.User;
+import model.Meal;
 import org.springframework.http.MediaType;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import sandbox.SandBox;
+import javax.servlet.http.HttpServletRequest;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-@org.springframework.web.bind.annotation.RestController
+@Controller
 public class RestController {
     private static SandBox sandBox = new SandBox();
-    @RequestMapping(value = "/",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
-    public @ResponseBody
-    List<Object>
-    welcome() {
-
+    static {
         sandBox.fillRepositories();
-        List<Object> objects = new ArrayList<>();
-        objects.add(sandBox.getMeals());
-        objects.add(sandBox.getUsers());
-        return objects;
+    }
+    @RequestMapping(value = "/",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
+    public String
+    welcome(Model model) {
+
+        model.addAttribute("users", sandBox.getUsers());
+        model.addAttribute("meals", sandBox.getMeals());
+        return "first";
     }
 
-    @RequestMapping("/home")
-    public String home() {
-        return "home";
+    @RequestMapping(value = "/updateMeal",  method = RequestMethod.GET)
+    public String updateMeal(HttpServletRequest request, Model model) {
+       Meal meal = sandBox.getMeal(request.getParameter("uuid"));
+        model.addAttribute("meal",meal);
+        return "createMeal";
     }
-    @RequestMapping("/another")
-    public String another() {
-        return "fragments/another";
+
+    @GetMapping("/deleteMeal")
+    public String deleteMeal(HttpServletRequest request) {
+        String uuid = request.getParameter("uuid");
+        sandBox.deleteMeal(uuid);
+        return "redirect:/";
     }
+    @RequestMapping("/create")
+    public String create(Model model) {
+        Meal emptyMeal = new Meal("Новая еда", 0);
+        model.addAttribute("meal",emptyMeal);
+        return "createMeal";
+}
+
+    @RequestMapping(value = "/createMeal", method = RequestMethod.POST)
+    public String createMeal(HttpServletRequest request){
+        String description = request.getParameter("description");
+        int price = Integer.valueOf(request.getParameter("price"));
+        sandBox.addMeal(new Meal(description,price));
+        return "redirect:/";
+    }
+
 }

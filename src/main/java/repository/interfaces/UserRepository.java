@@ -10,4 +10,5 @@ public interface UserRepository {
     void update(User user); //update
     boolean delete(int id); //delete
     List<User> getAll();    //getAll
+    void clear();
 }
