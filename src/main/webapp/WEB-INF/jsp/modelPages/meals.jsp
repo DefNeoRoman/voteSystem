@@ -21,9 +21,12 @@
 
                    <td><c:out value="${meal.name}"/></td>
                    <td><c:out value="${meal.price}"/></td>
-                   <td><a href="meals/update?uuid=${meal.uuid}">
+                   <td>
+                       <button type="button" class="btn btn-default" onclick="edit('${meal.name}',${meal.price})">
+                           Edit
                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                   </a></td>
+                       </button>
+                   </td>
                    <td><a href="meals/delete?uuid=${meal.uuid}">
                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                    </a></td>

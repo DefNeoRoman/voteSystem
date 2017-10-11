@@ -17,4 +17,5 @@ public class Meal extends BaseEntity {
     public void setPrice(int price) {
         this.price = price;
     }
+
   }
