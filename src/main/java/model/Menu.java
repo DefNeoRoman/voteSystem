@@ -1,13 +1,27 @@
 package model;
 
 public class Menu  extends BaseEntity {
-    private int userId;
+  private String cookName;
 
-    public int getUserId() {
-        return userId;
+    public Menu(String cookName) {
+        this.cookName = cookName;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public Menu(String name, String cookName) {
+        super(name);
+        this.cookName = cookName;
+    }
+
+    public Menu(String uuid, String name, String cookName) {
+        super(uuid, name);
+        this.cookName = cookName;
+    }
+
+    public String getCookName() {
+        return cookName;
+    }
+
+    public void setCookName(String cookName) {
+        this.cookName = cookName;
     }
 }

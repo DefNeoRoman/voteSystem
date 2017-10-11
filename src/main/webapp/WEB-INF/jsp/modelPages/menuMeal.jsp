@@ -11,6 +11,7 @@
     <title>Document</title>
 </head>
 <body>
+<jsp:include page="../fragments/header.jsp"/>
 menu meal jsp
 </body>
 </html>

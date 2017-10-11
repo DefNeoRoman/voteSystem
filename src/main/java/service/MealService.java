@@ -2,6 +2,7 @@ package service;
 
 import model.Meal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.MealRepositoryImpl;
 
@@ -20,7 +21,9 @@ public class MealService implements VoteSystemService<Meal> {
     private final Meal fish = new Meal(UUID.randomUUID().toString(),"рыба",200);
     private final Meal mushrooms = new Meal(UUID.randomUUID().toString(),"грибы",400);
     private final Meal bread = new Meal(UUID.randomUUID().toString(),"хлеб",300);
-    private MealRepository mealRepository = new MealRepositoryImpl();
+    @Autowired
+    private MealRepository mealRepository;
+
     public void fillRepository() {
         mealRepository.save(potatoes,potatoes.getUuid());
         mealRepository.save(soup,soup.getUuid());

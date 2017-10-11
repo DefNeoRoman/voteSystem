@@ -38,5 +38,8 @@ public class SpringServletConfig extends WebMvcConfigurerAdapter {
 //                .addResourceHandler("/resources/**")
 //                .addResourceLocations("/resources/");
         // problem with resolving classpath directory
+
+            registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+
     }
 }

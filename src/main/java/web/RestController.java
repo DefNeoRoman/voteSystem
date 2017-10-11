@@ -12,14 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 public class RestController {
     private static SandBox sandBox = new SandBox();
 
-    @RequestMapping(value = "/",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
-    public String
-    welcome(Model model) {
 
-        model.addAttribute("users", sandBox.getUsers());
-        model.addAttribute("meals", sandBox.getMeals());
-        return "first";
-    }
 
     @RequestMapping(value = "/updateMeal",  method = RequestMethod.GET)
     public String updateMeal(HttpServletRequest request, Model model) {

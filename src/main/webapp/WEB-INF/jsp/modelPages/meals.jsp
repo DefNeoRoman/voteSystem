@@ -3,28 +3,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html lang="en">
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-</head>
+<jsp:include page="../fragments/headTag.jsp"/>
 <body>
+<jsp:include page="../fragments/header.jsp"/>
     <div class="container">
-        <c:forEach items="${meals}" var="meal">
-            <jsp:useBean id="meal" scope="page" type="model.Meal"/>
-            <tr>
+       <table>
+           <thead>
+           <tr>
+               <th>Description</th>
+               <th>Price</th>
+           </tr>
+           </thead>
+           <c:forEach items="${meals}" var="meal">
+               <jsp:useBean id="meal" scope="page" type="model.Meal"/>
 
-                <td><c:out value="${meal.name}"/></td>
-                <td><c:out value="${meal.price}"/></td>
-                <td><a href="meals/update?uuid=${meal.uuid}">редактировать</a></td>
-                <td><a href="meals/delete?uuid=${meal.uuid}">удалить</a></td>
-            </tr>
-            <br>
-        </c:forEach>
+               <tr>
+
+                   <td><c:out value="${meal.name}"/></td>
+                   <td><c:out value="${meal.price}"/></td>
+                   <td><a href="meals/update?uuid=${meal.uuid}">
+                       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                   </a></td>
+                   <td><a href="meals/delete?uuid=${meal.uuid}">
+                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                   </a></td>
+               </tr>
+               <br>
+           </c:forEach>
+       </table>
+
+
         <a class="btn btn-primary" onclick="add()">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             add
@@ -57,7 +65,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-offset-3 col-xs-9">
-                                <input class="btn btn-primary" type="submit">
+                                <input class="btn btn-primary" type="submit" value="save">
                                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 
                             </div>
@@ -67,12 +75,10 @@
             </div>
         </div>
         </div>
-    <script type="text/javascript" src="webjars/jquery/3.2.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="webjars/bootstrap/3.3.7-1/js/bootstrap.min.js" defer></script>
-    <script type="text/javascript" src="/resources/js/meals.js" defer></script>
 
 
 
+
+<jsp:include page="../fragments/footer.jsp"/>
 </body>
 </html>
