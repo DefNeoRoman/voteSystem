@@ -2,6 +2,10 @@ package model;
 
 public class Meal extends BaseEntity {
     private int price;
+
+    public Meal() {
+    }
+
     public Meal(String uuid, String name, int price) {
         super(uuid, name);
         this.price = price;

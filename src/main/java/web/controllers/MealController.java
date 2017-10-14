@@ -6,15 +6,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import sandbox.SandBox;
 import service.MealService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/meals")
@@ -29,20 +27,41 @@ public class MealController {
         return "modelPages/meals";
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Meal get(@PathVariable("uuid") String uuid) {
+
         return service.get(uuid);
     }
 
-    @RequestMapping(value = "/update",  method = RequestMethod.POST)
+    @PostMapping(value = "/update")
     public String updateMeal(HttpServletRequest request, Model model) {
+        String uuid = request.getParameter("uuid");
+        Meal upMeal = new Meal();
+        if(uuid.isEmpty()){
+            uuid = UUID.randomUUID().toString();
+            upMeal.setUuid(uuid);
+        } else{
+            upMeal = service.get(uuid);
+        }
+        String name = request.getParameter("description");
+        if(name.isEmpty()){
+            name = "empty";
+        }
+        Integer price = Integer.valueOf(request.getParameter("price"));
+        if (price == null){
+            price = 0;
+        }
 
-        return "createMeal";
+        upMeal.setName(name);
+        upMeal.setPrice(price);
+        service.update(uuid,upMeal);
+
+        return "redirect:/meals";
     }
 
-    @GetMapping("/delete")
-    public String deleteMeal(HttpServletRequest request) {
-
+    @GetMapping(value = "delete/{uuid}")
+    public String deleteMeal(@PathVariable("uuid") String uuid, HttpServletRequest request) {
+        service.delete(uuid);
         return "redirect:/meals";
     }
     @RequestMapping("/create")

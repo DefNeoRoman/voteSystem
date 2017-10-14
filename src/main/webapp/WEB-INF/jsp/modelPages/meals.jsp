@@ -22,14 +22,17 @@
                    <td><c:out value="${meal.name}"/></td>
                    <td><c:out value="${meal.price}"/></td>
                    <td>
-                       <button type="button" class="btn btn-default" onclick="edit('${meal.name}',${meal.price})">
+                       <button type="button" class="btn btn-default" onclick="edit('${meal.name}',${meal.price},'${meal.uuid}')">
+
                            Edit
                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                        </button>
                    </td>
-                   <td><a href="meals/delete?uuid=${meal.uuid}">
+                   <td>
+                       <button type="button" class="btn btn-danger" onclick="deleteEntity('${meal.uuid}')">
                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                   </a></td>
+                       </button>
+                   </td>
                </tr>
                <br>
            </c:forEach>
@@ -49,7 +52,7 @@
                     <h2 class="modal-title" id="modalTitle"></h2>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="detailsForm" action="meals/create">
+                    <form class="form-horizontal" id="detailsForm" action="meals/update" method="post">
                         <input type="hidden" id="uuid" name="uuid">
                         <div class="form-group">
                             <label for="description" class="control-label col-xs-3">Название</label>
