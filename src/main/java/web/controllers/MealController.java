@@ -16,25 +16,21 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/meals")
-public class MealController {
+public class MealController implements VScontroller {
 
     @Autowired
     MealService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Override
     public String getAll(Model model){
         model.addAttribute("meals",service.getAll());
         return "modelPages/meals";
     }
 
-    @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Meal get(@PathVariable("uuid") String uuid) {
-
-        return service.get(uuid);
-    }
-
     @PostMapping(value = "/update")
-    public String updateMeal(HttpServletRequest request, Model model) {
+    @Override
+    public String update(HttpServletRequest request) {
         String uuid = request.getParameter("uuid");
         Meal upMeal = new Meal();
         if(uuid.isEmpty()){
@@ -58,27 +54,10 @@ public class MealController {
 
         return "redirect:/meals";
     }
-
     @GetMapping(value = "delete/{uuid}")
-    public String deleteMeal(@PathVariable("uuid") String uuid, HttpServletRequest request) {
+    @Override
+    public String delete(@PathVariable("uuid") String uuid) {
         service.delete(uuid);
         return "redirect:/meals";
     }
-    @RequestMapping("/create")
-    public String create(Model model) {
-
-        return "createMeal";
-    }
-
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createMeal(HttpServletRequest request){
-
-        return "redirect:/";
-    }
-
-    @Override
-    public String toString() {
-        return "MealController from my context";
-    }
-
 }

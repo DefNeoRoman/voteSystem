@@ -3,6 +3,9 @@ package model;
 public class Menu  extends BaseEntity {
   private String cookName;
 
+    public Menu() {
+    }
+
     public Menu(String cookName) {
         this.cookName = cookName;
     }

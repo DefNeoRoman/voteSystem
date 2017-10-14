@@ -14,23 +14,31 @@
             <th>Who prepared it?</th>
         </tr>
         </thead>
+<div id ="forParsingJson">
     <c:forEach items="${menus}" var="menu">
         <jsp:useBean id="menu" scope="page" type="model.Menu"/>
 
-        <tr>
-
+    <tr>
+        <form action="" id="menuForm">
+             <input type="hidden" name="uuid" id="uuid" value="${menu.uuid}">
+            <input type="hidden" name="name" id="name" value="${menu.name}">
             <td><c:out value="${menu.name}"/></td>
+            <input type="hidden" name="cockName" id="cockName" value="${menu.cookName}">
             <td><c:out value="${menu.cookName}"/></td>
-            <td><a class="btn btn-primary" onclick="edit(${menu})">
+            <td><a class="btn btn-primary" onclick="testEdit()">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </a>
             </td>
             <td>
-                <a href="menus/delete?uuid=${menu}">
+                <a href="menus/delete?uuid=${menu.uuid}">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
             </td>
-        </tr>
+        </form>
+
+    </tr>
+</div>
+
         <br>
     </c:forEach>
     </table>
@@ -43,25 +51,24 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clear()">&times;</button>
                 <h2 class="modal-title" id="modalTitle"></h2>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" id="detailsForm" action="meals/create">
-                    <input type="hidden" id="uuid" name="uuid">
+                    <input type="hidden" id="editUuid" name="uuid">
                     <div class="form-group">
-                        <label for="description" class="control-label col-xs-3">Название</label>
+                        <label for="description" class="control-label col-xs-3">Name</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="description" name="description"
-                                   value="${meal.name}">
+                            <input type="text" class="form-control" id="description" name="description">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="price" class="control-label col-xs-3">Цена</label>
+                        <label for="cName" class="control-label col-xs-3">Who prepared it</label>
 
                         <div class="col-xs-9">
-                            <input type="number" class="form-control" id="price" name="price" value="${meal.price}">
+                            <input type="text" class="form-control" id="cName" name="cName">
                         </div>
                     </div>
                     <div class="form-group">
@@ -76,6 +83,9 @@
         </div>
     </div>
 </div>
+
+
 <jsp:include page="../fragments/footer.jsp"/>
+<script type="text/javascript" src="static/js/menu.js" defer></script>
 </body>
 </html>
