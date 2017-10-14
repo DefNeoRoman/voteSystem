@@ -1,3 +1,4 @@
+
 <!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -25,7 +26,8 @@
             <td><c:out value="${menu.name}"/></td>
             <input type="hidden" name="cockName" id="cockName" value="${menu.cookName}">
             <td><c:out value="${menu.cookName}"/></td>
-            <td><a class="btn btn-primary" onclick="testEdit()">
+            <td>
+                <a class="btn btn-primary" onclick="testEdit('${menu.uuid}')">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </a>
             </td>
@@ -48,6 +50,9 @@
     </a>
 </div>
 <div class="modal fade" id="editRow">
+
+    <c:set var = "sMenu" scope="page" value = "${singleMenu}"/>
+    <jsp:useBean id="sMenu" scope="page" type="model.Menu"/>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -55,20 +60,20 @@
                 <h2 class="modal-title" id="modalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="detailsForm" action="meals/create">
-                    <input type="hidden" id="editUuid" name="uuid">
+                <form class="form-horizontal" id="detailsForm">
+                    <input type="hidden" id="editUuid" name="uuid" value="${sMenu.uuid}">
                     <div class="form-group">
                         <label for="description" class="control-label col-xs-3">Name</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="description" name="description">
+                            <input type="text" class="form-control" id="description" name="description" placeholder="${sMenu.name}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="cName" class="control-label col-xs-3">Who prepared it</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="cName" name="cName">
+                            <input type="text" class="form-control" id="cName" name="cName" value="${sMenu.cookName}">
                         </div>
                     </div>
                     <div class="form-group">
