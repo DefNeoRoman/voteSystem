@@ -32,7 +32,7 @@
             </a>
             </td>
             <td>
-                <a href="menus/delete?uuid=${menu.uuid}">
+                <a href="menus/delete/${menu.uuid}">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
             </td>
@@ -60,20 +60,20 @@
                 <h2 class="modal-title" id="modalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="detailsForm">
-                    <input type="hidden" id="editUuid" name="uuid" value="${sMenu.uuid}">
+                <form class="form-horizontal" id="detailsForm" action="menus/update" method="post">
+                    <input type="hidden" id="editUuid" name="editUuid">
                     <div class="form-group">
                         <label for="description" class="control-label col-xs-3">Name</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="description" name="description" placeholder="${sMenu.name}">
+                            <input type="text" class="form-control" id="description" name="description">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="cName" class="control-label col-xs-3">Who prepared it</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="cName" name="cName" value="${sMenu.cookName}">
+                            <input type="text" class="form-control" id="cName" name="cName">
                         </div>
                     </div>
                     <div class="form-group">
