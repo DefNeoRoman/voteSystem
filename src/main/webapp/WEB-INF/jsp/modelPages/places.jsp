@@ -7,21 +7,11 @@
 <body>
 <jsp:include page="../fragments/header.jsp"/>
        <div class="container">
-           <table>
-               <thead>
-               <tr>
-                   <th>Name</th>
-                   <th>Votes</th>
-               </tr>
-               </thead>
-            <tbody>
-            <tr>
-                <td class="placeName">  </td>
-                <td class="placeVotes"> </td>
-            </tr>
-            </tbody>
-           </table>
+          <div id="forPlaces">
+
+          </div>
        </div>
 <jsp:include page="../fragments/footer.jsp"/>
+<script type="text/javascript" src="static/js/place.js" defer></script>
 </body>
 </html>
