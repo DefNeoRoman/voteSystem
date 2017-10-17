@@ -11,7 +11,9 @@
 
           </div>
        </div>
+
 <jsp:include page="../fragments/footer.jsp"/>
+<script type="text/javascript" src="static/js/button.js" defer></script>
 <script type="text/javascript" src="static/js/place.js" defer></script>
 </body>
 </html>

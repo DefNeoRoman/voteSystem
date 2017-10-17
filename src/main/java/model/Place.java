@@ -7,6 +7,10 @@ public class Place extends BaseEntity {
 
     private int votes;
 
+    public Place() {
+        this.votes = 0;
+    }
+
     public Place(String uuid, String name) {
         super(uuid, name);
         this.votes = 0;

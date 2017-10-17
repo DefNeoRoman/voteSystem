@@ -26,6 +26,7 @@ public class PlaceService implements VoteSystemService<Place> {
         repository.save(pla1,pla1.getUuid());
         repository.save(pla2,pla2.getUuid());
         repository.save(pla3,pla3.getUuid());
+        pla4.setVotes(5);
         repository.save(pla4,pla4.getUuid());
         repository.save(pla5,pla5.getUuid());
         repository.save(pla6,pla6.getUuid());
@@ -56,4 +57,5 @@ public class PlaceService implements VoteSystemService<Place> {
     public void delete(String searchKey) {
         repository.delete(searchKey);
     }
+
 }
