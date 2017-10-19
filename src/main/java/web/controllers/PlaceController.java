@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import service.PlaceService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +27,8 @@ public class PlaceController {
     }
 
     @PostMapping(value = "/update")
-    public String update(HttpServletRequest request) {
-        String uuid = request.getParameter("editUuid");
+    public String update(@RequestParam String pUuid, @RequestParam String quantity) {
+        String uuid = pUuid;
         Place upPlace = new Place();
         if(uuid.isEmpty()){
             uuid = UUID.randomUUID().toString();
@@ -39,15 +36,11 @@ public class PlaceController {
         } else{
             upPlace = service.get(uuid);
         }
-        String name = request.getParameter("description");
-        if(name.isEmpty()){
-            name = "empty";
+        String q = quantity;
+        if(q.isEmpty()){
+            q = "0";
         }
 
-        Integer votes = Integer.valueOf(request.getParameter("votes"));
-        upPlace.setName(name);
-
-        service.update(uuid,upPlace);
 
         return "redirect:/places";
     }
