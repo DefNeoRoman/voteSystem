@@ -40,7 +40,8 @@ public class PlaceController {
         if(q.isEmpty()){
             q = "0";
         }
-
+        System.out.println(uuid);
+        System.out.println(q);
 
         return "redirect:/places";
     }

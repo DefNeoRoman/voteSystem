@@ -69,6 +69,7 @@ function call(form) {
 
     //
     $.ajax({
+        type: 'POST',
         url: 'places/update?'+msg,
         success: function(data) {
            console.log("hello")
