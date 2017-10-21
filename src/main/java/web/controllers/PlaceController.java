@@ -22,12 +22,15 @@ public class PlaceController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Place> getAll(Model model) {
+    public List<Place> getAll() {
+
         return service.getAll();
     }
 
-    @PostMapping(value = "/update")
-    public String update(@RequestParam String pUuid, @RequestParam String quantity) {
+    @PostMapping(value = "/update",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Place> update(@RequestParam String pUuid,
+                         @RequestParam String quantity,
+                         @RequestParam String pName) {
         String uuid = pUuid;
         Place upPlace = new Place();
         if(uuid.isEmpty()){
@@ -40,14 +43,19 @@ public class PlaceController {
         if(q.isEmpty()){
             q = "0";
         }
-        System.out.println(uuid);
-        System.out.println(q);
+        if(pName.isEmpty()){
+            pName = "empty";
+        }
+        upPlace.setVotes(Integer.valueOf(q));
+        upPlace.setName(pName);
 
-        return "redirect:/places";
+        service.update(upPlace.getUuid(),upPlace);
+        return service.getAll();
     }
 
-
-    public String delete(String uuid) {
+    @DeleteMapping
+    public String delete(@RequestParam String pUuid) {
+        service.delete(pUuid);
         return null;
     }
 }
