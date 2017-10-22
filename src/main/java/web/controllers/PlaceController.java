@@ -54,8 +54,8 @@ public class PlaceController {
     }
 
     @DeleteMapping
-    public String delete(@RequestParam String pUuid) {
+    public void delete(@RequestParam String pUuid) {
         service.delete(pUuid);
-        return null;
+
     }
 }

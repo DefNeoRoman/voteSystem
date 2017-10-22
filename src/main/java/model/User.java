@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 
 public class User extends BaseEntity {
@@ -11,9 +13,20 @@ public class User extends BaseEntity {
     private boolean canVote;
     private boolean enabled;
 
-    public User(String uuid, String name,Role role) {
+    public User() {
+    }
+
+    public User(String uuid, String name,
+                String email, String password,
+                Role role) {
         super(uuid, name);
+        this.password = password;
         this.role = role;
+        this.email = email;
+        this.registerDate = new Date();
+        this.isVote = false;
+        this.canVote = true;
+        this.enabled = true;
     }
 
     public boolean isEnabled() {
@@ -70,5 +83,18 @@ public class User extends BaseEntity {
 
     public void setCanVote(boolean canVote) {
         this.canVote = canVote;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", registerDate=" + registerDate +
+                ", role=" + role +
+                ", isVote=" + isVote +
+                ", canVote=" + canVote +
+                ", enabled=" + enabled +
+                '}';
     }
 }

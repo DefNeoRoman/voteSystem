@@ -42,6 +42,7 @@ function deletePlace(uuid) {
 }
 function call(form) {
     var msg   = $(form).serialize();
+
     $.ajax({
         type: 'POST',
         url: 'places/update?'+msg,

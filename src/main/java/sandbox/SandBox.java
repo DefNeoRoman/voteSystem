@@ -17,8 +17,7 @@ public class SandBox {
     private final AtomicInteger mealCounter = new AtomicInteger(0);
     private UserRepository userRepository = new UserRepositoryImpl();
     private MealRepository mealRepository = new MealRepositoryImpl();
-    private final User regularUser = new User(UUID.randomUUID().toString(),"regular",Role.USER);
-    private final User admin = new User(UUID.randomUUID().toString(),"admin",     Role.ADMIN);
+
 
 
    public void clearRepositories(){

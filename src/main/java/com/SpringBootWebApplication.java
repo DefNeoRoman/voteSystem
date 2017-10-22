@@ -10,6 +10,9 @@ import org.springframework.context.annotation.ComponentScans;
 import service.MealService;
 import service.MenuService;
 import service.PlaceService;
+import service.UserService;
+
+import javax.jws.soap.SOAPBinding;
 
 @ComponentScan(basePackages = {
         "web","service","repository","com"},
@@ -23,7 +26,7 @@ public class SpringBootWebApplication extends SpringBootServletInitializer{
         context.getBean(MealService.class).fillRepository();
         context.getBean(MenuService.class).fillRepository();
         context.getBean(PlaceService.class).fillRepository();
-
+        context.getBean(UserService.class).fillRepository();
     }
 
 }
