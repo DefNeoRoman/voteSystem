@@ -1,7 +1,9 @@
 package model;
 
 import java.util.Date;
-
+//не нуждается в хранении в локальном репозитории
+//Чтобы заработало Vote Story нужно user menu place уже хранить в базе
+//Так как нужна связка
 public class VoteStory {
     private int id;
     private int userId;

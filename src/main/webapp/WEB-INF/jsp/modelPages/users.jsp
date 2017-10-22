@@ -8,7 +8,7 @@
 <jsp:include page="../fragments/header.jsp"/>
 <div class="container">
     <a class="btn btn-primary" onclick="add()">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">Add</span>
 
     </a>
     <table id="userDataTable" class="display" cellspacing="0" width="100%">

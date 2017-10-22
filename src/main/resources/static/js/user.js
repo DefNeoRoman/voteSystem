@@ -89,6 +89,6 @@ function enable(checkbox){
  }
 function add() {
    var form = $("#detailsForm");
-    form.find(":input").val("");
+    form.find(":input:not(.btn)").val("");
     $("#editRow").modal();
 }

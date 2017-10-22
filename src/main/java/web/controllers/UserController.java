@@ -28,8 +28,8 @@ public class UserController {
     }
     @PostMapping(value = "/update",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> update(
-                            @RequestParam String uid,
-                            @RequestParam String uuuid,
+                            @RequestParam (required=false)String uid,
+                            @RequestParam(required=false)String uuuid,
                             @RequestParam String uname,
                             @RequestParam String uemail,
                             @RequestParam (required=false) String en,
@@ -37,14 +37,20 @@ public class UserController {
                             @RequestParam (required=false) String ucanvote
                              ) {
 
-        String uuid = uuuid;
+
         User upUser = new User();
-        upUser.setId(Integer.valueOf(uid));
-        if(uuid.isEmpty()){
-            uuid = UUID.randomUUID().toString();
-            upUser.setUuid(uuid);
+        if(uid.isEmpty()){
+           Integer nuid = service.getSize();
+           upUser.setId(nuid);
+        }else{
+            upUser.setId(Integer.valueOf(uid));
+        }
+
+        if(uuuid.isEmpty()){
+            uuuid = UUID.randomUUID().toString();
+            upUser.setUuid(uuuid);
         } else{
-            upUser = service.get(uuid);
+            upUser = service.get(uuuid);
         }
         String name = uname;
         if(name.isEmpty()){

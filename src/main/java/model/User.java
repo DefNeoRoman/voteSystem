@@ -14,6 +14,7 @@ public class User extends BaseEntity {
     private boolean enabled;
 
     public User() {
+        registerDate = new Date();
     }
 
     public User(String uuid, String name,
