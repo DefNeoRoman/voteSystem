@@ -1,8 +1,26 @@
 package model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+
+@MappedSuperclass
+@Access(AccessType.FIELD)
 public class BaseEntity {
-    private int id;
+    public static final int START_SEQ = 1000;
+
+    @Id
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = START_SEQ)
+
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
+    @Access(value = AccessType.PROPERTY)
+    private Integer id;
     private String uuid;
+    @Column(name = "description", nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 120)
     private String name;
 
     public BaseEntity() {

@@ -5,8 +5,8 @@ import model.Meal;
 import java.util.List;
 
 public interface MealRepository {
-    void save(Meal meal, String searchKey);   //create
-    Meal get(String searchKey);               //read
+    void save(Meal meal);   //create
+    Meal get(int id);               //read
     void update(Meal meal, String searchKey); //update
     void delete(String searchKey);            //delete
     List<Meal> getAll();                      //getAll

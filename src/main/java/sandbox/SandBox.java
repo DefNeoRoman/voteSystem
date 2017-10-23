@@ -1,9 +1,8 @@
 package sandbox;
 
 import model.Meal;
-import model.Role;
 import model.User;
-import repository.MealRepositoryImpl;
+import repository.datajpa.MealRepositoryImpl;
 import repository.UserRepositoryImpl;
 import repository.interfaces.MealRepository;
 import repository.interfaces.UserRepository;
