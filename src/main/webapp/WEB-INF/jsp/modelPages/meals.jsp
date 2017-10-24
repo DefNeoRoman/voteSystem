@@ -22,14 +22,14 @@
                    <td><c:out value="${meal.name}"/></td>
                    <td><c:out value="${meal.price}"/></td>
                    <td>
-                       <button type="button" class="btn btn-default" onclick="edit('${meal.name}',${meal.price},'${meal.uuid}')">
+                       <button type="button" class="btn btn-default" onclick="edit('${meal.name}',${meal.price},'${meal.id}')">
 
                            Edit
                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                        </button>
                    </td>
                    <td>
-                       <button type="button" class="btn btn-danger" onclick="deleteEntity('${meal.uuid}')">
+                       <button type="button" class="btn btn-danger" onclick="deleteEntity('${meal.id}')">
                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                        </button>
                    </td>

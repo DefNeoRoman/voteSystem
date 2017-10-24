@@ -23,27 +23,16 @@ public class MealService  {
     private final Meal bread =     new Meal(746,"хлеб",300);
     @Autowired
     private MealRepository mealRepository;
-
-    public void fillRepository() {
-        mealRepository.save(potatoes);
-        mealRepository.save(soup);
-        mealRepository.save(meat);
-        mealRepository.save(fish);
-        mealRepository.save(mushrooms);
-        mealRepository.save(bread);
-    }
-
-
-
     public List<Meal> getAll() {
         List<Meal> lm = new ArrayList<>();
         Iterable<Meal> im = mealRepository.findAll();
-        im.forEach(meal -> {
-            lm.add(meal);
-        });
+        im.forEach(lm::add);
         return lm;
     }
 
+    public List<Meal> testGet(){
+        return mealRepository.findAll();
+    }
 
     public void create(Meal object) {
         mealRepository.save(object);

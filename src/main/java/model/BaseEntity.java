@@ -18,7 +18,7 @@ public abstract class BaseEntity {
     @Access(value = AccessType.FIELD)
     private Integer id;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "name", nullable = false)
     @NotBlank
     @Size(min = 2, max = 120)
     private String name;

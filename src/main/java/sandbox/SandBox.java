@@ -12,21 +12,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SandBox {
-    private final AtomicInteger userCounter = new AtomicInteger(0);
-    private final AtomicInteger mealCounter = new AtomicInteger(0);
-    private UserRepository userRepository = new UserRepositoryImpl();
+    public static void main(String[] args) {
 
-
-
-
-   public void clearRepositories(){
-      userRepository.clear();
-
-   }
-
-    public List<User> getUsers(){
-        return userRepository.getAll();
     }
-
-
 }
