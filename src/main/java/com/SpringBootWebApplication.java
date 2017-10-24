@@ -8,6 +8,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import service.MealService;
 import service.MenuService;
@@ -22,6 +23,7 @@ import javax.jws.soap.SOAPBinding;
 @SpringBootApplication
 @EntityScan("model")
 @EnableJpaRepositories("repository.datajpa")
+
 public class SpringBootWebApplication extends SpringBootServletInitializer{
 
 
