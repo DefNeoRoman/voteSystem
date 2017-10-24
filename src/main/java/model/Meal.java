@@ -19,14 +19,11 @@ public class Meal extends BaseEntity {
     public Meal() {
     }
 
-    public Meal(String uuid, String name, int price) {
-        super(uuid, name);
+    public Meal(Integer id, String name, int price) {
+        super(id, name);
         this.price = price;
     }
-    public Meal(String name, int price) {
-        super(name);
-        this.price = price;
-    }
+
 
     public int getPrice() {
         return price;

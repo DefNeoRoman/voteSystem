@@ -17,10 +17,10 @@ public class User extends BaseEntity {
         registerDate = new Date();
     }
 
-    public User(String uuid, String name,
+    public User(Integer id, String name,
                 String email, String password,
                 Role role) {
-        super(uuid, name);
+        super(id, name);
         this.password = password;
         this.role = role;
         this.email = email;

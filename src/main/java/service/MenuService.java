@@ -12,11 +12,11 @@ import java.util.UUID;
 
 @Service
 public class MenuService implements VoteSystemService<Menu>{
-    private final Menu menu1 = new Menu(UUID.randomUUID().toString(),"завтрак","Вова");
-    private final Menu menu2 = new Menu(UUID.randomUUID().toString(),"обед","Петя");
-    private final Menu menu3 = new Menu(UUID.randomUUID().toString(),"ужин","Вася");
-    private final Menu menu4 = new Menu(UUID.randomUUID().toString(),"ланч","Дима");
-    private final Menu menu5 = new Menu(UUID.randomUUID().toString(),"фастфуд","Егор");
+    private final Menu menu1 = new Menu(900006,"завтрак","Вова");
+    private final Menu menu2 = new Menu(900007,"обед","Петя");
+    private final Menu menu3 = new Menu(900008,"ужин","Вася");
+    private final Menu menu4 = new Menu(900009,"ланч","Дима");
+    private final Menu menu5 = new Menu(9000010,"фастфуд","Егор");
 
 
     @Autowired

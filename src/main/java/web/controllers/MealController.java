@@ -16,29 +16,27 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/meals")
-public class MealController implements VScontroller {
+public class MealController {
 
     @Autowired
     MealService service;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    @Override
+
     public String getAll(Model model){
         model.addAttribute("meals",service.getAll());
         return "modelPages/meals";
     }
 
     @PostMapping(value = "/update")
-    @Override
+
     public String update(HttpServletRequest request) {
-        String uuid = request.getParameter("uuid");
+        Integer id = Integer.valueOf(request.getParameter("id"));
+
         Meal upMeal = new Meal();
-        if(uuid.isEmpty()){
-            uuid = UUID.randomUUID().toString();
-            upMeal.setUuid(uuid);
-        } else{
-            upMeal = service.get(uuid);
-        }
+
+
+
         String name = request.getParameter("description");
         if(name.isEmpty()){
             name = "empty";
@@ -50,14 +48,14 @@ public class MealController implements VScontroller {
 
         upMeal.setName(name);
         upMeal.setPrice(price);
-        service.update(uuid,upMeal);
+        service.update(upMeal);
 
         return "redirect:/meals";
     }
     @GetMapping(value = "delete/{uuid}")
-    @Override
-    public String delete(@PathVariable("uuid") String uuid) {
-        service.delete(uuid);
+
+    public String delete(@PathVariable("id") Integer id) {
+        service.delete(id);
         return "redirect:/meals";
     }
 }

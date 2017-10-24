@@ -15,13 +15,13 @@ import java.util.UUID;
 @Service
 public class UserService implements VoteSystemService<User> {
     private final User adminUser = new User(
-            UUID.randomUUID().toString(),
+            40000,
             "Василий",
             "123@gmail.com",
             "123",
             Role.ADMIN);
     private final User regularUser=  new User(
-            UUID.randomUUID().toString(),
+            50000,
             "Петр",
             "aaa123@yandex.ru",
             "123",

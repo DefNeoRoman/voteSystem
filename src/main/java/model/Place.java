@@ -11,8 +11,8 @@ public class Place extends BaseEntity {
         this.votes = 0;
     }
 
-    public Place(String uuid, String name) {
-        super(uuid, name);
+    public Place(Integer id, String name) {
+        super(id, name);
         this.votes = 0;
     }
 

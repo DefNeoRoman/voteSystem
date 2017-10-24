@@ -5,56 +5,62 @@ import model.Meal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import repository.interfaces.MealRepository;
+import repository.datajpa.MealRepository;
 
 import service.interfaces.VoteSystemService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Service
-public class MealService implements VoteSystemService<Meal> {
-    private final Meal potatoes = new Meal(UUID.randomUUID().toString(),"картошка",100);
-    private final Meal soup = new Meal(UUID.randomUUID().toString(),"борщ",100);
-    private final Meal meat = new Meal(UUID.randomUUID().toString(),"мясо",1500);
-    private final Meal fish = new Meal(UUID.randomUUID().toString(),"рыба",200);
-    private final Meal mushrooms = new Meal(UUID.randomUUID().toString(),"грибы",400);
-    private final Meal bread = new Meal(UUID.randomUUID().toString(),"хлеб",300);
+public class MealService  {
+    private final Meal potatoes = new Meal(8,"картошка",100);
+    private final Meal soup =     new Meal(26,"борщ",100);
+    private final Meal meat =     new Meal(23,"мясо",1500);
+    private final Meal fish =     new Meal(27,"рыба",200);
+    private final Meal mushrooms =new Meal(745,"грибы",400);
+    private final Meal bread =     new Meal(746,"хлеб",300);
     @Autowired
     private MealRepository mealRepository;
 
     public void fillRepository() {
-        mealRepository.save(potatoes,potatoes.getUuid());
-        mealRepository.save(soup,soup.getUuid());
-        mealRepository.save(meat,meat.getUuid());
-        mealRepository.save(fish,fish.getUuid());
-        mealRepository.save(mushrooms,mushrooms.getUuid());
-        mealRepository.save(bread,bread.getUuid());
+        mealRepository.save(potatoes);
+        mealRepository.save(soup);
+        mealRepository.save(meat);
+        mealRepository.save(fish);
+        mealRepository.save(mushrooms);
+        mealRepository.save(bread);
     }
 
 
-    @Override
+
     public List<Meal> getAll() {
-        return mealRepository.getAll();
+        List<Meal> lm = new ArrayList<>();
+        Iterable<Meal> im = mealRepository.findAll();
+        im.forEach(meal -> {
+            lm.add(meal);
+        });
+        return lm;
     }
 
-    @Override
-    public void create(String searchKey, Meal object) {
-        mealRepository.save(object,searchKey);
+
+    public void create(Meal object) {
+        mealRepository.save(object);
     }
 
-    @Override
-    public Meal get(String searchKey) {
-        return mealRepository.get(searchKey);
+
+    public Meal get(Integer id) {
+        return mealRepository.findOne(id);
     }
 
-    @Override
-    public void update(String searchKey, Meal object) {
-        mealRepository.update(object,searchKey);
+
+    public void update(Meal object) {
+        mealRepository.save(object);
     }
 
-    @Override
-    public void delete(String searchKey) {
-        mealRepository.delete(searchKey);
+
+    public void delete(Integer id) {
+        mealRepository.delete(id);
     }
 }

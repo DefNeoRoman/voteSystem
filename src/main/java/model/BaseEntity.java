@@ -7,15 +7,15 @@ import javax.validation.constraints.Size;
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
-public class BaseEntity {
+public abstract class BaseEntity {
     public static final int START_SEQ = 1000;
 
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = START_SEQ)
 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "global_seq")
     // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
-    @Access(value = AccessType.PROPERTY)
+    @Access(value = AccessType.FIELD)
     private Integer id;
     private String uuid;
     @Column(name = "description", nullable = false)
@@ -26,12 +26,13 @@ public class BaseEntity {
     public BaseEntity() {
     }
 
-    public BaseEntity(String name) {
-        this.name = name;
+    protected BaseEntity(Integer id) {
+        this.id = id;
     }
 
-    public BaseEntity(String uuid, String name) {
-        this.uuid = uuid;
+
+    public BaseEntity(Integer id, String name) {
+        this.id = id;
         this.name = name;
     }
 

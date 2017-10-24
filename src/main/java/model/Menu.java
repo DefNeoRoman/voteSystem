@@ -10,13 +10,10 @@ public class Menu  extends BaseEntity {
         this.cookName = cookName;
     }
 
-    public Menu(String name, String cookName) {
-        super(name);
-        this.cookName = cookName;
-    }
 
-    public Menu(String uuid, String name, String cookName) {
-        super(uuid, name);
+
+    public Menu(Integer id, String name, String cookName) {
+        super(id, name);
         this.cookName = cookName;
     }
 

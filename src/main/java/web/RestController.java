@@ -10,36 +10,5 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class RestController {
-    private static SandBox sandBox = new SandBox();
-
-
-
-    @RequestMapping(value = "/updateMeal",  method = RequestMethod.GET)
-    public String updateMeal(HttpServletRequest request, Model model) {
-       Meal meal = sandBox.getMeal(request.getParameter("uuid"));
-        model.addAttribute("meal",meal);
-        return "createMeal";
-    }
-
-    @GetMapping("/deleteMeal")
-    public String deleteMeal(HttpServletRequest request) {
-        String uuid = request.getParameter("uuid");
-        sandBox.deleteMeal(uuid);
-        return "redirect:/";
-    }
-    @RequestMapping("/create")
-    public String create(Model model) {
-        Meal emptyMeal = new Meal("Новая еда", 0);
-        model.addAttribute("meal",emptyMeal);
-        return "createMeal";
-}
-
-    @RequestMapping(value = "/createMeal", method = RequestMethod.POST)
-    public String createMeal(HttpServletRequest request){
-        String description = request.getParameter("description");
-        int price = Integer.valueOf(request.getParameter("price"));
-        sandBox.addMeal(new Meal(description,price));
-        return "redirect:/";
-    }
 
 }

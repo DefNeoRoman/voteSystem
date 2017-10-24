@@ -12,13 +12,13 @@ import java.util.UUID;
 
 @Service
 public class PlaceService implements VoteSystemService<Place> {
-    private final Place pla1 = new Place(UUID.randomUUID().toString(),"ресторан");
-    private final Place pla2=  new Place(UUID.randomUUID().toString(),"бар");
-    private final Place pla3=  new Place(UUID.randomUUID().toString(),"кафе");
-    private final Place pla4=  new Place(UUID.randomUUID().toString(),"небар");
-    private final Place pla5 = new Place(UUID.randomUUID().toString(),"лаунж");
-    private final Place pla6 = new Place(UUID.randomUUID().toString(),"столовая");
-    private final Place pla7 = new Place(UUID.randomUUID().toString(),"гостиница");
+    private final Place pla1 = new Place(504,"ресторан");
+    private final Place pla2=  new Place(505,"бар");
+    private final Place pla3=  new Place(506,"кафе");
+    private final Place pla4=  new Place(507,"небар");
+    private final Place pla5 = new Place(508,"лаунж");
+    private final Place pla6 = new Place(509,"столовая");
+    private final Place pla7 = new Place(5010,"гостиница");
     @Autowired
     PlaceRepository repository;
 
