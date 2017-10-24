@@ -35,7 +35,7 @@ public class PlaceController {
         Place upPlace = new Place();
         if(uuid.isEmpty()){
             uuid = UUID.randomUUID().toString();
-            upPlace.setUuid(uuid);
+
         } else{
             upPlace = service.get(uuid);
         }
@@ -49,7 +49,7 @@ public class PlaceController {
         upPlace.setVotes(Integer.valueOf(q));
         upPlace.setName(pName);
 
-        service.update(upPlace.getUuid(),upPlace);
+
         return service.getAll();
     }
 

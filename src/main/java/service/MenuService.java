@@ -22,11 +22,7 @@ public class MenuService implements VoteSystemService<Menu>{
     @Autowired
     private MenuRepository menuRepository;
     public void fillRepository(){
-        menuRepository.save(menu1,menu1.getUuid());
-        menuRepository.save(menu2,menu2.getUuid());
-        menuRepository.save(menu3,menu3.getUuid());
-        menuRepository.save(menu4,menu4.getUuid());
-        menuRepository.save(menu5,menu5.getUuid());
+
 
     }
     @Override

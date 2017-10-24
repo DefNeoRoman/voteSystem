@@ -17,7 +17,7 @@ public abstract class BaseEntity {
     // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
     @Access(value = AccessType.FIELD)
     private Integer id;
-    private String uuid;
+
     @Column(name = "description", nullable = false)
     @NotBlank
     @Size(min = 2, max = 120)
@@ -34,14 +34,6 @@ public abstract class BaseEntity {
     public BaseEntity(Integer id, String name) {
         this.id = id;
         this.name = name;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getUuid() {
-        return uuid;
     }
 
     public int getId() {

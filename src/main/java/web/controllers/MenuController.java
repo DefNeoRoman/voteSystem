@@ -36,7 +36,7 @@ public class MenuController implements VScontroller {
         Menu upMenu = new Menu();
         if(uuid.isEmpty()){
             uuid = UUID.randomUUID().toString();
-            upMenu.setUuid(uuid);
+
         } else{
             upMenu = service.get(uuid);
         }

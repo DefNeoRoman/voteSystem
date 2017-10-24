@@ -27,8 +27,7 @@ public class UserService implements VoteSystemService<User> {
             "123",
             Role.USER);
     public void fillRepository(){
-        userRepository.save(adminUser,adminUser.getUuid());
-        userRepository.save(regularUser,regularUser.getUuid());
+
     }
 
 
@@ -41,7 +40,7 @@ public class UserService implements VoteSystemService<User> {
 
     @Override
     public void create(String searchKey, User object) {
-        userRepository.save(object,object.getUuid());
+
     }
 
     @Override
@@ -51,7 +50,8 @@ public class UserService implements VoteSystemService<User> {
 
     @Override
     public void update(String searchKey, User object) {
-        userRepository.update(object,object.getUuid());
+
+
     }
 
     @Override

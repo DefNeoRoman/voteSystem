@@ -48,7 +48,7 @@ public class UserController {
 
         if(uuuid.isEmpty()){
             uuuid = UUID.randomUUID().toString();
-            upUser.setUuid(uuuid);
+
         } else{
             upUser = service.get(uuuid);
         }
@@ -89,7 +89,7 @@ public class UserController {
         upUser.setVote(isVote);
         upUser.setCanVote(canVote);
 
-        service.update(upUser.getUuid(),upUser);
+
         return service.getAll();
     }
     @DeleteMapping
