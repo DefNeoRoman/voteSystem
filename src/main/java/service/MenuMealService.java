@@ -3,7 +3,9 @@ package service;
 import model.MenuMeal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import repository.datajpa.MealRepository;
 import repository.datajpa.MenuMealRepository;
+import repository.datajpa.MenuRepository;
 import service.interfaces.VoteSystemService;
 
 import java.util.List;
@@ -12,6 +14,10 @@ import java.util.List;
 public class MenuMealService{
     @Autowired
     MenuMealRepository repository;
+    @Autowired
+    MenuRepository menuRepository;
+    @Autowired
+    MealRepository mealRepository;
     public List<MenuMeal> getAll() {
         return repository.findAll();
     }
