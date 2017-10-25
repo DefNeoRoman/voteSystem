@@ -4,49 +4,41 @@ import model.Menu;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.interfaces.MenuRepository;
+import repository.datajpa.MenuRepository;
 import service.interfaces.VoteSystemService;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
-public class MenuService implements VoteSystemService<Menu>{
-    private final Menu menu1 = new Menu(900006,"завтрак","Вова");
-    private final Menu menu2 = new Menu(900007,"обед","Петя");
-    private final Menu menu3 = new Menu(900008,"ужин","Вася");
-    private final Menu menu4 = new Menu(900009,"ланч","Дима");
-    private final Menu menu5 = new Menu(9000010,"фастфуд","Егор");
+public class MenuService{
+
 
 
     @Autowired
     private MenuRepository menuRepository;
-    public void fillRepository(){
 
 
-    }
-    @Override
     public List<Menu> getAll() {
-        return menuRepository.getAll();
+        return menuRepository.findAll();
     }
 
-    @Override
-    public void create(String searchKey, Menu object) {
-        menuRepository.save(object,searchKey);
+
+    public void create(Menu object) {
+        menuRepository.save(object);
     }
 
-    @Override
-    public Menu get(String searchKey) {
-        return menuRepository.get(searchKey);
+
+    public Menu get(Integer id) {
+        return menuRepository.findOne(id);
     }
 
-    @Override
-    public void update(String searchKey, Menu object) {
-        menuRepository.update(object,searchKey);
+
+    public void update(Menu object) {
+        menuRepository.save(object);
     }
 
-    @Override
-    public void delete(String searchKey) {
-        menuRepository.delete(searchKey);
+
+    public void delete(Integer id) {
+        menuRepository.delete(id);
     }
 }

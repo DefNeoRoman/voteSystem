@@ -21,18 +21,18 @@
 
     <tr>
         <form action="" id="menuForm">
-             <input type="hidden" name="uuid" id="uuid" value="${menu.uuid}">
+             <input type="hidden" name="uuid" id="uuid" value="${menu.id}">
             <input type="hidden" name="name" id="name" value="${menu.name}">
             <td><c:out value="${menu.name}"/></td>
             <input type="hidden" name="cockName" id="cockName" value="${menu.cookName}">
             <td><c:out value="${menu.cookName}"/></td>
             <td>
-                <a class="btn btn-primary" onclick="testEdit('${menu.uuid}')">
+                <a class="btn btn-primary" onclick="testEdit('${menu.id}')">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </a>
             </td>
             <td>
-                <a href="menus/delete/${menu.uuid}">
+                <a href="menus/delete/${menu.id}">
                     <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                 </a>
             </td>

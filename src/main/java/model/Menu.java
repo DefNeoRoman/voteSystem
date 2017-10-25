@@ -1,7 +1,18 @@
 package model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+@Entity
+@Table(name = "menus")
 public class Menu  extends BaseEntity {
-  private String cookName;
+    @Column(name = "cookname", nullable = false)
+    @NotBlank
+    @Size(min = 2, max = 120)
+    private String cookName;
 
     public Menu() {
     }

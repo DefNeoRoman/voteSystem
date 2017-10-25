@@ -7,22 +7,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import service.MenuMealService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/menuMeal")
+@RequestMapping(value = "/menumeal")
 public class MenuMealController implements VScontroller {
 
     @Autowired
     MenuMealService service;
-    @Override
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public String getAll(Model model) {
-        model.addAttribute("menuMeals");
-        return null;
+        model.addAttribute("menumeals",service.getAll());
+
+        return "modelPages/menuMeal";
+
     }
 
     @Override

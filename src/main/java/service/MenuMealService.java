@@ -3,41 +3,32 @@ package service;
 import model.MenuMeal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.interfaces.MenuMealRepository;
+import repository.datajpa.MenuMealRepository;
 import service.interfaces.VoteSystemService;
 
 import java.util.List;
 
 @Service
-public class MenuMealService implements VoteSystemService<MenuMeal>{
+public class MenuMealService{
     @Autowired
     MenuMealRepository repository;
-
-    public void fillRepository(){
-
-    }
-    @Override
     public List<MenuMeal> getAll() {
-        return repository.getAll();
+        return repository.findAll();
     }
 
-    @Override
-    public void create(String searchKey, MenuMeal object) {
-        repository.save(object,searchKey);
+    public void create(MenuMeal object) {
+        repository.save(object);
     }
 
-    @Override
-    public MenuMeal get(String searchKey) {
-        return repository.get(searchKey);
+    public MenuMeal get(Integer searchKey) {
+        return repository.findOne(searchKey);
     }
 
-    @Override
-    public void update(String searchKey, MenuMeal object) {
-        repository.update(object,searchKey);
+    public void update(MenuMeal object) {
+        repository.save(object);
     }
 
-    @Override
-    public void delete(String searchKey) {
+    public void delete(Integer searchKey) {
         repository.delete(searchKey);
     }
 }

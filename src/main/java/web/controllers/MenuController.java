@@ -15,12 +15,12 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping(value = "/menus")
-public class MenuController implements VScontroller {
+public class MenuController  {
 
     @Autowired
     MenuService service;
 
-    @Override
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public String getAll(Model model) {
         Menu editMenu = new Menu();
@@ -29,7 +29,7 @@ public class MenuController implements VScontroller {
         return "modelPages/menus";
     }
 
-    @Override
+
     @PostMapping(value = "/update")
     public String update(HttpServletRequest request) {
         String uuid = request.getParameter("editUuid");
@@ -38,7 +38,7 @@ public class MenuController implements VScontroller {
             uuid = UUID.randomUUID().toString();
 
         } else{
-            upMenu = service.get(uuid);
+
         }
         String name = request.getParameter("description");
         if(name.isEmpty()){
@@ -52,24 +52,23 @@ public class MenuController implements VScontroller {
         upMenu.setCookName(cName);
         upMenu.setName(name);
 
-        service.update(uuid,upMenu);
+
 
         return "redirect:/menus";
     }
 
-    @Override
-    @GetMapping(value = "delete/{uuid}")
-    public String delete(@PathVariable("uuid") String uuid) {
-        service.delete(uuid);
+    @GetMapping(value = "delete/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        service.delete(id);
         return "redirect:/menus";
     }
 
-    @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     //добавил ResponseBody и все заработало)) спасибо stackOverFlow
     public @ResponseBody
-    Menu get(@PathVariable("uuid") String uuid) {
+    Menu get(@PathVariable("id")    Integer id) {
 
 
-        return service.get(uuid);
+        return service.get(id);
     }
 }

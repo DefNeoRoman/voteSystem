@@ -33,12 +33,6 @@ public class RootController {
     }
 
 
-
-    @GetMapping("/menuMeal")
-    public String menuMeal() {
-        return "modelPages/menuMeal";
-    }
-
     @GetMapping(value = "/placeMenu")
     public String placeMenu() {
         return "modelPages/placeMenu";
