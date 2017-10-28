@@ -1,8 +1,6 @@
 package repository.interfaces;
 
 import model.Place;
-import model.PlaceMenu;
-import model.User;
 
 import java.util.List;
 

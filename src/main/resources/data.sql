@@ -12,13 +12,8 @@ INSERT INTO meals (price, name) VALUES
 INSERT INTO menus (name, cookname) VALUES
   ('завтрак','Вова'),
   ('обед','Петя'),
-
   ('ужин','Вася'),
   ('ланч','Дима'),
   ('фастфуд','Егор');
-INSERT INTO menumeals (name, menu_id, meal_id) VALUES
-  ('Заметка1',1000,1000),
-  ('Заметка2',1000,1001),
-  ('Заметка5',1000,1002),
-  ('Заметка3',1001,1004),
-  ('Заметка4',1001,1005);
+INSERT INTO menumeals (menu_id, meal_id) VALUES
+(8,1);

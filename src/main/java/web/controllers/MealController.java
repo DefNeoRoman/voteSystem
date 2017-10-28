@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping(value = "/meals")
 public class MealController {
 
@@ -23,9 +23,9 @@ public class MealController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 
-    public String getAll(Model model){
-        model.addAttribute("meals",service.getAll());
-        return "modelPages/meals";
+    public List<Meal> getAll(Model model){
+
+        return service.getAll();
     }
 
     @PostMapping(value = "/update")

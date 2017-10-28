@@ -20,11 +20,16 @@ public class RootController {
     public String
     welcome(Model model) {
 
-        return "first";
+        return "index";
     }
     @GetMapping("/users")
     public String users() {
         return "modelPages/users";
+    }
+    @GetMapping("/meals")
+
+    public String meals() {
+        return "modelPages/meals";
     }
 
     @GetMapping(value = "/places")

@@ -6,44 +6,32 @@
 <jsp:include page="../fragments/headTag.jsp"/>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
-    <div class="container">
-       <table>
-           <thead>
-           <tr>
-               <th>Description</th>
-               <th>Price</th>
-           </tr>
-           </thead>
-           <c:forEach items="${meals}" var="meal">
-               <jsp:useBean id="meal" scope="page" type="model.Meal"/>
+<div class="container">
+    <a class="btn btn-primary" onclick="add()">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true">Add</span>
 
-               <tr>
-
-                   <td><c:out value="${meal.name}"/></td>
-                   <td><c:out value="${meal.price}"/></td>
-                   <td>
-                       <button type="button" class="btn btn-default" onclick="edit('${meal.name}',${meal.price},'${meal.id}')">
-
-                           Edit
-                       <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                       </button>
-                   </td>
-                   <td>
-                       <button type="button" class="btn btn-danger" onclick="deleteEntity('${meal.id}')">
-                       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                       </button>
-                   </td>
-               </tr>
-               <br>
-           </c:forEach>
-       </table>
-
-
-        <a class="btn btn-primary" onclick="add()">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            add
-        </a>
-    </div>
+    </a>
+    <table id="mealDataTable" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>In Menu</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>In Menu</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
     <div class="modal fade" id="editRow">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -86,5 +74,6 @@
 
 
 <jsp:include page="../fragments/footer.jsp"/>
+<script type="text/javascript" src="static/js/meal.js" defer></script>
 </body>
 </html>

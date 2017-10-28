@@ -1,40 +1,26 @@
 package service;
 
-import model.MenuMeal;
+import model.Meal;
+import model.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.datajpa.MealRepository;
-import repository.datajpa.MenuMealRepository;
 import repository.datajpa.MenuRepository;
-import service.interfaces.VoteSystemService;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class MenuMealService{
-    @Autowired
-    MenuMealRepository repository;
+
     @Autowired
     MenuRepository menuRepository;
     @Autowired
     MealRepository mealRepository;
-    public List<MenuMeal> getAll() {
-        return repository.findAll();
-    }
+   public void fillRep(){
 
-    public void create(MenuMeal object) {
-        repository.save(object);
-    }
 
-    public MenuMeal get(Integer searchKey) {
-        return repository.findOne(searchKey);
-    }
+   }
+   public void printRep(){
 
-    public void update(MenuMeal object) {
-        repository.save(object);
-    }
-
-    public void delete(Integer searchKey) {
-        repository.delete(searchKey);
-    }
+   }
 }
