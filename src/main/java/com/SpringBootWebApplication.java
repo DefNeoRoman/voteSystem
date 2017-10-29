@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import repository.datajpa.MealRepository;
 import service.*;
 
 import javax.jws.soap.SOAPBinding;
@@ -27,9 +28,9 @@ public class SpringBootWebApplication extends SpringBootServletInitializer{
 
     public static void main(String[] args) throws Exception {
         ConfigurableApplicationContext context =  SpringApplication.run(SpringBootWebApplication.class, args);
+
+        context.getBean(MealService.class).testSave();
         System.out.println(context.getBean(MealService.class).testGet());
-
-
     }
 
 }

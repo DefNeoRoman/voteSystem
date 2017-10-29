@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
 
-public class User extends BaseEntity {
+public class User {
     private String password;
     private String email;
     private Date registerDate;
@@ -20,7 +20,7 @@ public class User extends BaseEntity {
     public User(Integer id, String name,
                 String email, String password,
                 Role role) {
-        super(id, name);
+
         this.password = password;
         this.role = role;
         this.email = email;

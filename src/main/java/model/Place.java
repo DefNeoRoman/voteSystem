@@ -3,7 +3,7 @@ package model;
 import java.io.DataOutputStream;
 import java.util.Date;
 
-public class Place extends BaseEntity {
+public class Place  {
 
     private int votes;
 
@@ -12,7 +12,7 @@ public class Place extends BaseEntity {
     }
 
     public Place(Integer id, String name) {
-        super(id, name);
+
         this.votes = 0;
     }
 

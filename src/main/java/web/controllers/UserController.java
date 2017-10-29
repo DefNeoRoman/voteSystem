@@ -40,10 +40,10 @@ public class UserController {
 
         User upUser = new User();
         if(uid.isEmpty()){
-           Integer nuid = service.getSize();
-           upUser.setId(nuid);
+
+
         }else{
-            upUser.setId(Integer.valueOf(uid));
+
         }
 
         if(uuuid.isEmpty()){
@@ -83,7 +83,7 @@ public class UserController {
         boolean isVote = Boolean.parseBoolean(uisvote);
         boolean canVote = Boolean.parseBoolean(ucanvote);
 
-        upUser.setName(name);
+
         upUser.setEmail(email);
         upUser.setEnabled(enabled);
         upUser.setVote(isVote);

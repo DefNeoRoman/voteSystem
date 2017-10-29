@@ -40,21 +40,35 @@
                     <h2 class="modal-title" id="modalTitle"></h2>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="detailsForm" action="meals/update" method="post">
-                        <input type="hidden" id="uuid" name="uuid">
+                    <form class="form-horizontal" id="detailsForm" method="post" action="javascript:void(null);" onsubmit="call(this)">
+                        <input type="hidden" id="mealId" name="mealId">
+                        <input type="hidden" id="menuId" name="menuId">
                         <div class="form-group">
-                            <label for="description" class="control-label col-xs-3">Название</label>
+                            <label for="mealName" class="control-label col-xs-3">Meal Name</label>
 
                             <div class="col-xs-9">
-                                <input type="text" class="form-control" id="description" name="description"
-                                       value="${meal.name}">
+                                <input type="text" class="form-control" id="mealName" name="mealName"
+                                       value="">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="price" class="control-label col-xs-3">Цена</label>
+                            <label for="price" class="control-label col-xs-3">Meal Price</label>
 
                             <div class="col-xs-9">
-                                <input type="number" class="form-control" id="price" name="price" value="${meal.price}">
+                                <input type="number" class="form-control" id="price" name="price" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="price" class="control-label col-xs-3">In Menu</label>
+
+                            <div class="col-xs-9">
+                                <div id="selectText">
+
+                                </div>
+                                <select name="" id="selectMenuName">
+
+                                </select>
+
                             </div>
                         </div>
                         <div class="form-group">

@@ -55,7 +55,5 @@ public class UserService implements VoteSystemService<User> {
     public void delete(String searchKey) {
         userRepository.delete(searchKey);
     }
-    public Integer getSize(){
-        return userRepository.getAll().size();
-    }
+
 }

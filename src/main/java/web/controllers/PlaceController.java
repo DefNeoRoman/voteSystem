@@ -47,7 +47,7 @@ public class PlaceController {
             pName = "empty";
         }
         upPlace.setVotes(Integer.valueOf(q));
-        upPlace.setName(pName);
+
 
 
         return service.getAll();

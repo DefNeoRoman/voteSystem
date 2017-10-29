@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import repository.datajpa.MenuRepository;
 import service.interfaces.VoteSystemService;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -32,7 +33,7 @@ public class MenuService{
         return menuRepository.findOne(id);
     }
 
-
+    @Transactional
     public void update(Menu object) {
         menuRepository.save(object);
     }
