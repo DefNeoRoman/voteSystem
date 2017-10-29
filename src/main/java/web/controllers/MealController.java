@@ -56,28 +56,18 @@ public class MealController {
                          @RequestParam(required=false) String  mealName,
                          @RequestParam(required=false) String price) {
         List<MealTO> lmto;
-
-        Meal upMeal;
-        System.out.println(menuId);
-        Menu upMenu = menuService.get(Integer.valueOf(menuId));
-        if(mealId.isEmpty()){
-            upMeal = new Meal();
-        }else{
-            upMeal = mealService.get(Integer.valueOf(mealId));
-        }
-        if(mealName.isEmpty()){
-            mealName = "Empty";
-        }
-        if(price.isEmpty()){
-            price = "0";
-        }
-        upMeal.setName(mealName);
-        upMeal.setPrice(Integer.valueOf(price));
-        upMeal.addMenuMeal(new MenuMeal(upMenu,upMeal));
-
-       mealService.update(upMeal);
-
-       lmto = mealService.getAll();
+       Meal upMeal = mealService.get(Integer.valueOf(mealId));
+       upMeal.setPrice(Integer.valueOf(price));
+       upMeal.setName(mealName);
+       Menu upMenu = menuService.get(Integer.valueOf(menuId));
+       MenuMeal menuMeal = new MenuMeal();
+       menuMeal.setMenu(upMenu);
+       menuMeal.setMeal(upMeal);
+       upMeal.addMenuMeal(menuMeal);
+       upMenu.addMenuMeal(menuMeal);
+        mealService.update(upMeal);
+        menuService.update(upMenu);
+        lmto = mealService.getAll();
 
         return lmto;
     }

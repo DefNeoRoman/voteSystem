@@ -2,6 +2,8 @@ package model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -16,8 +18,8 @@ import java.util.Set;
 @Entity
 @Table(name = "meals")
 public class Meal implements Serializable{
-
-    @OneToMany(mappedBy = "meal",fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE},orphanRemoval = true)
+    @NotFound(action = NotFoundAction.IGNORE)
+    @OneToMany(mappedBy = "meal",fetch = FetchType.LAZY,cascade = {CascadeType.MERGE, CascadeType.PERSIST},orphanRemoval = true)
     private List<MenuMeal> menumeals = new ArrayList<>();
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 1)

@@ -4,6 +4,8 @@ package model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,24 +15,22 @@ import java.util.UUID;
 @Table(name = "menumeals")
 public class MenuMeal implements Serializable{
 
-    @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 1)
-    //    @Column(name = "id", unique = true, nullable = false, columnDefinition = "integer default nextval('global_seq')")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
-    private Long id;
+
     @Id
     @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "menu_id")
     private Menu menu;
     @Id
     @ManyToOne
+    @NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name = "meal_id")
     private Meal meal;
     @Transient
-    private int resForHash;
+    private Integer resForHash;
 
     public MenuMeal() {
+        resForHash = UUID.randomUUID().hashCode();
     }
 
     public MenuMeal(Menu menu, Meal meal) {
@@ -70,7 +70,7 @@ public class MenuMeal implements Serializable{
     }
 
 
-    public int getResForHash() {
+    public Integer getResForHash() {
         return resForHash;
     }
 
@@ -78,13 +78,7 @@ public class MenuMeal implements Serializable{
         this.resForHash = resForHash;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -95,8 +89,8 @@ public class MenuMeal implements Serializable{
 
         final MenuMeal menuMeal = (MenuMeal) o;
 
-        if (id != null && menuMeal.getId() != null) {
-            return id.equals(menuMeal.getId());
+        if (resForHash != null && menuMeal.getResForHash() != null) {
+            return resForHash.equals(menuMeal.getResForHash());
         }
         return false;
 

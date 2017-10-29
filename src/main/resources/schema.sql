@@ -20,11 +20,11 @@ CREATE TABLE menus
 
 CREATE TABLE menumeals
 (
-  id           bigint PRIMARY KEY DEFAULT nextval('global_seq'),
+
   menu_id    INTEGER  NOT NULL ,
   meal_id    INTEGER  NOT NULL ,
 
-
+    PRIMARY KEY (menu_id,meal_id),
   CONSTRAINT fk_menumeals_menu FOREIGN KEY (menu_id) REFERENCES menus (id) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT fk_menumeals_meal FOREIGN KEY (meal_id) REFERENCES meals (id) ON DELETE CASCADE ON UPDATE CASCADE
 

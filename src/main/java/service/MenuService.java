@@ -33,7 +33,7 @@ public class MenuService{
         return menuRepository.findOne(id);
     }
 
-    @Transactional
+
     public void update(Menu object) {
         menuRepository.save(object);
     }

@@ -2,6 +2,8 @@ package model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
@@ -15,7 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name = "menus")
 public class Menu implements Serializable {
-
+    @NotFound(action = NotFoundAction.IGNORE)
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "menu")
     private List<MenuMeal> menuMeals = new ArrayList<>();
     @Column(name = "cookname", nullable = false)
@@ -102,9 +104,9 @@ public class Menu implements Serializable {
         }
     }
     public void removeMenuMeal(MenuMeal menuMeal){
-        menuMeal.setMenu(null);
-        getMenuMeals().remove(menuMeal);
 
+        getMenuMeals().remove(menuMeal);
+        menuMeal.setMenu(null);
     }
     @Override
     public String toString() {
