@@ -67,9 +67,14 @@ public class MealController {
         mealService.update(upMeal);
         return mealService.getAll();
     }
-    @DeleteMapping(value = "delete/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        mealService.delete(id);
+    @DeleteMapping(value = "delete/{mealId}/{menuId}")
+    public String delete(@PathVariable("mealId") Long mealId,
+                         @PathVariable("menuId") Long menuId) {
+       Menu upMenu = menuService.get(menuId);
+       Meal upMeal = mealService.get(mealId);
+       upMenu.removeMeal(upMeal);
+
+
         return "redirect:/meals";
     }
 }

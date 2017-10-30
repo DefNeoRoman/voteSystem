@@ -39,13 +39,13 @@ function renderEditBtn(data, type, row) {
         "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></>";
 }
 function renderDeleteBtn(data, type, row) {
-    return "<a onclick ="+ "deleteRow("+"\'"+row.mealId+"\')"+" >" +
+    return "<a onclick ="+ "deleteRow("+"\'"+row.mealId+"\'"+","+"\'"+row.menuId+"\'"+")"+" >" +
         "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
 }
-function deleteRow(id) {
+function deleteRow(mealId,menuId) {
     console.log(id);
     $.ajax({
-        url: 'meals/delete/'+ id,
+        url: 'meals/delete/'+ mealId+'/'+menuId,
         type: "DELETE",
         success: function () {
             location.reload();
