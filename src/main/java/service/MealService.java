@@ -3,7 +3,6 @@ package service;
 import model.Meal;
 
 import model.Menu;
-import model.MenuMeal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.datajpa.MealRepository;
@@ -13,8 +12,6 @@ import transferObjects.MealTO;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 @Service
 public class MealService  {
@@ -24,30 +21,36 @@ public class MealService  {
     @Autowired
     private MenuRepository menuRepository;
     public void testSave(){
-        Meal nMeal = new Meal("testMeal",900);
-        Menu nMenu = new Menu("testDinner","testCook");
-        MenuMeal menuMeal = new MenuMeal();
-        menuMeal.setMeal(nMeal);
-        menuMeal.setMenu(nMenu);
-        nMeal.getMenumeals().add(menuMeal);
-        menuRepository.save(nMenu);
-        mealRepository.save(nMeal);
+        Meal nMeal1 = new Meal("testMeal",900);
+        Meal nMeal2 = new Meal("soup",9090);
+        Menu nMenu3 = new Menu("testDinner","testCook");
+        Menu nMenu4 = new Menu("testSupper","Vova");
+
+       nMenu3.addMeal(nMeal1);
+       nMenu3.addMeal(nMeal2);
+
+       nMenu4.addMeal(nMeal1);
+       nMenu4.addMeal(nMeal2);
+
+       menuRepository.save(nMenu3);
+
+
+
     }
 
     public List<MealTO> getAll() {
         List<Meal> lm = mealRepository.findAll();
         List<MealTO> lmto = new ArrayList<>();
+        lm.forEach(meal -> {
+           meal.getMenus().forEach(menu -> {
+               lmto.add(new MealTO(meal.getId(),
+                       meal.getName(),
+                       meal.getPrice(),
+                       menu.getId(),
+                       menu.getName()));
+           });
+        });
 
-        lm.forEach(meal ->
-                meal.getMenumeals().forEach(menuMeal -> {
-
-            lmto.add(new MealTO(meal.getId(),
-                    meal.getName(),
-                    meal.getPrice(),
-                    menuMeal.getMenu().getId(),
-                    menuMeal.getMenu().getName()
-                    ));
-        }));
 
         return lmto;
     }
@@ -61,7 +64,8 @@ public class MealService  {
     }
 
 
-    public Meal get(Integer id) {
+    public Meal get(Long id) {
+
         return mealRepository.findOne(id);
     }
 
@@ -71,7 +75,8 @@ public class MealService  {
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
+
         mealRepository.delete(id);
     }
 }

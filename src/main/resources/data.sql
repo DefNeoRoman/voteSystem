@@ -14,10 +14,10 @@ INSERT INTO menus (name, cookname) VALUES
   ('обед','Петя'),
   ('ужин','Вася');
 
-INSERT INTO menumeals (menu_id, meal_id) VALUES
-(9,1),
-(9,2),
-(8,3),
-(8,4),
-(7,5),
-(7,6);
+INSERT INTO menumeals (meal_id, menu_id) VALUES
+(1,1),
+(2,2),
+(3,3),
+(4,1),
+(5,2),
+(6,3);

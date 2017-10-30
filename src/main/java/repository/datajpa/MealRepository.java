@@ -10,6 +10,6 @@ import java.util.List;
 
 @Repository
 @Transactional
-public interface MealRepository extends JpaRepository<Meal, Integer> {
+public interface MealRepository extends JpaRepository<Meal, Long> {
 
 }

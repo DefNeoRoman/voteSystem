@@ -9,6 +9,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 @Repository
 @Transactional
-public interface MenuRepository extends JpaRepository<Menu, Integer> {
+public interface MenuRepository extends JpaRepository<Menu, Long> {
 
 }

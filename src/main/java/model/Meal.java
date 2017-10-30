@@ -9,35 +9,51 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "meals")
 public class Meal implements Serializable{
-    @NotFound(action = NotFoundAction.IGNORE)
-    @OneToMany(mappedBy = "meal",fetch = FetchType.LAZY,cascade = {CascadeType.MERGE, CascadeType.PERSIST},orphanRemoval = true)
-    private List<MenuMeal> menumeals = new ArrayList<>();
+
     @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 1)
     //    @Column(name = "id", unique = true, nullable = false, columnDefinition = "integer default nextval('global_seq')")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
-    private Integer id;
+    private Long id;
     private String name;
     @Column(name = "price", nullable = false)
     @Range(min = 1, max = 100000)
     @NotNull
     private int price;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "menumeals",
+//            joinColumns = @JoinColumn(name = "meal_id"),
+//            inverseJoinColumns = @JoinColumn(name = "menu_id")
+//    )
+    @ManyToMany(mappedBy = "meals")//на
+    private Set<Menu> menus = new HashSet<>();
+    public void addMenu(Menu menu){
+        menus.add(menu);
+        menu.getMeals().add(this);
 
-    public Integer getId() {
+    }
+    public void removeMenu(Menu menu){
+        menus.remove(menu);
+        menu.getMeals().remove(this);
+    }
+    public Set<Menu> getMenus() {
+        return menus;
+    }
+
+    public void setMenus(Set<Menu> menus) {
+        this.menus = menus;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -64,7 +80,7 @@ public class Meal implements Serializable{
        this.name=name;
     }
 
-    public Meal(Integer id, String name, int price) {
+    public Meal(Long id, String name, int price) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -78,32 +94,9 @@ public class Meal implements Serializable{
         this.price = price;
     }
 
-    public List<MenuMeal> getMenumeals() {
-        return menumeals;
-    }
 
-    public void setMenumeals(List<MenuMeal> menumeals) {
-        this.menumeals = menumeals;
-    }
-    public void addMenuMeal(MenuMeal menuMeal){
-        addMenuMeal(menuMeal,true);
-    }
-    void addMenuMeal(MenuMeal menuMeal,boolean set){
-        if(menuMeal!=null){
-            if(getMenumeals().contains(menuMeal)){
-                getMenumeals().set(getMenumeals().indexOf(menuMeal),menuMeal);
-            }else{
-                getMenumeals().add(menuMeal);
-            }
-            if(set){
-                menuMeal.setMeal(this,false);
-            }
-        }
-    }
-    public void removeMenuMeal(MenuMeal menuMeal){
-        getMenumeals().remove(menuMeal);
-        menuMeal.setMeal(null);
-    }
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -132,8 +125,7 @@ public class Meal implements Serializable{
 
     @Override
     public int hashCode() {
-        final int PRIME = 31;
-        return new HashCodeBuilder(getId()%2==0?getId()+1:getId(), PRIME).
-                toHashCode();
+
+        return Objects.hash(name);
     }
 }

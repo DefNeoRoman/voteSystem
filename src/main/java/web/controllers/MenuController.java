@@ -58,7 +58,7 @@ public class MenuController  {
     }
 
     @GetMapping(value = "delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
+    public String delete(@PathVariable("id") Long id) {
         service.delete(id);
         return "redirect:/menus";
     }
@@ -66,7 +66,7 @@ public class MenuController  {
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     //добавил ResponseBody и все заработало)) спасибо stackOverFlow
     public @ResponseBody
-    Menu get(@PathVariable("id")    Integer id) {
+    Menu get(@PathVariable("id")    Long id) {
 
 
         return service.get(id);

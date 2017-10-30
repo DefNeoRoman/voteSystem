@@ -34,12 +34,12 @@ $(document).ready(function() {
     } );
 });
 function renderEditBtn(data, type, row) {
-
+    console.log(data);
     return "<a onclick="+"updateRow("+"\'"+row.mealId+"\'"+",\'"+row.menuId+"\'"+")"+">" +
         "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></>";
 }
 function renderDeleteBtn(data, type, row) {
-    return "<a onclick ="+ "deleteRow("+"\'"+row.mealID+"\')"+" >" +
+    return "<a onclick ="+ "deleteRow("+"\'"+row.mealId+"\')"+" >" +
         "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
 }
 function deleteRow(id) {

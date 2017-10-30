@@ -29,7 +29,7 @@ public class MenuService{
     }
 
 
-    public Menu get(Integer id) {
+    public Menu get(Long id) {
         return menuRepository.findOne(id);
     }
 
@@ -39,7 +39,7 @@ public class MenuService{
     }
 
 
-    public void delete(Integer id) {
+    public void delete(Long id) {
         menuRepository.delete(id);
     }
 }

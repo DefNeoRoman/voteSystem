@@ -7,18 +7,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MealTO {
-    private Integer mealId;
+    private Long mealId;
     private String mealName;
     private int price;
-    private Integer menuId;
+    private Long menuId;
     private String menuName;
     private List<String> menuNames;
-    private List<Integer> menuIds;
+    private List<Long> menuIds;
 
-    public MealTO(Integer mealId,
+    public MealTO(Long mealId,
                   String mealName,
                   int price,
-                  Integer menuId,
+                  Long menuId,
                   String menuName) {
         this.mealId = mealId;
         this.mealName = mealName;
@@ -29,13 +29,13 @@ public class MealTO {
         menuIds = new LinkedList<>();
     }
 
-    public Integer getMealId() {
+    public Long getMealId() {
         return mealId;
     }
     public void addMenuname(String menuName){
         menuNames.add(menuName);
     }
-    public void addMenuId(Integer menuId){
+    public void addMenuId(Long menuId){
         menuIds.add(menuId);
     }
 
@@ -43,11 +43,11 @@ public class MealTO {
         return menuNames;
     }
 
-    public List<Integer> getMenuIds() {
+    public List<Long> getMenuIds() {
         return menuIds;
     }
 
-    public void setMealId(Integer mealId) {
+    public void setMealId(Long mealId) {
         this.mealId = mealId;
     }
 
@@ -67,11 +67,11 @@ public class MealTO {
         this.price = price;
     }
 
-    public Integer getMenuId() {
+    public Long getMenuId() {
         return menuId;
     }
 
-    public void setMenuId(Integer menuId) {
+    public void setMenuId(Long menuId) {
         this.menuId = menuId;
     }
 
