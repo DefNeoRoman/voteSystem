@@ -34,12 +34,31 @@ public class Menu implements Serializable {
     )
     private Set<Meal> meals = new HashSet<>();
 
+    @ManyToMany(mappedBy = "menus")//на
+    private Set<Place> places = new HashSet<>();
+
+    public Set<Place> getPlaces() {
+        return places;
+    }
+
+    public void setPlaces(Set<Place> places) {
+        this.places = places;
+    }
+
     public Set<Meal> getMeals() {
         return meals;
     }
 
     public void setMeals(Set<Meal> meals) {
         this.meals = meals;
+    }
+    public void addPlace(Place place){
+        places.add(place);
+        place.getMenus().add(this);
+    }
+    public void removePlace(Place place){
+        places.remove(place);
+        place.getMenus().remove(this);
     }
     public void addMeal(Meal meal){
         meals.add(meal);

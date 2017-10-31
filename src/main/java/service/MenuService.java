@@ -2,12 +2,14 @@ package service;
 
 import model.Menu;
 
+import model.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.datajpa.MenuRepository;
-import service.interfaces.VoteSystemService;
+import repository.datajpa.PlaceRepository;
+import transferObjects.MenuTO;
 
-import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -20,9 +22,24 @@ public class MenuService{
 
 
     public List<Menu> getAll() {
-        return menuRepository.findAll();
+      return menuRepository.findAll();
     }
+    public List<MenuTO> getAllMenuTOs(){
+        List<MenuTO> menuTOS = new ArrayList<>();
+        List<Menu> menuList = menuRepository.findAll();
 
+        menuList.forEach(menu -> {
+         menu.getPlaces().forEach(place -> {
+             menuTOS.add(new MenuTO(menu.getId(),
+                     menu.getName(),
+                     menu.getCookName(),
+                     place.getId(),
+                     place.getName(),
+                     place.getVotes()));
+         });
+        });
+        return menuTOS;
+    }
 
     public void create(Menu object) {
         menuRepository.save(object);

@@ -30,6 +30,18 @@ public class MealController {
         return mealService.getAll();
     }
     //будет разделение логики на update и add
+    @GetMapping(value = "/addMeal", produces = MediaType.APPLICATION_JSON_VALUE)
+    public MealTO addMeal(){
+        List<Menu> menuList = menuService.getAll();
+        MealTO response = new MealTO();
+        menuList.forEach(menu1 -> {
+//            добавляем доступные для options
+            response.addMenuId(menu1.getId());
+            response.addMenuname(menu1.getName());
+        });
+
+        return response;
+    }
     @GetMapping(value = "edit/{mealId}/{menuId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public MealTO get(@PathVariable("mealId") Long mealId,
                                   @PathVariable("menuId") Long menuId
@@ -55,9 +67,13 @@ public class MealController {
                          @RequestParam String menuId,
                          @RequestParam(required=false) String  mealName,
                          @RequestParam(required=false) String price) {
-        List<MealTO> lmto =new ArrayList<>();
+        Meal upMeal;
+        if(mealId.isEmpty()){
+            upMeal = new Meal();
+        }else{
+            upMeal = mealService.get(Long.parseLong(mealId));
+        }
 
-        Meal upMeal = mealService.get(Long.parseLong(mealId));
         upMeal.setName(mealName);
         upMeal.setPrice(Integer.valueOf(price));
         Menu upMenu = menuService.get(Long.parseLong(menuId));
@@ -68,13 +84,21 @@ public class MealController {
         return mealService.getAll();
     }
     @DeleteMapping(value = "delete/{mealId}/{menuId}")
-    public String delete(@PathVariable("mealId") Long mealId,
+    public List<MealTO> delete(@PathVariable("mealId") Long mealId,
                          @PathVariable("menuId") Long menuId) {
        Menu upMenu = menuService.get(menuId);
        Meal upMeal = mealService.get(mealId);
-       upMenu.removeMeal(upMeal);
+
+       if(upMenu.getMeals().isEmpty()){
+           menuService.delete(menuId);
+       }else{
+           upMenu.removeMeal(upMeal);
+           menuService.update(upMenu);
+           mealService.update(upMeal);
+       }
 
 
-        return "redirect:/meals";
+
+        return mealService.getAll();
     }
 }

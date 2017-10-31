@@ -8,59 +8,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.MenuService;
+import service.PlaceService;
+import transferObjects.MenuTO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping(value = "/menus")
 public class MenuController  {
 
     @Autowired
-    MenuService service;
-
+    MenuService menuService;
+    @Autowired
+    PlaceService placeService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public String getAll(Model model) {
-        Menu editMenu = new Menu();
-        model.addAttribute("menus",service.getAll());
-        model.addAttribute("singleMenu",editMenu);
-        return "modelPages/menus";
+    public List<MenuTO> getAll(Model model) {
+      return menuService.getAllMenuTOs();
     }
 
 
     @PostMapping(value = "/update")
     public String update(HttpServletRequest request) {
-        String uuid = request.getParameter("editUuid");
-        Menu upMenu = new Menu();
-        if(uuid.isEmpty()){
-            uuid = UUID.randomUUID().toString();
-
-        } else{
-
-        }
-        String name = request.getParameter("description");
-        if(name.isEmpty()){
-            name = "empty";
-        }
-
-        String cName = request.getParameter("cName");
-        if(cName.isEmpty()){
-            cName = "empty";
-        }
-        upMenu.setCookName(cName);
-        upMenu.setName(name);
-
-
-
-        return "redirect:/menus";
+    return "";
     }
 
     @GetMapping(value = "delete/{id}")
     public String delete(@PathVariable("id") Long id) {
-        service.delete(id);
-        return "redirect:/menus";
+        return "";
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -68,7 +45,7 @@ public class MenuController  {
     public @ResponseBody
     Menu get(@PathVariable("id")    Long id) {
 
+    return new Menu();
 
-        return service.get(id);
     }
 }

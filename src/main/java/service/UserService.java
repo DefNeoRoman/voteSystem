@@ -4,7 +4,7 @@ import model.Role;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.interfaces.UserRepository;
+import repository.datajpa.UserRepository;
 import service.interfaces.VoteSystemService;
 
 import java.util.List;

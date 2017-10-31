@@ -1,4 +1,105 @@
 package transferObjects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MenuTO {
+    private Long menuId;
+    private String menuName;
+    private String cookName;
+    private Long placeId;
+    private String placeName;
+    private int votes;
+    private List<String> placeNames;//Доступные Рестораны
+    private List<Long> placeIds; //доступные id всех ресторанов
+
+    public MenuTO() {
+        this.placeNames = new ArrayList<>();
+        this.placeIds = new ArrayList<>();
+    }
+
+    public MenuTO(Long menuId,
+                  String menuName,
+                  String cookName,
+                  Long placeId,
+                  String placeName,
+                  int votes) {
+        this.menuId = menuId;
+        this.menuName = menuName;
+        this.cookName = cookName;
+        this.placeId = placeId;
+        this.placeName = placeName;
+        this.votes = votes;
+        this.placeNames = new ArrayList<>();
+        this.placeIds = new ArrayList<>();
+    }
+    public void addPlaceName(String placeName){
+        placeNames.add(placeName);
+    }
+    public void addPlaceId(Long placeId){
+        placeIds.add(placeId);
+    }
+    public Long getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(Long menuId) {
+        this.menuId = menuId;
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName;
+    }
+
+    public String getCookName() {
+        return cookName;
+    }
+
+    public void setCookName(String cookName) {
+        this.cookName = cookName;
+    }
+
+    public Long getPlaceId() {
+        return placeId;
+    }
+
+    public void setPlaceId(Long placeId) {
+        this.placeId = placeId;
+    }
+
+    public String getPlaceName() {
+        return placeName;
+    }
+
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
+    }
+
+    public int getVotes() {
+        return votes;
+    }
+
+    public void setVotes(int votes) {
+        this.votes = votes;
+    }
+
+    public List<String> getPlaceNames() {
+        return placeNames;
+    }
+
+    public void setPlaceNames(List<String> placeNames) {
+        this.placeNames = placeNames;
+    }
+
+    public List<Long> getPlaceIds() {
+        return placeIds;
+    }
+
+    public void setPlaceIds(List<Long> placeIds) {
+        this.placeIds = placeIds;
+    }
 }

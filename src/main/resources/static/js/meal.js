@@ -42,8 +42,9 @@ function renderDeleteBtn(data, type, row) {
     return "<a onclick ="+ "deleteRow("+"\'"+row.mealId+"\'"+","+"\'"+row.menuId+"\'"+")"+" >" +
         "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
 }
+
 function deleteRow(mealId,menuId) {
-    console.log(id);
+
     $.ajax({
         url: 'meals/delete/'+ mealId+'/'+menuId,
         type: "DELETE",
@@ -89,5 +90,30 @@ function updateRow(mealId,menuId) {
         select.html(html);
         $("#editRow").modal();
     });
+}
+function add() {
+    var form = $("#detailsForm");
+    var select = $('#selectMenuName');
+    var html;
+    var menuIndexes=[];
+    var menuNames=[];
+    form.find(":input:not(.btn)").val("");
+    $.get('meals/addMeal', function (data) {
+        $.each(data, function (key, value) {
+            form.find("input[name=" + key + "]").val(value);
+            if(key === 'menuIds'){
+                menuIndexes = value;
+            }
+            if(key ==='menuNames'){
+                menuNames = value;
+            }
+            for(var i=0; i< menuIndexes.length; i++){
+                html+='<option value="'+menuIndexes[i]+'">'+menuNames[i]+'</option>>';
+            }
+        });
+        select.html(html);
+
+    });
+    $("#editRow").modal();
 }
 

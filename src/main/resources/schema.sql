@@ -17,6 +17,13 @@ CREATE TABLE menus
   name        VARCHAR  NOT NULL,
   cookname    VARCHAR  NOT NULL
   );
+CREATE TABLE places
+(
+  id          bigserial PRIMARY KEY,
+
+  name        VARCHAR  NOT NULL,
+  vote        INTEGER  NOT NULL
+  );
 
 CREATE TABLE menumeals
 (
@@ -25,4 +32,12 @@ CREATE TABLE menumeals
 
   amount     numeric NOT NULL DEFAULT 1,
   CONSTRAINT menu_meal_pkey PRIMARY KEY (menu_id, meal_id)
+  );
+ CREATE TABLE placemenus
+(
+  menu_id     bigint  NOT NULL REFERENCES menus (id) ON UPDATE CASCADE ON DELETE CASCADE,
+  place_id    bigint  NOT NULL REFERENCES places (id) ON UPDATE CASCADE,
+
+  amount     numeric NOT NULL DEFAULT 1,
+  CONSTRAINT place_menu_pkey PRIMARY KEY (place_id, menu_id)
   );

@@ -25,8 +25,13 @@ public class MealTO {
         this.price = price;
         this.menuId = menuId;
         this.menuName = menuName;
-        menuNames = new LinkedList<>();
-        menuIds = new LinkedList<>();
+        this.menuNames = new LinkedList<>();
+        this.menuIds = new LinkedList<>();
+    }
+
+    public MealTO() {
+       this.menuNames = new LinkedList<>();
+       this.menuIds = new LinkedList<>();
     }
 
     public Long getMealId() {
