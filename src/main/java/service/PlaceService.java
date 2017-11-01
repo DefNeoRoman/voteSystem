@@ -4,14 +4,12 @@ import model.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.datajpa.PlaceRepository;
-import service.interfaces.VoteSystemService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PlaceService {
-
+// Пока Place Service не убираем вдруг понадобиться?
     @Autowired
     PlaceRepository repository;
 
