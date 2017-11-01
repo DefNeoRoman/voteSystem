@@ -34,8 +34,7 @@ public class MenuService{
                      menu.getName(),
                      menu.getCookName(),
                      place.getId(),
-                     place.getName(),
-                     place.getVotes()));
+                     place.getName()));
          });
         });
         return menuTOS;

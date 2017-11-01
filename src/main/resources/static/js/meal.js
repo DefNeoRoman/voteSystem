@@ -1,4 +1,4 @@
-var datatableApi
+var datatableApi;
 $(document).ready(function() {
     $( "#selectMenuName" )
         .change(function () {

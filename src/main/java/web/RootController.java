@@ -26,21 +26,20 @@ public class RootController {
     public String users() {
         return "modelPages/users";
     }
-    @GetMapping("/meals")
 
+    @GetMapping("/meals")
     public String meals() {
         return "modelPages/meals";
+    }
+
+    @GetMapping(value = "/menus")
+    public String menus() {
+        return "modelPages/menus";
     }
 
     @GetMapping(value = "/places")
     public String login() {
         return "modelPages/places";
-    }
-
-
-    @GetMapping(value = "/placeMenu")
-    public String placeMenu() {
-        return "modelPages/placeMenu";
     }
 
 

@@ -9,7 +9,6 @@ public class MenuTO {
     private String cookName;
     private Long placeId;
     private String placeName;
-    private int votes;
     private List<String> placeNames;//Доступные Рестораны
     private List<Long> placeIds; //доступные id всех ресторанов
 
@@ -22,23 +21,24 @@ public class MenuTO {
                   String menuName,
                   String cookName,
                   Long placeId,
-                  String placeName,
-                  int votes) {
+                  String placeName) {
         this.menuId = menuId;
         this.menuName = menuName;
         this.cookName = cookName;
         this.placeId = placeId;
         this.placeName = placeName;
-        this.votes = votes;
         this.placeNames = new ArrayList<>();
         this.placeIds = new ArrayList<>();
     }
-    public void addPlaceName(String placeName){
+
+    public void addPlaceName(String placeName) {
         placeNames.add(placeName);
     }
-    public void addPlaceId(Long placeId){
+
+    public void addPlaceId(Long placeId) {
         placeIds.add(placeId);
     }
+
     public Long getMenuId() {
         return menuId;
     }
@@ -77,14 +77,6 @@ public class MenuTO {
 
     public void setPlaceName(String placeName) {
         this.placeName = placeName;
-    }
-
-    public int getVotes() {
-        return votes;
-    }
-
-    public void setVotes(int votes) {
-        this.votes = votes;
     }
 
     public List<String> getPlaceNames() {

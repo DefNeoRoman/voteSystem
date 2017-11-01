@@ -21,7 +21,8 @@ public class PlaceService {
     }
 
     public List<Place> getAll() {
-      return new ArrayList<Place>();
+
+        return repository.findAll();
     }
 
 
@@ -34,7 +35,7 @@ public class PlaceService {
     }
 
 
-    public void update(String searchKey, Place object) {
+    public void update(Place object) {
         repository.save(object);
     }
 
