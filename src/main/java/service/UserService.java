@@ -2,15 +2,13 @@ package service;
 
 import model.Role;
 import model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.datajpa.UserRepository;
-import service.interfaces.VoteSystemService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService implements VoteSystemService<User> {
+public class UserService  {
     private final User adminUser = new User(
             40000,
             "Василий",
@@ -28,32 +26,31 @@ public class UserService implements VoteSystemService<User> {
     }
 
 
-    @Autowired
-    private UserRepository userRepository;
-    @Override
+
+
     public List<User> getAll() {
-        return userRepository.getAll();
+        return new ArrayList<>();
     }
 
-    @Override
+
     public void create(String searchKey, User object) {
 
     }
 
-    @Override
-    public User get(String searchKey) {
-        return userRepository.get(searchKey);
+
+    public User get(Long searchKey) {
+        return new User();
     }
 
-    @Override
+
     public void update(String searchKey, User object) {
 
 
     }
 
-    @Override
-    public void delete(String searchKey) {
-        userRepository.delete(searchKey);
+
+    public void delete(Long searchKey) {
+
     }
 
 }

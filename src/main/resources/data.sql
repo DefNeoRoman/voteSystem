@@ -1,6 +1,8 @@
 DELETE FROM meals;
 DELETE FROM menus;
+DELETE FROM places;
 DELETE FROM menumeals;
+DELETE FROM placemenus;
 
 INSERT INTO meals (price, name) VALUES
   (763,'макароны'),

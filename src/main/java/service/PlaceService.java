@@ -6,17 +6,12 @@ import org.springframework.stereotype.Service;
 import repository.datajpa.PlaceRepository;
 import service.interfaces.VoteSystemService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class PlaceService implements VoteSystemService<Place> {
-    private final Place pla1 = new Place(504,"ресторан");
-    private final Place pla2=  new Place(505,"бар");
-    private final Place pla3=  new Place(506,"кафе");
-    private final Place pla4=  new Place(507,"небар");
-    private final Place pla5 = new Place(508,"лаунж");
-    private final Place pla6 = new Place(509,"столовая");
-    private final Place pla7 = new Place(5010,"гостиница");
+public class PlaceService {
+
     @Autowired
     PlaceRepository repository;
 
@@ -24,28 +19,27 @@ public class PlaceService implements VoteSystemService<Place> {
 
 
     }
-    @Override
+
     public List<Place> getAll() {
-        return repository.getAll();
+      return new ArrayList<Place>();
     }
 
-    @Override
-    public void create(String searchKey, Place object) {
-        repository.save(object,searchKey);
+
+    public void create( Place object) {
+        repository.save(object);
     }
 
-    @Override
-    public Place get(String searchKey) {
-        return repository.get(searchKey);
+    public Place get(Long searchKey) {
+        return repository.findOne(searchKey);
     }
 
-    @Override
+
     public void update(String searchKey, Place object) {
-        repository.update(object,searchKey);
+        repository.save(object);
     }
 
-    @Override
-    public void delete(String searchKey) {
+
+    public void delete(Long searchKey) {
         repository.delete(searchKey);
     }
 

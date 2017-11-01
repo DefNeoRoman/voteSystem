@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS meals cascade ;
 DROP TABLE IF EXISTS menus cascade;
+DROP TABLE IF EXISTS places cascade;
 DROP TABLE IF EXISTS menumeals cascade;
+DROP TABLE IF EXISTS placemenus cascade;
 
 
 

@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.*;
 import service.PlaceService;
 import service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @RestController //by default returns JSON
 @RequestMapping(value = "/users")
 public class UserController {
-    @Autowired
-    UserService service;
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
 
-        return service.getAll();
+        return new ArrayList<>();
     }
     @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public User get(@PathVariable("uuid") String uuid) {
-        return service.get(uuid);
+    public User get(@PathVariable("uuid") Long uuid) {
+        return new User();
     }
     @PostMapping(value = "/update",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> update(
                             @RequestParam (required=false)String uid,
-                            @RequestParam(required=false)String uuuid,
+                            @RequestParam(required=false)Long uuuid,
                             @RequestParam String uname,
                             @RequestParam String uemail,
                             @RequestParam (required=false) String en,
@@ -46,12 +46,7 @@ public class UserController {
 
         }
 
-        if(uuuid.isEmpty()){
-            uuuid = UUID.randomUUID().toString();
 
-        } else{
-            upUser = service.get(uuuid);
-        }
         String name = uname;
         if(name.isEmpty()){
             name = "Empty";
@@ -90,11 +85,11 @@ public class UserController {
         upUser.setCanVote(canVote);
 
 
-        return service.getAll();
+        return new ArrayList<>();
     }
     @DeleteMapping
-    public void delete(@RequestParam String userUuid) {
-        service.delete(userUuid);
+    public void delete(@RequestParam Long userUuid) {
+
 
     }
 }

@@ -37,7 +37,7 @@ public class PlaceController {
             uuid = UUID.randomUUID().toString();
 
         } else{
-            upPlace = service.get(uuid);
+
         }
         String q = quantity;
         if(q.isEmpty()){
@@ -55,7 +55,7 @@ public class PlaceController {
 
     @DeleteMapping
     public void delete(@RequestParam String pUuid) {
-        service.delete(pUuid);
+
 
     }
 }
