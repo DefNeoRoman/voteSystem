@@ -4,7 +4,9 @@ import model.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.datajpa.PlaceRepository;
+import transferObjects.PlaceTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,16 +15,29 @@ public class PlaceService {
     @Autowired
     PlaceRepository repository;
 
-    public void fillRepository(){
 
+    public List<PlaceTO> getAllTOs() {
 
+        List<PlaceTO> lpto = new ArrayList<>();
+        List<Place> placeList = repository.findAll();
+
+        placeList.forEach(place -> {
+            lpto.add(new PlaceTO(
+                    place.getId(),
+                    place.getName(),
+                    place.getVotes()
+            ));
+        });
+        return lpto;
     }
-
-    public List<Place> getAll() {
-
+    public List<Place> getAll(){
         return repository.findAll();
     }
+    public PlaceTO getOneTO(Long placeID){
+       Place place = repository.getOne(placeID);
 
+        return new PlaceTO(place.getId(),place.getName(),place.getVotes());
+    }
 
     public void create( Place object) {
         repository.save(object);

@@ -10,9 +10,8 @@ $(document).ready(function() {
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp
         "columns": [
-            { "data": "menuName" },
-            { "data": "cookName" },
-            { "data": "placeName" },
+            { "data": "name" },
+            { "data": "vote" },
             {
                 "render": renderEditBtn,
                 "defaultContent": "",
@@ -28,85 +27,53 @@ $(document).ready(function() {
 });
 function renderEditBtn(data, type, row) {
     console.log(data);
-    return "<a onclick="+"updateRow("+"\'"+row.menuId+"\'"+",\'"+row.placeId+"\'"+")"+">" +
+    return "<a onclick="+"updateRow("+"\'"+row.id+"\')"+">" +
         "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></>";
 }
 function renderDeleteBtn(data, type, row) {
-    return "<a onclick ="+ "deleteRow("+"\'"+row.menuId+"\'"+","+"\'"+row.placeId+"\'"+")"+" >" +
+    return "<a onclick ="+ "deleteRow("+"\'"+row.id+"\'"+")"+" >" +
         "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
 }
 
-function deleteRow(menuId,placeId) {
+function deleteRow(placeId) {
 
     $.ajax({
-        url: 'menus/delete/'+ menuId+'/'+placeId,
+        url: 'places/delete'+'/'+placeId,
         type: "DELETE",
         success: function () {
             location.reload();
-            console.log("hello");
+
         }
     });
 }
 function call(form) {
     var msg   = $(form).serialize();
-    console.log(msg);
+
     $.ajax({
         type: 'POST',
-        url: 'menus/update?'+msg,
+        url: 'places/update?'+msg,
         success: function(data) {
-            console.log(data);
-            datatableApi.clear().rows.add(data).draw();
+          datatableApi.clear().rows.add(data).draw();
         }
     });
     location.reload();
 }
-function updateRow(menuId,placeId) {
-
+function updateRow(placeId) {
+    console.log("hello");
     var form = $('#detailsForm');
-    var select = $('#selectPlaceName');
-    var html;
-    var placeIndexes=[];
-    var placeNames=[];
-    $.get('menus/edit' +'/'+ menuId+'/'+placeId, function (data) {
+
+    $.get('places/edit' +'/'+placeId, function (data) {
+        console.log(data);
         $.each(data, function (key, value) {
             form.find("input[name=" + key + "]").val(value);
-            if(key === 'placeIds'){
-                placeIndexes = value;
-            }
-            if(key ==='placeNames'){
-                placeNames = value;
-            }
-            for(var i=0; i< placeIndexes.length; i++){
-                html+='<option value="'+placeIndexes[i]+'">'+placeNames[i]+'</option>>';
-            }
+
         });
-        select.html(html);
-        $("#editRow").modal();
     });
+    $("#editRow").modal();
 }
 function add() {
     var form = $("#detailsForm");
-    var select = $('#selectPlaceName');
-    var html;
-    var placeIndexes=[];
-    var placeNames=[];
-    form.find(":input:not(.btn)").val("");
-    $.get('menus/addMenu', function (data) {
-        $.each(data, function (key, value) {
-            form.find("input[name=" + key + "]").val(value);
-            if(key === 'placeIds'){
-                placeIndexes = value;
-            }
-            if(key ==='placeNames'){
-                placeNames = value;
-            }
-            for(var i=0; i< placeIndexes.length; i++){
-                html+='<option value="'+placeIndexes[i]+'">'+placeNames[i]+'</option>>';
-            }
-        });
-        select.html(html);
-
-    });
+     form.find(":input:not(.btn)").val("");
     $("#editRow").modal();
 }
 

@@ -28,9 +28,10 @@ public class SpringBootWebApplication extends SpringBootServletInitializer{
 
     public static void main(String[] args) throws Exception {
         ConfigurableApplicationContext context =  SpringApplication.run(SpringBootWebApplication.class, args);
-
-        context.getBean(MealService.class).testSave();
-        System.out.println(context.getBean(MealService.class).testGet());
+//
+//        context.getBean(MealService.class).testSave();
+//        System.out.println(context.getBean(MealService.class).testGet());
+//        System.out.println(context.getBean(PlaceService.class).getAllTOs());
     }
 
 }

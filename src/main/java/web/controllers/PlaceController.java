@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.PlaceService;
+import transferObjects.PlaceTO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -22,40 +23,44 @@ public class PlaceController {
 
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Place> getAll() {
+    public List<PlaceTO> getAll() {
 
-        return service.getAll();
+        return service.getAllTOs();
     }
 
-    @PostMapping(value = "/update",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Place> update(@RequestParam String pUuid,
-                         @RequestParam String quantity,
-                         @RequestParam String pName) {
-        String uuid = pUuid;
-        Place upPlace = new Place();
-        if(uuid.isEmpty()){
-            uuid = UUID.randomUUID().toString();
+    @GetMapping(value = "/edit/{placeId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public PlaceTO getPlaceTO(@PathVariable("placeId") Long placeId) {
 
-        } else{
-
-        }
-        String q = quantity;
-        if(q.isEmpty()){
-            q = "0";
-        }
-        if(pName.isEmpty()){
-            pName = "empty";
-        }
-        upPlace.setVotes(Integer.valueOf(q));
-
-
-
-        return service.getAll();
+        return service.getOneTO(placeId);
     }
 
-    @DeleteMapping
-    public void delete(@RequestParam String pUuid) {
+    @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PlaceTO> update(@RequestParam Long id,
+                                @RequestParam String name,
+                                @RequestParam Integer vote) {
 
+        Place upPlace;
+        if (id == null) {
+            upPlace = new Place();
+
+        } else {
+            upPlace = service.get(id);
+        }
+        if (name.isEmpty()) {
+            name = "empty";
+        }
+        if (vote == null) {
+            vote = 0;
+        }
+        upPlace.setName(name);
+        upPlace.setVotes(vote);
+        service.update(upPlace);
+        return service.getAllTOs();
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public void delete(@PathVariable Long id) {
+        service.delete(id);
 
     }
 }

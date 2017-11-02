@@ -39,20 +39,20 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" id="detailsForm" method="post" action="javascript:void(null);" onsubmit="call(this)">
-                    <input type="hidden" id="placeId" name="placeId">
+                    <input type="hidden" id="id" name="id">
                     <div class="form-group">
-                        <label for="placeName" class="control-label col-xs-3">Place Name</label>
+                        <label for="name" class="control-label col-xs-3">Place Name</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="placeName" name="placeName"
+                            <input type="text" class="form-control" id="name" name="name"
                                    value="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="votes" class="control-label col-xs-3">Who Prepared?</label>
+                        <label for="vote" class="control-label col-xs-3">Votes</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="votes" name="votes" value="">
+                            <input type="text" class="form-control" id="vote" name="vote" value="">
                         </div>
                     </div>
                     <div class="form-group">
