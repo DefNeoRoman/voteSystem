@@ -9,21 +9,7 @@ import java.util.List;
 
 @Service
 public class UserService  {
-    private final User adminUser = new User(
-            40000,
-            "Василий",
-            "123@gmail.com",
-            "123",
-            Role.ADMIN);
-    private final User regularUser=  new User(
-            50000,
-            "Петр",
-            "aaa123@yandex.ru",
-            "123",
-            Role.USER);
-    public void fillRepository(){
 
-    }
 
 
 
