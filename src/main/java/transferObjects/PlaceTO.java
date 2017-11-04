@@ -1,6 +1,5 @@
 package transferObjects;
 
-import java.util.List;
 import java.util.Set;
 
 public class PlaceTO {
@@ -55,8 +54,6 @@ public class PlaceTO {
 
     @Override
     public String toString() {
-        return "PlaceTO{" +
-                "name='" + name + '\'' +
-                '}';
+        return name;
     }
 }
