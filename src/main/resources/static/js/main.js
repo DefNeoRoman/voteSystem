@@ -1,6 +1,7 @@
-function hello() {
-    console.log("gh");
-}
-function clear() {
-    location.reload();
-}
+$(document).ready(function() {
+
+    $.get('/main', function (data) {
+        console.log(data);
+
+    });
+});

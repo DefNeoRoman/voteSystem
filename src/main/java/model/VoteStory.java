@@ -1,45 +1,57 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 //не нуждается в хранении в локальном репозитории
 //Чтобы заработало Vote Story нужно user menu place уже хранить в базе
 //Так как нужна связка
+@Entity
+@Table(name = "votestory")
 public class VoteStory {
-    private int id;
-    private int userId;
-    private int menuId;
-    private int placeId;
+    @Id
+    //    @Column(name = "id", unique = true, nullable = false, columnDefinition = "integer default nextval('global_seq')")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
+    private Long id;
+    @Column(name = "user_id", nullable = false)
+    @Range(min = 1, max = 100000)
+    @NotNull
+    private Long userId;
+    @Column(name = "place_id", nullable = false)
+    @Range(min = 1, max = 100000)
+    @NotNull
+    private Long placeId;
+    @Column(name = "vote_date", columnDefinition = "timestamp default now()")
+    @NotNull
+    //  https://stackoverflow.com/questions/29027475/date-format-in-the-json-output-using-spring-boot
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date voteDate;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
-    public int getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(int menuId) {
-        this.menuId = menuId;
-    }
-
-    public int getPlaceId() {
+    public Long getPlaceId() {
         return placeId;
     }
 
-    public void setPlaceId(int placeId) {
+    public void setPlaceId(Long placeId) {
         this.placeId = placeId;
     }
 

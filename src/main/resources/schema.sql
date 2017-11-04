@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS meals cascade ;
 DROP TABLE IF EXISTS menus cascade;
 DROP TABLE IF EXISTS places cascade;
 DROP TABLE IF EXISTS users cascade;
+DROP TABLE IF EXISTS votestory cascade;
 DROP TABLE IF EXISTS user_roles cascade;
 DROP TABLE IF EXISTS menumeals cascade;
 DROP TABLE IF EXISTS placemenus cascade;
@@ -40,6 +41,14 @@ CREATE TABLE users
   canVote          BOOL DEFAULT TRUE        NOT NULL
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
+CREATE TABLE votestory
+(
+  id          bigserial PRIMARY KEY,
+  user_id    INTEGER NOT NULL,
+  place_id   INTEGER NOT NULL,
+  vote_date  TIMESTAMP DEFAULT now() NOT NULL
+  );
+
 CREATE TABLE user_roles
 (
   user_id INTEGER NOT NULL,

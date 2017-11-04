@@ -3,6 +3,7 @@
 
 <div class="container">
     Admin`s page <br>
+    <a href="/main">Main Page</a>
     <a href="/meals">Meals</a>
     <a href="/menus">Menus</a>
     <a href="/places">Places</a>

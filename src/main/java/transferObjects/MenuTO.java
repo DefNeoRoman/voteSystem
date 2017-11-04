@@ -9,12 +9,31 @@ public class MenuTO {
     private String cookName;
     private Long placeId;
     private String placeName;
+    private List<MealTO> mealTOS;
     private List<String> placeNames;//Доступные Рестораны
     private List<Long> placeIds; //доступные id всех ресторанов
 
     public MenuTO() {
         this.placeNames = new ArrayList<>();
         this.placeIds = new ArrayList<>();
+    }
+
+    public MenuTO(Long menuId,
+                  String menuName,
+                  String cookName,
+                   Long placeId,
+                  List<MealTO> mealTOS) {
+        this.menuId = menuId;
+        this.menuName = menuName;
+        this.cookName = cookName;
+        this.placeId = placeId;
+        this.mealTOS = mealTOS;
+    }
+
+    public MenuTO(Long menuId, String menuName, String cookName) {
+        this.menuId = menuId;
+        this.menuName = menuName;
+        this.cookName = cookName;
     }
 
     public MenuTO(Long menuId,
@@ -29,6 +48,14 @@ public class MenuTO {
         this.placeName = placeName;
         this.placeNames = new ArrayList<>();
         this.placeIds = new ArrayList<>();
+    }
+
+    public void setMealTOS(List<MealTO> mealTOS) {
+        this.mealTOS = mealTOS;
+    }
+
+    public List<MealTO> getMealTOS() {
+        return mealTOS;
     }
 
     public void addPlaceName(String placeName) {

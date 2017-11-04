@@ -2,6 +2,7 @@ DELETE FROM meals;
 DELETE FROM menus;
 DELETE FROM places;
 DELETE FROM users;
+DELETE FROM votestory;
 DELETE FROM user_roles;
 DELETE FROM menumeals;
 DELETE FROM placemenus;

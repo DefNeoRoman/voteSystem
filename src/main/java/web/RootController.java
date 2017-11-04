@@ -26,6 +26,10 @@ public class RootController {
     public String users() {
         return "modelPages/users";
     }
+//    @GetMapping("/main")
+//    public String main() {
+//        return "modelPages/main";
+//    }
 
     @GetMapping("/meals")
     public String meals() {
