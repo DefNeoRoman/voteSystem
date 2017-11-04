@@ -17,6 +17,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Register Date</th>
+            <th>Role</th>
+            <th>Password</th>
             <th>Enabled</th>
             <th>Is Vote?</th>
             <th>Can Vote?</th>
@@ -29,6 +31,8 @@
             <th>Name</th>
             <th>Email</th>
             <th>Register Date</th>
+            <th>Role</th>
+            <th>Password</th>
             <th>Enabled</th>
             <th>Is Vote?</th>
             <th>Can Vote?</th>
@@ -47,23 +51,31 @@
             </div>
             <div class="modal-body">
                 <form method ="post" class="form-horizontal postForm" id="detailsForm" action="javascript:void(null);" onsubmit="call(this)" >
-                    <input type="hidden" id="uid" name="uid">
-                    <input type="hidden" id="uuuid" name="uuuid">
+                    <input type="hidden" id="id" name="id">
+
 
                     <%--for userName--%>
                     <div class="form-group">
-                        <label for="uname" class="control-label col-xs-3">Name</label>
+                        <label for="name" class="control-label col-xs-3">Name</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="uname" name="uname">
+                            <input type="text" class="form-control" id="name" name="name">
                         </div>
                     </div>
                     <%--for userEmail--%>
                     <div class="form-group">
-                        <label for="uemail" class="control-label col-xs-3">Email</label>
+                        <label for="email" class="control-label col-xs-3">Email</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="uemail" name="uemail">
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                    </div>
+                    <%--for password--%>
+                    <div class="form-group">
+                        <label for="email" class="control-label col-xs-3">Password</label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="password" name="password">
                         </div>
                     </div>
                     <%--for Enabled--%>
@@ -76,20 +88,20 @@
                     </div>
                     <%--for isVote--%>
                     <div class="form-group">
-                        <label for="uisvote" class="control-label col-xs-3">is Vote?</label>
+                        <label for="vote" class="control-label col-xs-3">is Vote?</label>
 
                         <div class="col-xs-9">
                             <%--не получал ответ с сервера так как ожидаемая строка была длиннее--%>
                             <%--а этот чекбокс не серилаизовался потому что свойство checked с самого начала не обозначил--%>
-                            <input type="checkbox" checked="checked" class="form-control" id="uisvote" name="uisvote" onclick="enable($(this))"/>
+                            <input type="checkbox" checked="checked" class="form-control" id="vote" name="vote" onclick="enable($(this))"/>
                         </div>
                     </div>
                     <%--for canVote--%>
                     <div class="form-group">
-                        <label for="ucanvote" class="control-label col-xs-3">can Vote?</label>
+                        <label for="canvote" class="control-label col-xs-3">can Vote?</label>
 
                         <div class="col-xs-9">
-                            <input type="checkbox" checked="checked" class="form-control" id="ucanvote" name="ucanvote" onclick="enable($(this))"/>
+                            <input type="checkbox" checked="checked" class="form-control" id="canvote" name="canvote" onclick="enable($(this))"/>
 
                         </div>
                     </div>

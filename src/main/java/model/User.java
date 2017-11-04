@@ -1,18 +1,24 @@
 package model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.transaction.annotation.Transactional;
+import util.DateTimeUtil;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
@@ -31,17 +37,24 @@ public class User {
     private String password;
     @Column(name = "register_date", columnDefinition = "timestamp default now()")
     @NotNull
+  //  https://stackoverflow.com/questions/29027475/date-format-in-the-json-output-using-spring-boot
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date registerDate;
 
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
-//    @Fetch(FetchMode.SUBSELECT)
     @BatchSize(size = 200)
     private Set<Role> roles;
+
+    @Column(name = "isVote", nullable = false, columnDefinition = "bool default false")
     private boolean isVote;
+
+    @Column(name = "canVote", nullable = false, columnDefinition = "bool default true")
     private boolean canVote;
+
+    @Column(name = "enabled", nullable = false, columnDefinition = "bool default true")
     private boolean enabled;
 
     public User() {
@@ -111,7 +124,7 @@ public class User {
         return roles;
     }
 
-    public void setRole(Set<Role>roles) {
+    public void setRoles(Set<Role>roles) {
         this.roles = roles;
     }
 
@@ -134,11 +147,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + password + '\'' +
-                "password='" + password + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
                 ", registerDate=" + registerDate +
-                ", role=" + roles +
+                ", roles=" + roles +
                 ", isVote=" + isVote +
                 ", canVote=" + canVote +
                 ", enabled=" + enabled +

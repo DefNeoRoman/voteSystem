@@ -32,7 +32,8 @@ INSERT INTO user_roles (role, user_id)
 VALUES
   ('ROLE_USER', 1),
   ('ROLE_ADMIN', 2),
-  ('ROLE_USER', 3);
+  ('ROLE_USER', 3),
+  ('ROLE_ADMIN', 3);
 INSERT INTO menumeals (meal_id, menu_id) VALUES
 (1,1),
 (2,2),

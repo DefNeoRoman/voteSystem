@@ -1,6 +1,7 @@
 package web.controllers;
 
 import model.Place;
+import model.Role;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,87 +10,66 @@ import org.springframework.web.bind.annotation.*;
 import service.PlaceService;
 import service.UserService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RestController //by default returns JSON
 @RequestMapping(value = "/users")
 public class UserController {
-
+    @Autowired
+    UserService service;
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
 
-        return new ArrayList<>();
+        return service.getAll();
     }
-    @GetMapping(value = "/{uuid}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public User get(@PathVariable("uuid") Long uuid) {
-        return new User();
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public User get(@PathVariable("id") Long id) {
+
+        return service.get(id);
     }
+
     @PostMapping(value = "/update",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> update(
-                            @RequestParam (required=false)String uid,
-                            @RequestParam(required=false)Long uuuid,
-                            @RequestParam String uname,
-                            @RequestParam String uemail,
+                            @RequestParam (required=false)Long id,
+                            @RequestParam String name,
+                            @RequestParam String email,
+                            @RequestParam (required=false)String password,
                             @RequestParam (required=false) String en,
-                            @RequestParam (required=false) String uisvote,
-                            @RequestParam (required=false) String ucanvote
+                            @RequestParam (required=false) String vote,
+                            @RequestParam (required=false) String canvote
                              ) {
-
-
-        User upUser = new User();
-        if(uid.isEmpty()){
-
-
+        User upUser;
+        if(id == null){
+            upUser = new User();
+            upUser.setRoles(new HashSet<>(Collections.singletonList(Role.ROLE_USER)));
         }else{
-
+            upUser = service.get(id);
         }
-
-
-        String name = uname;
         if(name.isEmpty()){
             name = "Empty";
         }
-        String email = uemail;
         if(email.isEmpty()){
             email = "empty";
         }
-
-        if(en == null){
-            en = "false";
-        }else{
-            en="true";
+        if(password.isEmpty()){
+            password = "123";
         }
-
-        if (uisvote == null){
-            uisvote = "false";
-        }else{
-            uisvote = "true";
-        }
-
-        if(ucanvote == null){
-            ucanvote = "false";
-        }else{
-            ucanvote = "true";
-        }
-
-        boolean enabled = Boolean.parseBoolean(en);
-        boolean isVote = Boolean.parseBoolean(uisvote);
-        boolean canVote = Boolean.parseBoolean(ucanvote);
-
-
+        boolean enable = en != null;
+        boolean isVotes = vote != null;
+        boolean canVotes = canvote !=null;
+        upUser.setName(name);
+        upUser.setPassword(password);
         upUser.setEmail(email);
-        upUser.setEnabled(enabled);
-        upUser.setVote(isVote);
-        upUser.setCanVote(canVote);
+        upUser.setEnabled(enable);
+        upUser.setVote(isVotes);
+        upUser.setCanVote(canVotes);
+        service.update(upUser);
 
-
-        return new ArrayList<>();
+        return service.getAll();
     }
     @DeleteMapping
-    public void delete(@RequestParam Long userUuid) {
+    public void delete(@RequestParam Long id) {
 
-
+        service.delete(id);
     }
 }

@@ -12,7 +12,9 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import repository.datajpa.MealRepository;
+import repository.datajpa.UserRepository;
 import service.*;
+import web.controllers.UserController;
 
 import javax.jws.soap.SOAPBinding;
 
@@ -29,7 +31,8 @@ public class SpringBootWebApplication extends SpringBootServletInitializer{
     public static void main(String[] args) throws Exception {
         ConfigurableApplicationContext context =  SpringApplication.run(SpringBootWebApplication.class, args);
 //
-//        context.getBean(MealService.class).testSave();
+        System.out.println(context.getBean(UserController.class).getAll());
+        System.out.println(context.getBean(UserRepository.class).findOne(Long.parseLong("2")));
 //        System.out.println(context.getBean(MealService.class).testGet());
 //        System.out.println(context.getBean(PlaceService.class).getAllTOs());
     }

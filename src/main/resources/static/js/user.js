@@ -11,10 +11,16 @@ $(document).ready(function() {
         "columns": [
             { "data": "name" },
             { "data": "email" },
-            { "data": "registerDate" },
+            { "data": "registerDate",
+
+            },
+            { "data": "roles"},
+            { "data": "password"},
             { "data": "enabled" },
             { "data": "vote" },
-            { "data": "canVote" },
+            { "data": "canVote"
+
+            },
             {
                 "render": renderEditBtn,
                 "defaultContent": "",
@@ -29,21 +35,21 @@ $(document).ready(function() {
     } );
 
 } );
-function updateRow(uuid) {
+function updateRow(id) {
     var form = $('#detailsForm');
-    $.get('users' +'/'+ uuid, function (data) {
+    $.get('users' +'/'+ id, function (data) {
         console.log(data);
         $.each(data, function (key, value) {
-            form.find("input[name=u" + key + "]").val(value);
+            form.find("input[name=" + key + "]").val(value);
         });
         $("#editRow").modal();
     });
 }
 
-function deleteRow(uuid) {
-    console.log(uuid);
+function deleteRow(id) {
+    console.log(id);
     $.ajax({
-        url: 'users?userUuid='+ uuid,
+        url: 'users?id='+ id,
         type: "DELETE",
         success: function () {
             location.reload();
@@ -65,15 +71,15 @@ function call(form) {
     location.reload();
 }
 function renderEditBtn(data, type, row) {
-
-        return "<a onclick="+"updateRow("+"\'"+row.uuid+"\')"+">" +
+        console.log(row);
+        return "<a onclick="+"updateRow("+"\'"+row.id+"\')"+">" +
             "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
 
 }
 
 function renderDeleteBtn(data, type, row) {
 
-        return "<a onclick ="+ "deleteRow("+"\'"+row.uuid+"\')"+">" +
+        return "<a onclick ="+ "deleteRow("+"\'"+row.id+"\')"+">" +
             "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
 
 }
