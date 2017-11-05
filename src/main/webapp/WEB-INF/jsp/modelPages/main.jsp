@@ -9,9 +9,14 @@
 <div class="container">
     <div id="allPlaces">
         <div class="row">
-            <div id="placeContainer">
-                <div id="menuRow">
-                    <div id="mealRow">
+            <div id="placeContainer" class="borderbottom">
+                <div class="col-md-6">
+                    <div class="col-md-5">
+
+                    </div>
+                </div>
+                <div id="menuRow" class="h2">
+                    <div id="mealRow" class="mealClass">
 
                     </div>
                 </div>

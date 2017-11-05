@@ -1,39 +1,50 @@
 //https://stackoverflow.com/questions/43671166/how-to-remove-undefined-on-object-keys-for-foreach
-var htmlString      = '';
+var htmlString = '';
 var place = '';
 var menu = '';
 var meal = '';
 var allPlaces       = $('#allPlaces');
-
 var row        = $(".row");
-
-
-
 var mealRow         = $("#mealRow");
-
 var placeContainer  = $("#placeContainer");
-
-
+var menuRow = $("#menuRow");
+var colMd6 = $(".col-md-6");
+var colMd5 = $(".col-md-5");
 $(document).ready(function() {
 
     $.get('/main/getData', function (data) {
-        console.log(data);
-        var menuArray = [];
 
+        var menuArray = [];
+        var mealArray = [];
         $.each(data, function (key, value) {
-            place = key;
+            placeContainer.empty();
+            row.empty();
+            colMd6.empty();
+            placeContainer.append("<div class=\"col-md-6\"><p>"+key+"</p></div>");
             menuArray = value;
             var MenuTO;
 
             for(var i = 0; i < menuArray.length; i++){
-              var menuRow = $("#menuRow").empty();
+              menuRow.empty();
               MenuTO = menuArray[i];
-              console.log(MenuTO);
-              menuRow.append(MenuTO.menuName);
-              htmlString += menuRow.prop('outerHTML');
-
+            //  console.log(MenuTO);
+              menuRow.append("<div class=\"col-md-6\">"+MenuTO.menuName+"</div>");
+             // menuRow.append("<div class=\"col-md-6\">");
+              mealArray = MenuTO.mealTOS;
+              colMd5.empty();
+              for(var j=0; j<mealArray.length; j++){
+                  mealRow.empty();
+                //  console.log(mealArray[j]);
+                  mealRow.append(mealArray[j].mealName);
+                  colMd5.append(mealRow.prop("outerHTML"));
+              }
+              menuRow.append(colMd5.prop("outerHTML"));
+            //  menuRow.append("</div><hr>")
+              colMd6.append(menuRow.prop("outerHTML")+"<br><hr>");
             }
-
+            placeContainer.append(colMd6);
+            row.append(placeContainer.prop("outerHTML") +"<br><hr>");
+            htmlString += row.prop("outerHTML");
         });
 
         allPlaces.html(htmlString);

@@ -1,7 +1,16 @@
 .tCol{
     padding-left: 15px;
 }
-
+.borderbottom{
+    font-size: 20px;
+    border: 1px solid black;
+}
+.h2{
+    font-size: 18px;
+}
+.mealClass{
+    font-size: 16px;
+}
 .center{
     width: 115px;
     margin: 40px auto;
