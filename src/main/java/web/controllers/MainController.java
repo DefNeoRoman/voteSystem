@@ -7,9 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import service.MainService;
-import transferObjects.MainTO;
-import transferObjects.MealTO;
+import service.PlaceService;
 import transferObjects.MenuTO;
 import transferObjects.PlaceTO;
 
@@ -20,13 +18,14 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/main")
 public class MainController {
-    @Autowired
-    MainService mainService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @Autowired
+    PlaceService placeService;
+
+    @GetMapping(value = "/getData",produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<PlaceTO,List<MenuTO>> getAll(Model model){
-        return mainService.getAllMainTOs();
+        return placeService.getAllMainTOs();
     }
-    //будет разделение логики на update и add
+
 
 }

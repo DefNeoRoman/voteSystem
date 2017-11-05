@@ -7,6 +7,17 @@
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <div class="container">
+    <div id="allPlaces">
+        <div class="row">
+            <div id="placeContainer">
+                <div id="menuRow">
+                    <div id="mealRow">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 

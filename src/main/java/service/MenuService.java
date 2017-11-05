@@ -19,31 +19,32 @@ import java.util.List;
 public class MenuService{
 
 
-
     @Autowired
     private MenuRepository menuRepository;
     @Autowired
-   private MealService mealService;
+    private MealService mealService;
+
     public List<Menu> getAll() {
-      return menuRepository.findAll();
+        return menuRepository.findAll();
     }
-    public List<MenuTO> getAllMenuTOs(){
+
+    public List<MenuTO> getAllMenuTOs() {
         List<MenuTO> menuTOS = new ArrayList<>();
         List<Menu> menuList = menuRepository.findAll();
 
         menuList.forEach(menu -> {
-         menu.getPlaces().forEach(place -> {
-             menuTOS.add(new MenuTO(menu.getId(),
-                     menu.getName(),
-                     menu.getCookName(),
-                     place.getId(),
-                     place.getName()));
-         });
+            menu.getPlaces().forEach(place -> {
+                menuTOS.add(new MenuTO(menu.getId(),
+                        menu.getName(),
+                        menu.getCookName(),
+                        place.getId(),
+                        place.getName()));
+            });
         });
         return menuTOS;
     }
 
-    public List<MenuTO> getMenuTOsWithMeals(){
+    public List<MenuTO> getMenuTOsWithMeals() {
         List<Menu> menuList = menuRepository.findAll();
         List<MealTO> mealList = mealService.getAll();
 
@@ -52,7 +53,7 @@ public class MenuService{
             menu.getPlaces().forEach(place -> {
                 List<MealTO> interList = new ArrayList<>();
                 mealList.forEach(mealTO -> {
-                    if(mealTO.getMenuId().equals(menu.getId())){
+                    if (mealTO.getMenuId().equals(menu.getId())) {
                         interList.add(mealTO);
                     }
                 });
@@ -67,6 +68,7 @@ public class MenuService{
 
         return menuTOS;
     }
+
     public Menu get(Long id) {
         return menuRepository.findOne(id);
     }

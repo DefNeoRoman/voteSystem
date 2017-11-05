@@ -50,7 +50,7 @@ function deleteRow(mealId,menuId) {
         type: "DELETE",
         success: function () {
             location.reload();
-            console.log("hello");
+
         }
     });
 }
@@ -61,7 +61,7 @@ function call(form) {
         type: 'POST',
         url: 'meals/update?'+msg,
         success: function(data) {
-            console.log(data);
+
             datatableApi.clear().rows.add(data).draw();
         }
     });
