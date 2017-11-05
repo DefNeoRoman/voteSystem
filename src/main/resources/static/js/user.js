@@ -47,7 +47,7 @@ function updateRow(id) {
 }
 
 function deleteRow(id) {
-    console.log(id);
+
     $.ajax({
         url: 'users?id='+ id,
         type: "DELETE",
@@ -59,7 +59,7 @@ function deleteRow(id) {
 }
 function call(form) {
     var msg   = $(form).serialize();
-    console.log(msg);
+
     $.ajax({
         type: 'POST',
         url: 'users/update?'+msg,
@@ -71,7 +71,7 @@ function call(form) {
     location.reload();
 }
 function renderEditBtn(data, type, row) {
-        console.log(row);
+
         return "<a onclick="+"updateRow("+"\'"+row.id+"\')"+">" +
             "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
 
@@ -88,7 +88,7 @@ function enable(checkbox){
     console.log(enabled);
 
     if(enabled === false){
-        console.log("hello");
+
         $(checkbox).removeProp("checked");
     }
     console.log($(checkbox).val());

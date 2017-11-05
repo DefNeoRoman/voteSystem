@@ -27,19 +27,19 @@ $(document).ready(function() {
             for(var i = 0; i < menuArray.length; i++){
               menuRow.empty();
               MenuTO = menuArray[i];
-            //  console.log(MenuTO);
+
               menuRow.append("<div class=\"col-md-6\">"+MenuTO.menuName+"</div>");
-             // menuRow.append("<div class=\"col-md-6\">");
+
               mealArray = MenuTO.mealTOS;
               colMd5.empty();
               for(var j=0; j<mealArray.length; j++){
                   mealRow.empty();
-                //  console.log(mealArray[j]);
+
                   mealRow.append(mealArray[j].mealName);
                   colMd5.append(mealRow.prop("outerHTML"));
               }
               menuRow.append(colMd5.prop("outerHTML"));
-            //  menuRow.append("</div><hr>")
+          
               colMd6.append(menuRow.prop("outerHTML")+"<br><hr>");
             }
             placeContainer.append(colMd6);

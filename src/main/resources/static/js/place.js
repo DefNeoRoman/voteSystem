@@ -26,7 +26,7 @@ $(document).ready(function() {
     } );
 });
 function renderEditBtn(data, type, row) {
-    console.log(data);
+
     return "<a onclick="+"updateRow("+"\'"+row.id+"\')"+">" +
         "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></>";
 }
