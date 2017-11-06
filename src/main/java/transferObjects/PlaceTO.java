@@ -54,6 +54,6 @@ public class PlaceTO {
 
     @Override
     public String toString() {
-        return name;
+        return name+"\n"+"votes:" + vote;
     }
 }

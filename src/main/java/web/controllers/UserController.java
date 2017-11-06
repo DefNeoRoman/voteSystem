@@ -17,46 +17,48 @@ import java.util.*;
 public class UserController {
     @Autowired
     UserService service;
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
 
         return service.getAll();
     }
+
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public User get(@PathVariable("id") Long id) {
 
         return service.get(id);
     }
 
-    @PostMapping(value = "/update",produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> update(
-                            @RequestParam (required=false)Long id,
-                            @RequestParam String name,
-                            @RequestParam String email,
-                            @RequestParam (required=false)String password,
-                            @RequestParam (required=false) String en,
-                            @RequestParam (required=false) String vote,
-                            @RequestParam (required=false) String canvote
-                             ) {
+            @RequestParam(required = false) Long id,
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam(required = false) String password,
+            @RequestParam(required = false) String en,
+            @RequestParam(required = false) String vote,
+            @RequestParam(required = false) String canvote
+    ) {
         User upUser;
-        if(id == null){
+        if (id == null) {
             upUser = new User();
             upUser.setRoles(new HashSet<>(Collections.singletonList(Role.ROLE_USER)));
-        }else{
+        } else {
             upUser = service.get(id);
         }
-        if(name.isEmpty()){
+        if (name.isEmpty()) {
             name = "Empty";
         }
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             email = "empty";
         }
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             password = "123";
         }
         boolean enable = en != null;
         boolean isVotes = vote != null;
-        boolean canVotes = canvote !=null;
+        boolean canVotes = canvote != null;
         upUser.setName(name);
         upUser.setPassword(password);
         upUser.setEmail(email);
@@ -67,6 +69,7 @@ public class UserController {
 
         return service.getAll();
     }
+
     @DeleteMapping
     public void delete(@RequestParam Long id) {
 

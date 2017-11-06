@@ -39,7 +39,7 @@ $(document).ready(function() {
                   colMd5.append(mealRow.prop("outerHTML"));
               }
               menuRow.append(colMd5.prop("outerHTML"));
-          
+
               colMd6.append(menuRow.prop("outerHTML")+"<br><hr>");
             }
             placeContainer.append(colMd6);

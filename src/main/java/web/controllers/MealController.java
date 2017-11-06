@@ -24,14 +24,14 @@ public class MealController {
     MenuService menuService;
 
 
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<MealTO> getAll(Model model){
+    public List<MealTO> getAll(Model model) {
         return mealService.getAll();
     }
+
     //будет разделение логики на update и add
     @GetMapping(value = "/addMeal", produces = MediaType.APPLICATION_JSON_VALUE)
-    public MealTO addMeal(){
+    public MealTO addMeal() {
         List<Menu> menuList = menuService.getAll();
         MealTO response = new MealTO();
         menuList.forEach(menu1 -> {
@@ -42,17 +42,18 @@ public class MealController {
 
         return response;
     }
+
     @GetMapping(value = "edit/{mealId}/{menuId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public MealTO get(@PathVariable("mealId") Long mealId,
-                                  @PathVariable("menuId") Long menuId
-                                  ) {
+                      @PathVariable("menuId") Long menuId
+    ) {
         List<Menu> menuList = menuService.getAll();
 
         Meal meal = mealService.get(mealId);
         Menu menu = menuService.get(menuId);
         MealTO response = new MealTO(mealId,
-                meal.getName(),meal.getPrice(),
-                menuId,menu.getName());
+                meal.getName(), meal.getPrice(),
+                menuId, menu.getName());
         menuList.forEach(menu1 -> {
 //            добавляем доступные для options
             response.addMenuId(menu1.getId());
@@ -62,15 +63,16 @@ public class MealController {
 
         return response;
     }
+
     @PostMapping(value = "/update")
-    public List<MealTO> update(@RequestParam (required=false)String mealId,
-                         @RequestParam String menuId,
-                         @RequestParam(required=false) String  mealName,
-                         @RequestParam(required=false) String price) {
+    public List<MealTO> update(@RequestParam(required = false) String mealId,
+                               @RequestParam String menuId,
+                               @RequestParam(required = false) String mealName,
+                               @RequestParam(required = false) String price) {
         Meal upMeal;
-        if(mealId.isEmpty()){
+        if (mealId.isEmpty()) {
             upMeal = new Meal();
-        }else{
+        } else {
             upMeal = mealService.get(Long.parseLong(mealId));
         }
 
@@ -83,20 +85,20 @@ public class MealController {
         mealService.update(upMeal);
         return mealService.getAll();
     }
+
     @DeleteMapping(value = "delete/{mealId}/{menuId}")
     public List<MealTO> delete(@PathVariable("mealId") Long mealId,
-                         @PathVariable("menuId") Long menuId) {
-       Menu upMenu = menuService.get(menuId);
-       Meal upMeal = mealService.get(mealId);
+                               @PathVariable("menuId") Long menuId) {
+        Menu upMenu = menuService.get(menuId);
+        Meal upMeal = mealService.get(mealId);
 
-       if(upMenu.getMeals().isEmpty()){
-           menuService.delete(menuId);
-       }else{
-           upMenu.removeMeal(upMeal);
-           menuService.update(upMenu);
-           mealService.update(upMeal);
-       }
-
+        if (upMenu.getMeals().isEmpty()) {
+            menuService.delete(menuId);
+        } else {
+            upMenu.removeMeal(upMeal);
+            menuService.update(upMenu);
+            mealService.update(upMeal);
+        }
 
 
         return mealService.getAll();

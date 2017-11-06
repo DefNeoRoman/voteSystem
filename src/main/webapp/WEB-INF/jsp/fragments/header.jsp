@@ -2,7 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container">
-    Admin`s page <br>
+    Place Manager <br>
+
+    <a href="/login">Login Page</a>
     <a href="/main">Main Page</a>
     <a href="/meals">Meals</a>
     <a href="/menus">Menus</a>

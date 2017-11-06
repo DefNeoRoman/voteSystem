@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/menus")
-public class MenuController  {
+public class MenuController {
 
     @Autowired
     MenuService menuService;
@@ -28,12 +28,13 @@ public class MenuController  {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MenuTO> getAll(Model model) {
-      return menuService.getAllMenuTOs();
+        return menuService.getAllMenuTOs();
     }
+
     @GetMapping(value = "/addMenu", produces = MediaType.APPLICATION_JSON_VALUE)
-    public MenuTO addMenu(){
+    public MenuTO addMenu() {
         List<Place> placeList = placeService.getAll();
-        MenuTO response = new  MenuTO();
+        MenuTO response = new MenuTO();
         placeList.forEach(place -> {
 //            добавляем доступные для options
             response.addPlaceId(place.getId());
@@ -42,6 +43,7 @@ public class MenuController  {
 
         return response;
     }
+
     @GetMapping(value = "edit/{menuId}/{placeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public MenuTO get(@PathVariable("menuId") Long menuId,
                       @PathVariable("placeId") Long placeId
@@ -50,8 +52,8 @@ public class MenuController  {
         Menu menu = menuService.get(menuId);
         Place place = placeService.get(placeId);
         MenuTO response = new MenuTO(menuId,
-                menu.getName(),menu.getCookName(),
-                placeId,place.getName());
+                menu.getName(), menu.getCookName(),
+                placeId, place.getName());
         placeList.forEach(place1 -> {
 //            добавляем доступные для options
             response.addPlaceId(place1.getId());
@@ -59,15 +61,16 @@ public class MenuController  {
         });
         return response;
     }
+
     @PostMapping(value = "/update")
-    public List<MenuTO> update(@RequestParam (required=false)String menuId,
+    public List<MenuTO> update(@RequestParam(required = false) String menuId,
                                @RequestParam String placeId,
-                               @RequestParam(required=false) String  menuName,
-                               @RequestParam(required=false) String cookName) {
+                               @RequestParam(required = false) String menuName,
+                               @RequestParam(required = false) String cookName) {
         Menu upMenu;
-        if(menuId.isEmpty()){
+        if (menuId.isEmpty()) {
             upMenu = new Menu();
-        }else{
+        } else {
             upMenu = menuService.get(Long.parseLong(menuId));
         }
 
@@ -80,20 +83,20 @@ public class MenuController  {
         placeService.update(upPlace);
         return menuService.getAllMenuTOs();
     }
+
     @DeleteMapping(value = "delete/{menuId}/{placeId}")
     public List<MenuTO> delete(@PathVariable("menuId") Long menuId,
                                @PathVariable("placeId") Long placeId) {
         Menu upMenu = menuService.get(menuId);
         Place upPlace = placeService.get(placeId);
 
-        if(upPlace.getMenus().isEmpty()){
+        if (upPlace.getMenus().isEmpty()) {
             placeService.delete(placeId);
-        }else{
+        } else {
             upPlace.removeMenu(upMenu);
             placeService.update(upPlace);
             menuService.update(upMenu);
         }
-
 
 
         return menuService.getAllMenuTOs();
