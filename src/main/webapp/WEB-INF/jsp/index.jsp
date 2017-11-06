@@ -11,7 +11,15 @@
 
 </head>
 <body>
-<jsp:include page="fragments/header.jsp"/>
+<div class="container">
+
+
+    <a href="/login">Log in</a>
+
+    <a href="/register">Sign Up</a>
+
+    Place Manager
+</div>
 
 
 <jsp:include page="fragments/footer.jsp"/>

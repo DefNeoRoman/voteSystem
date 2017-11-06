@@ -3,13 +3,14 @@
 
 <div class="container">
     Place Manager <br>
+    <%--сделать через sec-authorize--%>
 
-    <a href="/login">Login Page</a>
     <a href="/main">Main Page</a>
     <a href="/meals">Meals</a>
     <a href="/menus">Menus</a>
     <a href="/places">Places</a>
     <a href="/users">Users</a>
+    <a href="/logout">Log out</a>
     <a href="/voteStory">Votes</a>
     <hr>
 
