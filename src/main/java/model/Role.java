@@ -3,11 +3,12 @@ package model;
 public enum Role {
     ROLE_ADMIN("ROLE_ADMIN"),
     ROLE_USER("ROLE_USER");
-    private String str;
+    private String name;
     Role(String name) {
-        this.str = str;
+        this.name = name;
     }
 
-
-
+    public String getName() {
+        return name;
+    }
 }

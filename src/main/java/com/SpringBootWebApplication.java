@@ -32,7 +32,7 @@ public class SpringBootWebApplication extends SpringBootServletInitializer{
 //
         System.out.println(context.getBean(UserController.class).getAll());
         System.out.println(context.getBean(UserRepository.class).findOne(Long.parseLong("2")));
-        System.out.println(context.getBean(UserRepository.class).findRoleByUserId(Long.parseLong("2")));
+
 //        System.out.println(context.getBean(MealService.class).testGet());
 //        System.out.println(context.getBean(PlaceService.class).getAllTOs());
     }

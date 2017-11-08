@@ -22,6 +22,12 @@ public class RootController {
 
         return "index";
     }
+    @RequestMapping(value = "/login",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
+    public String
+    login(Model model) {
+
+        return "login";
+    }
     @GetMapping("/users")
     public String users() {
         return "modelPages/users";
