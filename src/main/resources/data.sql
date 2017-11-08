@@ -26,7 +26,7 @@ INSERT INTO places (name, vote) VALUES
                     email,
                     password)
   VALUES
-  ('regular','regular@yandex.ru','123456'),
+  ('regular','regular@yandex.ru','$2a$04$.Lo7FuIMNFXT6iNnRT0NHuM32tnsNFlNIfpiJVDZsKz5fubJ4GeZ.'),
   ('admin','admin@gmail.com','123456'),
   ('regUser','regUser@mail.com','123456');
 INSERT INTO user_roles (role, user_id)
