@@ -36,5 +36,7 @@ public class UserService {
     public void delete(Long searchKey) {
         repository.delete(searchKey);
     }
-
+    public User findByName(String username) {
+        return repository.findByName(username);
+    }
 }

@@ -1,11 +1,15 @@
 package web.controllers;
 
+import com.SecurityService;
+import com.UserValidator;
 import model.Place;
 import model.Role;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import service.PlaceService;
 import service.UserService;
@@ -18,6 +22,10 @@ public class UserController {
     @Autowired
     UserService service;
 
+    @Autowired
+    private UserValidator userValidator;
+    @Autowired
+    private SecurityService securityService;
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
 
@@ -75,4 +83,12 @@ public class UserController {
 
         service.delete(id);
     }
+
+    @PostMapping(value = "/registration",produces = MediaType.APPLICATION_JSON_VALUE)
+    public User registration() {
+        System.out.println("hello from /registration");
+        securityService.autologin("regular", "12345678");
+        return new User();
+    }
+
 }

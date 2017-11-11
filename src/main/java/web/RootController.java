@@ -34,7 +34,7 @@ public class RootController {
     public String
     login(Model model) {
 
-        return "login";
+        return "notModelPages/login";
     }
     @RequestMapping(value = "/admin",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
     public String
@@ -79,18 +79,11 @@ public class RootController {
         return "modelPages/voteStory";
     }
 
-//    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-//    public String registration(@ModelAttribute("userForm") User userForm, BindingResult bindingResult, Model model) {
-//        userValidator.validate(userForm, bindingResult);
-//
-//        if (bindingResult.hasErrors()) {
-//            return "registration";
-//        }
-//
-//        userService.save(userForm);
-//
-//        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-//
-//        return "redirect:/welcome";
-//    }
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    public String registration(Model model) {
+        model.addAttribute("userForm", new User());
+
+        return "notModelPages/register";
+    }
+
 }

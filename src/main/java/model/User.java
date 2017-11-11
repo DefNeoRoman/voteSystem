@@ -73,6 +73,8 @@ public class User implements Serializable {
         this.enabled = true;
     }
 
+
+
     public Long getId() {
         return id;
     }

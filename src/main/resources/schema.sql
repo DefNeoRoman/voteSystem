@@ -35,6 +35,7 @@ CREATE TABLE users
   name             VARCHAR                  NOT NULL,
   email            VARCHAR                  NOT NULL,
   password         VARCHAR(60)              NOT NULL,
+
   register_date    TIMESTAMP DEFAULT now()  NOT NULL,
   enabled          BOOL DEFAULT TRUE        NOT NULL,
   isVote           BOOL DEFAULT FALSE       NOT NULL,
