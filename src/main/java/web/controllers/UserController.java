@@ -1,8 +1,5 @@
 package web.controllers;
 
-import com.SecurityService;
-import com.UserValidator;
-
 import model.Role;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +15,7 @@ public class UserController {
     @Autowired
     UserService service;
 
-    @Autowired
-    private UserValidator userValidator;
-    @Autowired
-    private SecurityService securityService;
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
 
@@ -83,7 +77,7 @@ public class UserController {
     @PostMapping(value = "/registration",produces = MediaType.APPLICATION_JSON_VALUE)
     public User registration() {
         System.out.println("hello from /registration");
-        securityService.autologin("regular", "12345678");
+
         return new User();
     }
 

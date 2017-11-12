@@ -54,8 +54,7 @@ function vote(button){
         type: 'POST',
         url: 'main/incVote?id='+id,
         success: function(data) {
-
-            console.log(data);
+            
         }
     });
     location.reload();

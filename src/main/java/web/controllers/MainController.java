@@ -4,7 +4,7 @@ package web.controllers;
 import model.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 import service.PlaceService;
 import transferObjects.MenuTO;
@@ -28,7 +28,9 @@ public class MainController {
 
     @PostMapping(value = "/incVote",produces = MediaType.APPLICATION_JSON_VALUE)
     public Map<PlaceTO,List<MenuTO>> incVote (@RequestParam Long id) {
+
         Place incPlace = placeService.get(id);
+
         incPlace.incVote();
         placeService.update(incPlace);
         return placeService.getAllMainTOs();

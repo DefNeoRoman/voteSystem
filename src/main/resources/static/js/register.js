@@ -6,7 +6,6 @@ console.log(msg);
         url: 'users/update?'+msg,
         success: function(data) {
            // console.log(data);
-
         }
     });
 
