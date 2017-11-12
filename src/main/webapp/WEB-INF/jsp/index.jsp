@@ -6,9 +6,7 @@
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
 Place Manager <br>
-<%--сделать через sec-authorize--%>
 
-<a href="/main">Main Page</a>
 <a href="/logout">Log out</a>
 <div class="container">
     <div id="allPlaces">

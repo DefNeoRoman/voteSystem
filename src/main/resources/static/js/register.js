@@ -3,9 +3,9 @@ function call(form) {
 console.log(msg);
     $.ajax({
         type: 'POST',
-        url: 'users/registration',
+        url: 'users/update?'+msg,
         success: function(data) {
-            console.log(data);
+           // console.log(data);
 
         }
     });

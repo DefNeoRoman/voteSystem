@@ -2,7 +2,7 @@ package service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.datajpa.VoteStoryRepository;
+import repository.VoteStoryRepository;
 
 @Service
 public class VoteStoryService {

@@ -5,8 +5,8 @@ import model.Meal;
 import model.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.datajpa.MealRepository;
-import repository.datajpa.MenuRepository;
+import repository.MealRepository;
+import repository.MenuRepository;
 import transferObjects.MealTO;
 
 import javax.transaction.Transactional;

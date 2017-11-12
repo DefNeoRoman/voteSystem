@@ -87,3 +87,16 @@
     height: 70px;
     border-radius: 3px;
 }
+.button-group{
+    margin-top: 15px;
+}
+.form-signin{
+    margin-top: 30px;
+}
+.form-control{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+#registerForm{
+    margin-top: 60px;
+}

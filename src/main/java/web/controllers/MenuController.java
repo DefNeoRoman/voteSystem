@@ -1,21 +1,16 @@
 package web.controllers;
 
-import model.Meal;
+
 import model.Menu;
 import model.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.MenuService;
 import service.PlaceService;
-import transferObjects.MealTO;
 import transferObjects.MenuTO;
-
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/menus")

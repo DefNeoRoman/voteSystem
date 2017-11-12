@@ -26,13 +26,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(HttpMethod.POST, "/users/registration/**");
+        web.ignoring().antMatchers(HttpMethod.POST, "/users/update/**","/main/incVote**");
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/static/**","/resources/**", "/registration","users/registration","/webjars/**").permitAll()
+                .antMatchers("/static/**","/main/**","/resources/**", "/registration","users/registration","/webjars/**").permitAll()
                 .antMatchers("/admin/**","/meals","/menus","/places","/users").access("hasRole('ADMIN')")
 
                 .anyRequest().authenticated()

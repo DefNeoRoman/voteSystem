@@ -10,8 +10,11 @@
     <a href="/menus">Menus</a>
     <a href="/places">Places</a>
     <a href="/users">Users</a>
-    <a href="/logout">Log out</a>
     <a href="/voteStory">Votes</a>
+    <a href="/logout" class="btn btn-lg btn-primary">
+        Log out
+    </a>
+
     <hr>
 
 </div>

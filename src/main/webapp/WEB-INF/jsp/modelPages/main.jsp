@@ -20,6 +20,9 @@
 
                     </div>
                 </div>
+                <button class="btn btn-lg btn-primary vote" onclick="vote(this)">
+                    vote
+                </button>
             </div>
         </div>
     </div>

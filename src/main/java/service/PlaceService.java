@@ -1,11 +1,9 @@
 package service;
 
-import model.Menu;
 import model.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.datajpa.MenuRepository;
-import repository.datajpa.PlaceRepository;
+import repository.PlaceRepository;
 import transferObjects.MenuTO;
 import transferObjects.PlaceTO;
 

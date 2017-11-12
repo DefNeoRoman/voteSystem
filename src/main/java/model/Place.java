@@ -80,6 +80,11 @@ public class Place  {
     public void setVotes(int votes) {
         this.votes = votes;
     }
-
+    public void incVote(){
+        this.votes++;
+    }
+    public void decVote(){
+        this.votes--;
+    }
 
 }
