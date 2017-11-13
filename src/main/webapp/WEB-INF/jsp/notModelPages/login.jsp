@@ -1,13 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html lang="en">
 <jsp:include page="../fragments/headTag.jsp"/>
 <body>
 
 <div class="container">
 
-    <form method="POST" action="/login" class="form-signin">
+<form:form class="navbar-form" role="form" action="spring_security_check" method="post">
         <h2 class="form-heading">Place Manager</h2>
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -31,9 +32,7 @@
             </div>
         </div>
         <div class="col-md-3"></div>
-
-
-    </form>
+</form:form>
 
 
 </div>

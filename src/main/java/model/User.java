@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -71,6 +72,18 @@ public class User implements Serializable {
         this.isVote = false;
         this.canVote = true;
         this.enabled = true;
+    }
+    public User(Long id, String name,
+                String email, String password, Set<Role> roles) {
+        this.id=id;
+        this.name = name;
+        this.password = password;
+        this.email = email;
+        this.registerDate = new Date();
+        this.isVote = false;
+        this.canVote = true;
+        this.enabled = true;
+        setRoles(roles);
     }
 
 
