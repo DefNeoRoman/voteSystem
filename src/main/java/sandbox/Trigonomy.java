@@ -18,7 +18,7 @@ public class Trigonomy {
                 inCircle.add(point);
             }
         });
-        System.out.println(trigonomy.countPi(inCircle.size(),inSquare.size()));
+        System.out.println(trigonomy.countPi(inCircle.size(),points.size()));
     }
     public float countPi(int inCircle, int inSquare){
         System.out.println(inCircle);
@@ -27,7 +27,7 @@ public class Trigonomy {
     }
     public List<Point> generatePoints(){
         List<Point> points = new ArrayList<>();
-        for(int i=0; i<100;i++){
+        for(int i=0; i<100000;i++){
             Point point = new Point(Math.random(),Math.random());
             points.add(point);
         }
