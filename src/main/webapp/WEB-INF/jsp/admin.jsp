@@ -15,8 +15,6 @@
 </div>
 
 
-
-
 <jsp:include page="fragments/footer.jsp"/>
 <script type="text/javascript" src="static/js/main.js" defer></script>
 </body>

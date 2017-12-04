@@ -32,59 +32,58 @@
         </tfoot>
     </table>
 </div>
-    <div class="modal fade" id="editRow">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h2 class="modal-title" id="modalTitle"></h2>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="detailsForm" method="post" action="javascript:void(null);" onsubmit="call(this)">
-                        <input type="hidden" id="mealId" name="mealId">
-                        <input type="hidden" id="menuId" name="menuId">
-                        <div class="form-group">
-                            <label for="mealName" class="control-label col-xs-3">Meal Name</label>
+<div class="modal fade" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="detailsForm" method="post" action="javascript:void(null);"
+                      onsubmit="call(this)">
+                    <input type="hidden" id="mealId" name="mealId">
+                    <input type="hidden" id="menuId" name="menuId">
+                    <div class="form-group">
+                        <label for="mealName" class="control-label col-xs-3">Meal Name</label>
 
-                            <div class="col-xs-9">
-                                <input type="text" class="form-control" id="mealName" name="mealName"
-                                       value="">
-                            </div>
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="mealName" name="mealName"
+                                   value="">
                         </div>
-                        <div class="form-group">
-                            <label for="price" class="control-label col-xs-3">Meal Price</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="control-label col-xs-3">Meal Price</label>
 
-                            <div class="col-xs-9">
-                                <input type="number" class="form-control" id="price" name="price" value="">
-                            </div>
+                        <div class="col-xs-9">
+                            <input type="number" class="form-control" id="price" name="price" value="">
                         </div>
-                        <div class="form-group">
-                            <label for="price" class="control-label col-xs-3">In Menu</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="price" class="control-label col-xs-3">In Menu</label>
 
-                            <div class="col-xs-9">
-                                <div id="selectText">
-
-                                </div>
-                                <select name="" id="selectMenuName">
-
-                                </select>
+                        <div class="col-xs-9">
+                            <div id="selectText">
 
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-offset-3 col-xs-9">
-                                <input class="btn btn-primary" type="submit" value="save">
-                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                            <select name="" id="selectMenuName">
 
-                            </div>
+                            </select>
+
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <input class="btn btn-primary" type="submit" value="save">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-        </div>
-
-
+    </div>
+</div>
 
 
 <jsp:include page="../fragments/footer.jsp"/>

@@ -13,21 +13,17 @@ import web.controllers.UserController;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {
-        "web","service","repository","com"},
+        "web", "service", "repository", "com"},
         basePackageClasses = SpringBootWebApplication.class)
 @EntityScan("model")
 @EnableJpaRepositories("repository")
-public class SpringBootWebApplication extends SpringBootServletInitializer{
+public class SpringBootWebApplication extends SpringBootServletInitializer {
 
 
     public static void main(String[] args) throws Exception {
-        ConfigurableApplicationContext context =  SpringApplication.run(SpringBootWebApplication.class, args);
-//
+        ConfigurableApplicationContext context = SpringApplication.run(SpringBootWebApplication.class, args);
         System.out.println(context.getBean(UserController.class).getAll());
-        System.out.println(context.getBean(UserRepository.class).findByName("regular").getRoles());
-
-//        System.out.println(context.getBean(MealService.class).testGet());
-//        System.out.println(context.getBean(PlaceService.class).getAllTOs());
+        System.out.println(context.getBean(UserRepository.class).findByUsername("regular").getAuthorities());
     }
 
 }

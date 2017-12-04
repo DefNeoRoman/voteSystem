@@ -31,15 +31,20 @@ CREATE TABLE places
   );
 CREATE TABLE users
 (
-  id               bigserial PRIMARY KEY,
-  name             VARCHAR                  NOT NULL,
-  email            VARCHAR                  NOT NULL,
-  password         VARCHAR(60)              NOT NULL,
+  id                        bigserial             PRIMARY KEY,
+  name                      VARCHAR                  NOT NULL,
+  email                     VARCHAR                  NOT NULL,
+  password                  VARCHAR(60)              NOT NULL,
 
-  register_date    TIMESTAMP DEFAULT now()  NOT NULL,
-  enabled          BOOL DEFAULT TRUE        NOT NULL,
-  isVote           BOOL DEFAULT FALSE       NOT NULL,
-  canVote          BOOL DEFAULT TRUE        NOT NULL
+  register_date             TIMESTAMP DEFAULT now()  NOT NULL,
+  enabled                   BOOL DEFAULT TRUE        NOT NULL,
+  isVote                    BOOL DEFAULT FALSE       NOT NULL,
+  canVote                   BOOL DEFAULT TRUE        NOT NULL,
+  accountNonExpired         BOOL DEFAULT TRUE        NOT NULL,
+
+  accountNonLocked          BOOL DEFAULT TRUE        NOT NULL,
+
+  credentialsNonExpired     BOOL DEFAULT TRUE        NOT NULL
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 CREATE TABLE votestory

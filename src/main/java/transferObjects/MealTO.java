@@ -1,8 +1,5 @@
 package transferObjects;
 
-import model.Meal;
-import model.Menu;
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -87,4 +84,6 @@ public class MealTO {
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
+
+
 }

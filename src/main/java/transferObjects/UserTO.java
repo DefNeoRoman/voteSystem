@@ -2,23 +2,21 @@ package transferObjects;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.SafeHtml;
-import util.HasId;
-import util.View;
+
 import javax.validation.constraints.Size;
 
-public class UserTO implements HasId {
+public class UserTO  {
     private static final long serialVersionUID = 1L;
     protected Long id;
 
     @NotBlank
-    @SafeHtml(groups = {View.ValidatedRestUI.class})
+
     private String name;
 
     @Email
     @NotBlank
     @Size(max = 100)
-    @SafeHtml(groups = {View.ValidatedRestUI.class}) // https://stackoverflow.com/questions/17480809
+
     private String email;
 
     @Size(min = 5, max = 32, message = "length must between 5 and 32 characters")
@@ -35,15 +33,7 @@ public class UserTO implements HasId {
         this.password = password;
 
     }
-    @Override
-    public Long getId() {
-        return id;
-    }
 
-    @Override
-    public void setId(Long id) {
-        this.id = id;
-    }
     public String getPassword() {
         return password;
     }

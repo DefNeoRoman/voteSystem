@@ -8,12 +8,12 @@
 
 <div class="container">
 
-<form:form class="navbar-form" role="form" action="spring_security_check" method="post">
+    <form:form class="navbar-form" role="form" method="post">
         <h2 class="form-heading">Place Manager</h2>
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="form-group">
-                <input name = "username" type="text" class="form-control" placeholder="username"
+                <input name="username" type="text" class="form-control" placeholder="username"
                        autofocus="true"/>
                 <input name="password" type="password" class="form-control" placeholder="Password"/>
 
@@ -22,7 +22,8 @@
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
                 <p class="button-group">
                     <a class="btn btn-lg btn-success" href="/registration"> registration </a>
-                    <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('regular', '12345678')">
+                    <button type="submit" class="btn btn-lg btn-primary"
+                            onclick="setCredentials('regular', '12345678')">
                         Enter as User
                     </button>
                     <button type="submit" class="btn btn-lg btn-primary" onclick="setCredentials('admin', '12345678')">
@@ -32,7 +33,7 @@
             </div>
         </div>
         <div class="col-md-3"></div>
-</form:form>
+    </form:form>
 
 
 </div>
@@ -62,7 +63,8 @@
 <div class="container">
     <div class="lead">
         Проект с регистрацией/авторизацией и интерфейсом на основе ролей (USER, ADMIN).
-        Администратор может создавать/редактировать/удалять пользователей,меню,еду, рестораны, а администратор - управлять своим
+        Администратор может создавать/редактировать/удалять пользователей,меню,еду, рестораны, а администратор -
+        управлять своим
         профилем и данными (меню, еда, рестораны) через UI (по AJAX) и по REST интерфейсу с базовой авторизацией.
 
         Весь REST интерфейс покрывается JUnit тестами, используя Spring MVC Test и Spring Security Test.

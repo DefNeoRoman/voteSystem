@@ -41,7 +41,7 @@ public class UserController {
         User upUser;
         if (id == null) {
             upUser = new User();
-            upUser.setRoles(new HashSet<>(Collections.singletonList(Role.ROLE_USER)));
+            upUser.setAuthorities(new HashSet<>(Collections.singletonList(Role.ROLE_USER)));
         } else {
             upUser = service.get(id);
         }
@@ -57,7 +57,7 @@ public class UserController {
         boolean enable = en != null;
         boolean isVotes = vote != null;
         boolean canVotes = canvote != null;
-        upUser.setName(name);
+        upUser.setUsername(name);
         upUser.setPassword(password);
         upUser.setEmail(email);
         upUser.setEnabled(enable);

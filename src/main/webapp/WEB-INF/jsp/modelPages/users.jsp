@@ -46,11 +46,13 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clear()">&times;</button>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clear()">&times;
+                </button>
                 <h2 class="modal-title" id="modalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form method ="post" class="form-horizontal postForm" id="detailsForm" action="javascript:void(null);" onsubmit="call(this)" >
+                <form method="post" class="form-horizontal postForm" id="detailsForm" action="javascript:void(null);"
+                      onsubmit="call(this)">
                     <input type="hidden" id="id" name="id">
 
 
@@ -83,7 +85,8 @@
                         <label for="en" class="control-label col-xs-3">Enabled</label>
 
                         <div class="col-xs-9">
-                            <input type="checkbox" checked="checked" class="form-control" id="en" name="en" onclick="enable($(this))"/>
+                            <input type="checkbox" checked="checked" class="form-control" id="en" name="en"
+                                   onclick="enable($(this))"/>
                         </div>
                     </div>
                     <%--for isVote--%>
@@ -93,7 +96,8 @@
                         <div class="col-xs-9">
                             <%--не получал ответ с сервера так как ожидаемая строка была длиннее--%>
                             <%--а этот чекбокс не серилаизовался потому что свойство checked с самого начала не обозначил--%>
-                            <input type="checkbox" checked="checked" class="form-control" id="vote" name="vote" onclick="enable($(this))"/>
+                            <input type="checkbox" checked="checked" class="form-control" id="vote" name="vote"
+                                   onclick="enable($(this))"/>
                         </div>
                     </div>
                     <%--for canVote--%>
@@ -101,7 +105,8 @@
                         <label for="canvote" class="control-label col-xs-3">can Vote?</label>
 
                         <div class="col-xs-9">
-                            <input type="checkbox" checked="checked" class="form-control" id="canvote" name="canvote" onclick="enable($(this))"/>
+                            <input type="checkbox" checked="checked" class="form-control" id="canvote" name="canvote"
+                                   onclick="enable($(this))"/>
 
                         </div>
                     </div>

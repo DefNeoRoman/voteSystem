@@ -1,25 +1,25 @@
 var datatableApi;
-$(document).ready(function() {
-    $( "#selectMenuName" )
+$(document).ready(function () {
+    $("#selectMenuName")
         .change(function () {
             var str = "";
-           str+= $("#selectMenuName option:selected").text();
-            $( "#selectText" ).text( str );
+            str += $("#selectMenuName option:selected").text();
+            $("#selectText").text(str);
             $("#menuId").val($("#selectMenuName").val());
         })
         .change();
-    datatableApi = $('#mealDataTable').DataTable( {
+    datatableApi = $('#mealDataTable').DataTable({
 
         //Какой-то из вышеперечисленных добавил и все заработало
         // со stackoverflow
-        "ajax":{"url":"meals","dataSrc":""}, // или datasrc
+        "ajax": {"url": "meals", "dataSrc": ""}, // или datasrc
         "processing": true,// или processing
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp
         "columns": [
-            { "data": "mealName" },
-            { "data": "price" },
-            { "data": "menuName" },
+            {"data": "mealName"},
+            {"data": "price"},
+            {"data": "menuName"},
             {
                 "render": renderEditBtn,
                 "defaultContent": "",
@@ -31,22 +31,22 @@ $(document).ready(function() {
                 "orderable": false
             }
         ]
-    } );
+    });
 });
 function renderEditBtn(data, type, row) {
     console.log(data);
-    return "<a onclick="+"updateRow("+"\'"+row.mealId+"\'"+",\'"+row.menuId+"\'"+")"+">" +
+    return "<a onclick=" + "updateRow(" + "\'" + row.mealId + "\'" + ",\'" + row.menuId + "\'" + ")" + ">" +
         "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></>";
 }
 function renderDeleteBtn(data, type, row) {
-    return "<a onclick ="+ "deleteRow("+"\'"+row.mealId+"\'"+","+"\'"+row.menuId+"\'"+")"+" >" +
+    return "<a onclick =" + "deleteRow(" + "\'" + row.mealId + "\'" + "," + "\'" + row.menuId + "\'" + ")" + " >" +
         "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
 }
 
-function deleteRow(mealId,menuId) {
+function deleteRow(mealId, menuId) {
 
     $.ajax({
-        url: 'meals/delete/'+ mealId+'/'+menuId,
+        url: 'meals/delete/' + mealId + '/' + menuId,
         type: "DELETE",
         success: function () {
             location.reload();
@@ -55,36 +55,36 @@ function deleteRow(mealId,menuId) {
     });
 }
 function call(form) {
-    var msg   = $(form).serialize();
+    var msg = $(form).serialize();
     console.log(msg);
     $.ajax({
         type: 'POST',
-        url: 'meals/update?'+msg,
-        success: function(data) {
+        url: 'meals/update?' + msg,
+        success: function (data) {
 
             datatableApi.clear().rows.add(data).draw();
         }
     });
     location.reload();
 }
-function updateRow(mealId,menuId) {
+function updateRow(mealId, menuId) {
 
     var form = $('#detailsForm');
     var select = $('#selectMenuName');
     var html;
-    var menuIndexes=[];
-    var menuNames=[];
-    $.get('meals/edit' +'/'+ mealId+'/'+menuId, function (data) {
+    var menuIndexes = [];
+    var menuNames = [];
+    $.get('meals/edit' + '/' + mealId + '/' + menuId, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name=" + key + "]").val(value);
-            if(key === 'menuIds'){
+            if (key === 'menuIds') {
                 menuIndexes = value;
             }
-            if(key ==='menuNames'){
-               menuNames = value;
+            if (key === 'menuNames') {
+                menuNames = value;
             }
-            for(var i=0; i< menuIndexes.length; i++){
-               html+='<option value="'+menuIndexes[i]+'">'+menuNames[i]+'</option>>';
+            for (var i = 0; i < menuIndexes.length; i++) {
+                html += '<option value="' + menuIndexes[i] + '">' + menuNames[i] + '</option>>';
             }
         });
         select.html(html);
@@ -95,20 +95,20 @@ function add() {
     var form = $("#detailsForm");
     var select = $('#selectMenuName');
     var html;
-    var menuIndexes=[];
-    var menuNames=[];
+    var menuIndexes = [];
+    var menuNames = [];
     form.find(":input:not(.btn)").val("");
     $.get('meals/addMeal', function (data) {
         $.each(data, function (key, value) {
             form.find("input[name=" + key + "]").val(value);
-            if(key === 'menuIds'){
+            if (key === 'menuIds') {
                 menuIndexes = value;
             }
-            if(key ==='menuNames'){
+            if (key === 'menuNames') {
                 menuNames = value;
             }
-            for(var i=0; i< menuIndexes.length; i++){
-                html+='<option value="'+menuIndexes[i]+'">'+menuNames[i]+'</option>>';
+            for (var i = 0; i < menuIndexes.length; i++) {
+                html += '<option value="' + menuIndexes[i] + '">' + menuNames[i] + '</option>>';
             }
         });
         select.html(html);

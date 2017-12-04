@@ -1,4 +1,3 @@
-
 <!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -41,7 +40,8 @@
                 <h2 class="modal-title" id="modalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="detailsForm" method="post" action="javascript:void(null);" onsubmit="call(this)">
+                <form class="form-horizontal" id="detailsForm" method="post" action="javascript:void(null);"
+                      onsubmit="call(this)">
                     <input type="hidden" id="menuId" name="menuId">
                     <input type="hidden" id="placeId" name="placeId">
                     <div class="form-group">
@@ -84,7 +84,6 @@
         </div>
     </div>
 </div>
-
 
 
 <jsp:include page="../fragments/footer.jsp"/>

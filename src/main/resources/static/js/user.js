@@ -1,24 +1,26 @@
 var datatableApi;
-$(document).ready(function() {
+$(document).ready(function () {
 
-     datatableApi = $('#userDataTable').DataTable( {
+    datatableApi = $('#userDataTable').DataTable({
         //Какой-то из вышеперечисленных добавил и все заработало
         // со stackoverflow
-        "ajax":{"url":"users","dataSrc":""}, // или datasrc
+        "ajax": {"url": "users", "dataSrc": ""}, // или datasrc
         "processing": true,// или processing
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp
         "columns": [
-            { "data": "name" },
-            { "data": "email" },
-            { "data": "registerDate",
+            {"data": "name"},
+            {"data": "email"},
+            {
+                "data": "registerDate",
 
             },
-            { "data": "roles"},
-            { "data": "password"},
-            { "data": "enabled" },
-            { "data": "vote" },
-            { "data": "canVote"
+            {"data": "roles"},
+            {"data": "password"},
+            {"data": "enabled"},
+            {"data": "vote"},
+            {
+                "data": "canVote"
 
             },
             {
@@ -32,12 +34,12 @@ $(document).ready(function() {
                 "orderable": false
             }
         ]
-    } );
+    });
 
-} );
+});
 function updateRow(id) {
     var form = $('#detailsForm');
-    $.get('users' +'/'+ id, function (data) {
+    $.get('users' + '/' + id, function (data) {
         console.log(data);
         $.each(data, function (key, value) {
             form.find("input[name=" + key + "]").val(value);
@@ -49,21 +51,21 @@ function updateRow(id) {
 function deleteRow(id) {
 
     $.ajax({
-        url: 'users?id='+ id,
+        url: 'users?id=' + id,
         type: "DELETE",
         success: function () {
             location.reload();
-           console.log("hello");
+            console.log("hello");
         }
     });
 }
 function call(form) {
-    var msg   = $(form).serialize();
+    var msg = $(form).serialize();
 
     $.ajax({
         type: 'POST',
-        url: 'users/update?'+msg,
-        success: function(data) {
+        url: 'users/update?' + msg,
+        success: function (data) {
             console.log(data);
             datatableApi.clear().rows.add(data).draw();
         }
@@ -72,29 +74,29 @@ function call(form) {
 }
 function renderEditBtn(data, type, row) {
 
-        return "<a onclick="+"updateRow("+"\'"+row.id+"\')"+">" +
-            "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
+    return "<a onclick=" + "updateRow(" + "\'" + row.id + "\')" + ">" +
+        "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></a>";
 
 }
 
 function renderDeleteBtn(data, type, row) {
 
-        return "<a onclick ="+ "deleteRow("+"\'"+row.id+"\')"+">" +
-            "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
+    return "<a onclick =" + "deleteRow(" + "\'" + row.id + "\')" + ">" +
+        "<span class='glyphicon glyphicon-remove' aria-hidden='true'></span></a>";
 
 }
-function enable(checkbox){
+function enable(checkbox) {
     var enabled = checkbox.is(":checked");
     console.log(enabled);
 
-    if(enabled === false){
+    if (enabled === false) {
 
         $(checkbox).removeProp("checked");
     }
     console.log($(checkbox).val());
- }
+}
 function add() {
-   var form = $("#detailsForm");
+    var form = $("#detailsForm");
     form.find(":input:not(.btn)").val("");
     $("#editRow").modal();
 }

@@ -8,6 +8,7 @@
 Place Manager <br>
 
 <a href="/logout">Log out</a>
+<h2>You are logged with username: ${username} and with roles: ${roles}</h2>
 <div class="container">
     <div id="allPlaces">
         <div class="row">
@@ -27,8 +28,6 @@ Place Manager <br>
     </div>
 
 </div>
-
-
 
 
 <jsp:include page="fragments/footer.jsp"/>

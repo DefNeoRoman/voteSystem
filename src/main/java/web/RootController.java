@@ -1,8 +1,11 @@
 package web;
 
 
+import model.Role;
 import model.User;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,17 +18,15 @@ public class RootController {
 
 
     @RequestMapping(value = "/",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
-    public String
-    welcome(Model model) {
+    public String welcome(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+       User user = (User) authentication.getPrincipal();
+        model.addAttribute("username", user.getUsername());
+        model.addAttribute("roles",user.getAuthorities());
 
         return "index";
     }
-    @RequestMapping(value = "/login",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
-    public String
-    login(Model model) {
 
-        return "notModelPages/login";
-    }
     @RequestMapping(value = "/admin",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
     public String
     admin(Model model) {

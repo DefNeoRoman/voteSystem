@@ -12,6 +12,6 @@
 </head>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
-    vote story
+vote story
 </body>
 </html>

@@ -9,7 +9,8 @@
 
 <div class="container">
 
-    <form method ="post" class="form-horizontal postForm" id="registerForm" action="javascript:void(null);" onsubmit="call(this)" >
+    <form method="post" class="form-horizontal postForm" id="registerForm" action="javascript:void(null);"
+          onsubmit="call(this)">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <%--for userName--%>
         <div class="form-group">
@@ -44,7 +45,7 @@
             </div>
         </div>
     </form>
-   <h2><a href="/login">go Back</a></h2>
+    <h2><a href="/login">go Back</a></h2>
 </div>
 <!-- /container -->
 <jsp:include page="../fragments/footer.jsp"/>

@@ -1,17 +1,20 @@
 package service;
 
 
-import model.AuthorizedUser;
+import lombok.NonNull;
+import model.Role;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import repository.UserRepository;
 
-import java.util.List;
+import java.util.*;
 
 
 @Service("userService")
@@ -42,16 +45,14 @@ public class UserService implements UserDetailsService {
     public void delete(Long searchKey) {
         repository.delete(searchKey);
     }
-    public User findByName(String username) {
-        return repository.findByName(username);
+
+    public Optional<User> findById(@NonNull Long id) {
+        return Optional.ofNullable(repository.findOne(id));
     }
 
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = repository.findByName(name);
-        if (user == null) {
-            throw new UsernameNotFoundException("User " + name + " is not found");
-        }
-        return new AuthorizedUser(user);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return repository.findByUsername(username);
+
     }
 }

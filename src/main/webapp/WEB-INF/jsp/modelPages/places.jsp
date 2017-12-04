@@ -38,7 +38,8 @@
                 <h2 class="modal-title" id="modalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" id="detailsForm" method="post" action="javascript:void(null);" onsubmit="call(this)">
+                <form class="form-horizontal" id="detailsForm" method="post" action="javascript:void(null);"
+                      onsubmit="call(this)">
                     <input type="hidden" id="id" name="id">
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3">Place Name</label>
