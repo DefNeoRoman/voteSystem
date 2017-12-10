@@ -4,12 +4,12 @@ import model.Meal;
 import model.Menu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import service.MealService;
 import service.MenuService;
 import transferObjects.MealTO;
-import java.util.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/meals")
@@ -21,18 +21,17 @@ public class MealController {
     MenuService menuService;
 
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<MealTO> getAll(Model model) {
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  List<MealTO> getAll() {
         return mealService.getAll();
     }
 
-    //будет разделение логики на update и add
+
     @GetMapping(value = "/addMeal", produces = MediaType.APPLICATION_JSON_VALUE)
     public MealTO addMeal() {
         List<Menu> menuList = menuService.getAll();
         MealTO response = new MealTO();
         menuList.forEach(menu1 -> {
-//            добавляем доступные для options
             response.addMenuId(menu1.getId());
             response.addMenuname(menu1.getName());
         });
@@ -45,14 +44,12 @@ public class MealController {
                       @PathVariable("menuId") Long menuId
     ) {
         List<Menu> menuList = menuService.getAll();
-
         Meal meal = mealService.get(mealId);
         Menu menu = menuService.get(menuId);
         MealTO response = new MealTO(mealId,
                 meal.getName(), meal.getPrice(),
                 menuId, menu.getName());
         menuList.forEach(menu1 -> {
-//            добавляем доступные для options
             response.addMenuId(menu1.getId());
             response.addMenuname(menu1.getName());
         });
@@ -100,4 +97,6 @@ public class MealController {
 
         return mealService.getAll();
     }
+
+
 }

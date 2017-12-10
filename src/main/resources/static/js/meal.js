@@ -1,5 +1,6 @@
 var datatableApi;
 $(document).ready(function () {
+
     $("#selectMenuName")
         .change(function () {
             var str = "";
@@ -12,7 +13,7 @@ $(document).ready(function () {
 
         //Какой-то из вышеперечисленных добавил и все заработало
         // со stackoverflow
-        "ajax": {"url": "meals", "dataSrc": ""}, // или datasrc
+        "ajax": {"url": "meals/getAll", "dataSrc": ""}, // или datasrc
         "processing": true,// или processing
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp
@@ -34,7 +35,7 @@ $(document).ready(function () {
     });
 });
 function renderEditBtn(data, type, row) {
-    console.log(data);
+
     return "<a onclick=" + "updateRow(" + "\'" + row.mealId + "\'" + ",\'" + row.menuId + "\'" + ")" + ">" +
         "<span class='glyphicon glyphicon-pencil' aria-hidden='true'></span></>";
 }
