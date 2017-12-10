@@ -8,16 +8,25 @@
 
 <div class="container">
 
-    <form:form class="navbar-form" role="form" method="post">
+    <form name="f" class="navbar-form" method="post">
         <h2 class="form-heading">Place Manager</h2>
-        <div class="col-md-3"></div>
+        <div class="col-md-3">
+
+        </div>
         <div class="col-md-6">
             <div class="form-group">
-                <input name="username" type="text" class="form-control" placeholder="username"
+                <input name="username" type="text" class="form-control" placeholder="username" id="username"
                        autofocus="true"/>
-                <input name="password" type="password" class="form-control" placeholder="Password"/>
+                <input id="password" name="password" type="password" class="form-control" placeholder="Password"/>
 
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <c:if test="${error}">
+                    <div class="alert alert-danger" role="alert">Invalid Username or Password!</div>
+                </c:if>
+                <c:if test="${logout}">
+                    <div class="alert alert-info" role="alert">You've been logged out successfully.</div>
+                </c:if>
+
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
                 <p class="button-group">
@@ -33,7 +42,7 @@
             </div>
         </div>
         <div class="col-md-3"></div>
-    </form:form>
+    </form>
 
 
 </div>

@@ -26,11 +26,11 @@ INSERT INTO places (name, vote) VALUES
                     email,
                     password)
   VALUES
-  ('regular','regular@yandex.ru','12345678'),
+  ('regular','regular@yandex.ru','$2a$08$bn3BrtjfeohY7xfXF00nFOtHbzKuPBZ0np8/AkSJrDN2HKsNlcKHK'),
   --12345678
-  ('admin','admin@gmail.com','12345678'),
+  ('admin','admin@gmail.com','$2a$08$bn3BrtjfeohY7xfXF00nFOtHbzKuPBZ0np8/AkSJrDN2HKsNlcKHK'),
   --12345678
-  ('regUser','regUser@mail.com','123456');
+  ('regUser','regUser@mail.com','$2a$08$bn3BrtjfeohY7xfXF00nFOtHbzKuPBZ0np8/AkSJrDN2HKsNlcKHK');
 INSERT INTO user_roles (role, user_id)
 VALUES
   ('ROLE_USER', 1),

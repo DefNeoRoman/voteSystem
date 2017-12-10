@@ -46,13 +46,11 @@ public class UserService implements UserDetailsService {
         repository.delete(searchKey);
     }
 
-    public Optional<User> findById(@NonNull Long id) {
-        return Optional.ofNullable(repository.findOne(id));
-    }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+   @Override
+   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByUsername(username);
 
-    }
+   }
 }

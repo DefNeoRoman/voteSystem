@@ -4,14 +4,13 @@ package com;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import service.UserService;
 
 @Configuration
@@ -19,20 +18,21 @@ import service.UserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
-    @Autowired
-    private TokenAuthService tokenAuthService;
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .addFilterBefore(new StatelessAuthFilter(tokenAuthService), UsernamePasswordAuthenticationFilter.class)
+                .csrf().disable().httpBasic().and()//из-за строки csrf блокировались пост запросы
                 .authorizeRequests()
-                .antMatchers("/readme.txt", "/css/*").permitAll()
+                .antMatchers( "/webjars/**","/resources/**","/static/**").permitAll()
+                .antMatchers("/meals/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login").permitAll()
+
+                .formLogin().loginPage("/login").permitAll().defaultSuccessUrl("/")
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
+                .logout().permitAll();
 
     }
 
