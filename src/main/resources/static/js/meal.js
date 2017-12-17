@@ -60,7 +60,7 @@ function call(form) {
     console.log(msg);
     $.ajax({
         type: 'POST',
-        url: 'meals/update?' + msg,
+        url: 'admin/meals/update?' + msg,
         success: function (data) {
 
             datatableApi.clear().rows.add(data).draw();

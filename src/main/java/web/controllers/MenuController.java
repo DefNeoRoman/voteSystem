@@ -13,7 +13,7 @@ import transferObjects.MenuTO;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/menus")
+@RequestMapping(value = "admin/menus")
 public class MenuController {
 
     @Autowired

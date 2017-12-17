@@ -39,7 +39,7 @@ public class RootController {
         model.addAttribute("logout",logout != null);
         return "notModelPages/login";
     }
-    @GetMapping("/users")
+    @GetMapping("admin/users")
     public String users() {
         return "modelPages/users";
     }
@@ -48,23 +48,23 @@ public class RootController {
         return "modelPages/main";
     }
 
-    @GetMapping("/meals")
+    @GetMapping("admin/meals")
     public String meals() {
         return "modelPages/meals";
     }
 
-    @GetMapping(value = "/menus")
+    @GetMapping(value = "admin/menus")
     public String menus() {
         return "modelPages/menus";
     }
 
-    @GetMapping(value = "/places")
+    @GetMapping(value = "admin/places")
     public String login() {
         return "modelPages/places";
     }
 
 
-    @GetMapping("/voteStory")
+    @GetMapping("admin/voteStory")
     public String voteStory() {
         return "modelPages/voteStory";
     }

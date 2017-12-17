@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable().httpBasic().and()//из-за строки csrf блокировались пост запросы
                 .authorizeRequests()
                 .antMatchers( "/webjars/**","/resources/**","/static/**").permitAll()
-                .antMatchers("/meals/**").hasRole("ADMIN")
+                .antMatchers("admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
 

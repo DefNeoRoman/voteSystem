@@ -10,7 +10,7 @@ import transferObjects.PlaceTO;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/places")
+@RequestMapping(value = "admin/places")
 public class PlaceController {
 
     @Autowired

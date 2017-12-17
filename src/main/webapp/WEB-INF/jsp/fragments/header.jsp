@@ -6,11 +6,11 @@
     <%--сделать через sec-authorize--%>
 
     <a href="/main">Main Page</a>
-    <a href="/meals">Meals</a>
-    <a href="/menus">Menus</a>
-    <a href="/places">Places</a>
-    <a href="/users">Users</a>
-    <a href="/voteStory">Votes</a>
+    <a href="/admin/meals">Meals</a>
+    <a href="/admin/menus">Menus</a>
+    <a href="/admin/places">Places</a>
+    <a href="/admin/users">Users</a>
+    <a href="/admin/voteStory">Votes</a>
     <a href="/logout" class="btn btn-lg btn-primary">
         Log out
     </a>

@@ -12,7 +12,7 @@ import transferObjects.MealTO;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/meals")
+@RequestMapping(value = "admin/meals")
 public class MealController {
 
     @Autowired

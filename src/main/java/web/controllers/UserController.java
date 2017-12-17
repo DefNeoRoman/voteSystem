@@ -10,7 +10,7 @@ import service.UserService;
 import java.util.*;
 
 @RestController //by default returns JSON
-@RequestMapping(value = "/users")
+@RequestMapping(value = "admin/users")
 public class UserController {
     @Autowired
     UserService service;
