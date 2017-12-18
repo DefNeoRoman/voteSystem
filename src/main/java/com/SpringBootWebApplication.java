@@ -19,7 +19,7 @@ import web.controllers.UserController;
 public class SpringBootWebApplication extends SpringBootServletInitializer {
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SpringBootWebApplication.class, args);
         System.out.println(context.getBean(UserController.class).getAll());
         System.out.println(context.getBean(UserRepository.class).findByUsername("regular").getAuthorities());
