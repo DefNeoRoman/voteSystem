@@ -39,18 +39,4 @@ public class MealControllerTest {
                         "[{\"mealId\":1,\"mealName\":\"макароны\",\"price\":763,\"menuId\":1,\"menuName\":\"завтрак\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":2,\"mealName\":\"картофель\",\"price\":863,\"menuId\":2,\"menuName\":\"обед\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":3,\"mealName\":\"хлеб\",\"price\":773,\"menuId\":3,\"menuName\":\"ужин\",\"menuNames\":[],\"menuIds\":[]}]"));
     }
 
-
-
-
-    @Test
-    public void addMeal() throws Exception {
-    }
-
-    @Test
-    public void update() throws Exception {
-    }
-
-    @Test
-    public void delete() throws Exception {
-    }
 }
