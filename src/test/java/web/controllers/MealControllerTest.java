@@ -6,31 +6,24 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
+import org.springframework.context.annotation.Import;
 import org.springframework.mock.web.MockFilterChain;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import service.MealService;
 
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.Base64;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 @RunWith(SpringRunner.class)
 
 @WebMvcTest(MealController.class)
 @ContextConfiguration(classes = {SpringBootWebApplication.class})
-
+@Import(MyTestsConfiguration.class)
 public class MealControllerTest {
     @Autowired
     private FilterChainProxy springSecurityFilterChain;
@@ -64,7 +57,7 @@ public class MealControllerTest {
 
        assertThat(this.response.getStatus()).isEqualTo(HttpServletResponse.SC_OK);
        assertThat(this.response.getContentAsString().contentEquals("[{\"mealId\":1,\"mealName\":\"макароны\",\"price\":763,\"menuId\":1,\"menuName\":\"завтрак\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":2,\"mealName\":\"картофель\",\"price\":863,\"menuId\":2,\"menuName\":\"обед\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":3,\"mealName\":\"хлеб\",\"price\":773,\"menuId\":3,\"menuName\":\"ужин\",\"menuNames\":[],\"menuIds\":[]}]"));
-      
+
     }
 
 }
