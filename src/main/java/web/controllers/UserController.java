@@ -16,7 +16,7 @@ public class UserController {
     UserService service;
 
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
 
         return service.getAll();
@@ -75,10 +75,15 @@ public class UserController {
     }
 
     @PostMapping(value = "/registration",produces = MediaType.APPLICATION_JSON_VALUE)
-    public User registration() {
-        System.out.println("hello from /registration");
-
-        return new User();
+    public User registration( @RequestParam(required = false) String name,
+                              @RequestParam String email,
+                              @RequestParam(required = false) String password
+                             ) {
+        User nUser = new User(name,password, new HashSet<>(Collections.singleton(Role.ROLE_USER)));
+        nUser.setEmail(email);
+        service.update(nUser);
+        User userFromService = service.getByName(name);
+        return userFromService;
     }
 
 }

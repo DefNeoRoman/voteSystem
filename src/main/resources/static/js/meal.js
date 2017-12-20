@@ -13,7 +13,7 @@ $(document).ready(function () {
 
         //Какой-то из вышеперечисленных добавил и все заработало
         // со stackoverflow
-        "ajax": {"url": "meals/getAll", "dataSrc": ""}, // или datasrc
+        "ajax": {"url": "/admin/meals/getAll", "dataSrc": ""}, // или datasrc
         "processing": true,// или processing
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp
@@ -47,7 +47,7 @@ function renderDeleteBtn(data, type, row) {
 function deleteRow(mealId, menuId) {
 
     $.ajax({
-        url: 'meals/delete/' + mealId + '/' + menuId,
+        url: '/admin/meals/delete/' + mealId + '/' + menuId,
         type: "DELETE",
         success: function () {
             location.reload();
@@ -60,7 +60,7 @@ function call(form) {
     console.log(msg);
     $.ajax({
         type: 'POST',
-        url: 'admin/meals/update?' + msg,
+        url: '/admin/meals/update?' + msg,
         success: function (data) {
 
             datatableApi.clear().rows.add(data).draw();
@@ -75,7 +75,7 @@ function updateRow(mealId, menuId) {
     var html;
     var menuIndexes = [];
     var menuNames = [];
-    $.get('meals/edit' + '/' + mealId + '/' + menuId, function (data) {
+    $.get('/admin/meals/edit' + '/' + mealId + '/' + menuId, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name=" + key + "]").val(value);
             if (key === 'menuIds') {
@@ -99,7 +99,7 @@ function add() {
     var menuIndexes = [];
     var menuNames = [];
     form.find(":input:not(.btn)").val("");
-    $.get('meals/addMeal', function (data) {
+    $.get('/admin/meals/addMeal', function (data) {
         $.each(data, function (key, value) {
             form.find("input[name=" + key + "]").val(value);
             if (key === 'menuIds') {

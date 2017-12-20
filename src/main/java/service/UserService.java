@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import repository.UserRepository;
+import transferObjects.UserTO;
 
 import java.util.*;
 
@@ -52,5 +53,8 @@ public class UserService implements UserDetailsService {
    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByUsername(username);
 
+   }
+   public User getByName (String name){
+        return repository.findByUsername(name);
    }
 }

@@ -1,21 +1,25 @@
 var datatableApi;
 $(document).ready(function () {
 
+    $.get('/admin/users/getAll', function (data) {
+        console.log(data);
+
+    });
     datatableApi = $('#userDataTable').DataTable({
         //Какой-то из вышеперечисленных добавил и все заработало
         // со stackoverflow
-        "ajax": {"url": "users", "dataSrc": ""}, // или datasrc
+        "ajax": {"url": "users/getAll", "dataSrc": ""}, // или datasrc
         "processing": true,// или processing
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp
         "columns": [
-            {"data": "name"},
+            {"data": "username"},
             {"data": "email"},
             {
                 "data": "registerDate",
 
             },
-            {"data": "roles"},
+            {"data": "authorities"},
             {"data": "password"},
             {"data": "enabled"},
             {"data": "vote"},

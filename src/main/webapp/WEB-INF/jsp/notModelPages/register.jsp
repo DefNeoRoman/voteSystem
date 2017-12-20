@@ -45,7 +45,7 @@
             </div>
         </div>
     </form>
-    <h2><a href="/login">go Back</a></h2>
+    <h2><a class="btn btn-lg btn-primary" href="/login">go Back</a></h2>
 </div>
 <!-- /container -->
 <jsp:include page="../fragments/footer.jsp"/>
