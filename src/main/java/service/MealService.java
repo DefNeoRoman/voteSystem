@@ -7,10 +7,12 @@ import repository.MealRepository;
 import repository.MenuRepository;
 import transferObjects.MealTO;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class MealService {
 
     @Autowired

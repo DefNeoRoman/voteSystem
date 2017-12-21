@@ -21,7 +21,7 @@ public class Meal implements Serializable {
     @Range(min = 1, max = 100000)
     @NotNull
     private int price;
-    @ManyToMany(mappedBy = "meals")//на
+    @ManyToMany(mappedBy = "meals")
     private Set<Menu> menus = new HashSet<>();
     public Meal() {
 

@@ -8,10 +8,12 @@ import repository.MenuRepository;
 import transferObjects.MealTO;
 import transferObjects.MenuTO;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class MenuService {
 
 
@@ -45,22 +47,19 @@ public class MenuService {
         List<MealTO> mealList = mealService.getAll();
 
         List<MenuTO> menuTOS = new ArrayList<>();
-        menuList.forEach(menu -> {
-            menu.getPlaces().forEach(place -> {
-                List<MealTO> interList = new ArrayList<>();
-                mealList.forEach(mealTO -> {
-                    if (mealTO.getMenuId().equals(menu.getId())) {
-                        interList.add(mealTO);
-                    }
-                });
-                menuTOS.add(new MenuTO(menu.getId(),
-                        menu.getName(),
-                        menu.getCookName(),
-                        place.getId(),
-                        interList));
+        menuList.forEach(menu -> menu.getPlaces().forEach(place -> {
+            List<MealTO> interList = new ArrayList<>();
+            mealList.forEach(mealTO -> {
+                if (mealTO.getMenuId().equals(menu.getId())) {
+                    interList.add(mealTO);
+                }
             });
-
-        });
+            menuTOS.add(new MenuTO(menu.getId(),
+                    menu.getName(),
+                    menu.getCookName(),
+                    place.getId(),
+                    interList));
+        }));
 
         return menuTOS;
     }

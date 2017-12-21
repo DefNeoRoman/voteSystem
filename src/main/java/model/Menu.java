@@ -19,13 +19,12 @@ public class Menu implements Serializable {
     private String cookName;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
     private Long id;
     @Column(name = "name", nullable = false)
     @NotBlank
     @Size(min = 2, max = 120)
     private String name;
-    @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+    @ManyToMany(fetch = FetchType.EAGER,cascade = { CascadeType.MERGE, CascadeType.PERSIST })
     @JoinTable(name = "menumeals",
           joinColumns = @JoinColumn(name = "menu_id"),
            inverseJoinColumns = @JoinColumn(name = "meal_id")
