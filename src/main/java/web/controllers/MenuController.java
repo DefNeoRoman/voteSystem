@@ -31,14 +31,11 @@ public class MenuController {
         List<Place> placeList = placeService.getAll();
         MenuTO response = new MenuTO();
         placeList.forEach(place -> {
-//            добавляем доступные для options
             response.addPlaceId(place.getId());
             response.addPlaceName(place.getName());
         });
-
         return response;
     }
-
     @GetMapping(value = "edit/{menuId}/{placeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public MenuTO get(@PathVariable("menuId") Long menuId,
                       @PathVariable("placeId") Long placeId
@@ -50,13 +47,11 @@ public class MenuController {
                 menu.getName(), menu.getCookName(),
                 placeId, place.getName());
         placeList.forEach(place1 -> {
-//            добавляем доступные для options
             response.addPlaceId(place1.getId());
             response.addPlaceName(place1.getName());
         });
         return response;
     }
-
     @PostMapping(value = "/update")
     public List<MenuTO> update(@RequestParam(required = false) String menuId,
                                @RequestParam String placeId,
@@ -68,17 +63,14 @@ public class MenuController {
         } else {
             upMenu = menuService.get(Long.parseLong(menuId));
         }
-
         upMenu.setName(menuName);
         upMenu.setCookName(cookName);
         Place upPlace = placeService.get(Long.parseLong(placeId));
         upMenu.addPlace(upPlace);
-
         menuService.update(upMenu);
         placeService.update(upPlace);
         return menuService.getAllMenuTOs();
     }
-
     @DeleteMapping(value = "delete/{menuId}/{placeId}")
     public List<MenuTO> delete(@PathVariable("menuId") Long menuId,
                                @PathVariable("placeId") Long placeId) {
@@ -92,8 +84,6 @@ public class MenuController {
             placeService.update(upPlace);
             menuService.update(upMenu);
         }
-
-
         return menuService.getAllMenuTOs();
     }
 }

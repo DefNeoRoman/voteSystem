@@ -31,7 +31,6 @@ public class SpringServletConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-//        without this could not solve the problem with loading bootstrap
         if (!registry.hasMappingForPattern("/webjars/**")) {
             registry.addResourceHandler("/webjars/**").addResourceLocations(
                     "classpath:/META-INF/resources/webjars/");
@@ -39,9 +38,8 @@ public class SpringServletConfig extends WebMvcConfigurerAdapter {
         registry
                 .addResourceHandler("/resources/**")
                 .addResourceLocations("classpath:/");
-        // problem with resolving classpath directory
 
-            registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
 
     }
 

@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Base64;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static testData.JsonTestData.MEALS;
+
 @RunWith(SpringRunner.class)
 
 @WebMvcTest(MealController.class)
@@ -51,12 +53,13 @@ public class MealControllerTest {
    @Test
     public void getAll() throws Exception {
        this.request.addHeader("Authorization", "Basic " + new String(
-               Base64.getEncoder().encode("regUser:$2a$08$bn3BrtjfeohY7xfXF00nFOtHbzKuPBZ0np8/AkSJrDN2HKsNlcKHK".getBytes("UTF-8"))));
+               Base64.getEncoder().
+                       encode("regUser:$2a$08$bn3BrtjfeohY7xfXF00nFOtHbzKuPBZ0np8/AkSJrDN2HKsNlcKHK".getBytes("UTF-8"))));
 
        this.springSecurityFilterChain.doFilter(this.request, this.response, this.chain);
 
        assertThat(this.response.getStatus()).isEqualTo(HttpServletResponse.SC_OK);
-       assertThat(this.response.getContentAsString().contentEquals("[{\"mealId\":1,\"mealName\":\"макароны\",\"price\":763,\"menuId\":1,\"menuName\":\"завтрак\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":2,\"mealName\":\"картофель\",\"price\":863,\"menuId\":2,\"menuName\":\"обед\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":3,\"mealName\":\"хлеб\",\"price\":773,\"menuId\":3,\"menuName\":\"ужин\",\"menuNames\":[],\"menuIds\":[]}]"));
+       assertThat(this.response.getContentAsString().contentEquals(MEALS));
 
     }
 

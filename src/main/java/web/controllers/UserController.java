@@ -9,13 +9,11 @@ import service.UserService;
 
 import java.util.*;
 
-@RestController //by default returns JSON
+@RestController
 @RequestMapping(value = "admin/users")
 public class UserController {
     @Autowired
     UserService service;
-
-
     @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
 
@@ -64,26 +62,20 @@ public class UserController {
         upUser.setVote(isVotes);
         upUser.setCanVote(canVotes);
         service.update(upUser);
-
         return service.getAll();
     }
-
     @DeleteMapping
     public void delete(@RequestParam Long id) {
-
         service.delete(id);
     }
-
     @PostMapping(value = "/registration",produces = MediaType.APPLICATION_JSON_VALUE)
     public User registration( @RequestParam(required = false) String name,
                               @RequestParam String email,
-                              @RequestParam(required = false) String password
-                             ) {
+                              @RequestParam(required = false) String password) {
         User nUser = new User(name,password, new HashSet<>(Collections.singleton(Role.ROLE_USER)));
         nUser.setEmail(email);
         service.update(nUser);
         User userFromService = service.getByName(name);
         return userFromService;
     }
-
 }

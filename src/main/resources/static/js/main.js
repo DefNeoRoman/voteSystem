@@ -1,4 +1,3 @@
-//https://stackoverflow.com/questions/43671166/how-to-remove-undefined-on-object-keys-for-foreach
 var htmlString = '';
 var place = '';
 var menu = '';

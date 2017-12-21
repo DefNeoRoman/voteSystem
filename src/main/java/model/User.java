@@ -14,9 +14,9 @@ import java.util.*;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
     private Long id;
     @Column(name = "name", nullable = false)
     @NotBlank
@@ -32,20 +32,16 @@ public class User implements UserDetails {
     private String password;
     @Column(name = "register_date", columnDefinition = "timestamp default now()")
     @NotNull
-    //  https://stackoverflow.com/questions/29027475/date-format-in-the-json-output-using-spring-boot
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date registerDate;
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
-    //with lazy not working
     @ElementCollection(fetch = FetchType.EAGER)
     @BatchSize(size = 200)
     private Set<Role> authorities;
-
     @Column(name = "isVote", nullable = false, columnDefinition = "bool default false")
     private boolean isVote;
-
     @Column(name = "canVote", nullable = false, columnDefinition = "bool default true")
     private boolean canVote;
 
@@ -87,7 +83,7 @@ public class User implements UserDetails {
 
     }
 
-    public User(String username, String password,Set<Role>  authorities) {
+    public User(String username, String password, Set<Role> authorities) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;

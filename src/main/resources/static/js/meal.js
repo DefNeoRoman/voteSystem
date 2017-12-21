@@ -11,9 +11,9 @@ $(document).ready(function () {
         .change();
     datatableApi = $('#mealDataTable').DataTable({
 
-        //Какой-то из вышеперечисленных добавил и все заработало
+        //Какой-то из нижеперечисленных добавил и все заработало
         // со stackoverflow
-        "ajax": {"url": "/admin/meals/getAll", "dataSrc": ""}, // или datasrc
+        "ajax": {"url": "/admin/meals/getAll", "dataSrc": ""}, // или data
         "processing": true,// или processing
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp

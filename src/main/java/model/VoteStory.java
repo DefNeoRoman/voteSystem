@@ -13,9 +13,7 @@ import java.util.Date;
 @Table(name = "votestory")
 public class VoteStory {
     @Id
-    //    @Column(name = "id", unique = true, nullable = false, columnDefinition = "integer default nextval('global_seq')")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // PROPERTY access for id due to bug: https://hibernate.atlassian.net/browse/HHH-3718
     private Long id;
     @Column(name = "user_id", nullable = false)
     @Range(min = 1, max = 100000)
@@ -27,7 +25,6 @@ public class VoteStory {
     private Long placeId;
     @Column(name = "vote_date", columnDefinition = "timestamp default now()")
     @NotNull
-    //  https://stackoverflow.com/questions/29027475/date-format-in-the-json-output-using-spring-boot
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date voteDate;
 

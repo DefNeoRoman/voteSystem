@@ -1,6 +1,5 @@
 var datatableApi;
 $(document).ready(function () {
-
     $.get('/admin/users/getAll', function (data) {
         console.log(data);
 

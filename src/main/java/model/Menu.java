@@ -34,7 +34,24 @@ public class Menu implements Serializable {
 
     @ManyToMany(mappedBy = "menus")//на
     private Set<Place> places = new HashSet<>();
+    public Menu() {
 
+    }
+
+    public Menu(String cookName) {
+        this.cookName = cookName;
+    }
+
+    public Menu(String name, String cookName) {
+        this.name = name;
+        this.cookName = cookName;
+    }
+
+    public Menu(Long id, String name, String cookName) {
+        this.id = id;
+        this.name = name;
+        this.cookName = cookName;
+    }
     public Set<Place> getPlaces() {
         return places;
     }
@@ -85,24 +102,7 @@ public class Menu implements Serializable {
         this.name = name;
     }
 
-    public Menu() {
 
-    }
-
-    public Menu(String cookName) {
-        this.cookName = cookName;
-    }
-
-    public Menu(String name, String cookName) {
-        this.name = name;
-        this.cookName = cookName;
-    }
-
-    public Menu(Long id, String name, String cookName) {
-       this.id = id;
-       this.name = name;
-        this.cookName = cookName;
-    }
 
     public String getCookName() {
         return cookName;
@@ -111,11 +111,6 @@ public class Menu implements Serializable {
     public void setCookName(String cookName) {
         this.cookName = cookName;
     }
-
-
-
-
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

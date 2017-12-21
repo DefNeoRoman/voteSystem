@@ -1,21 +1,15 @@
 package service;
 
 
-import lombok.NonNull;
-import model.Role;
 import model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import repository.UserRepository;
-import transferObjects.UserTO;
 
-import java.util.*;
+import java.util.List;
 
 
 @Service("userService")
@@ -48,13 +42,13 @@ public class UserService implements UserDetailsService {
     }
 
 
-
-   @Override
-   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return repository.findByUsername(username);
 
-   }
-   public User getByName (String name){
+    }
+
+    public User getByName(String name) {
         return repository.findByUsername(name);
-   }
+    }
 }

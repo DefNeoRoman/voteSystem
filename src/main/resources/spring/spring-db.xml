@@ -4,8 +4,6 @@
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
-
-
     <jdbc:initialize-database data-source="dataSource" enabled="false">
         <jdbc:script location="classpath:schema.sql"/>
         <jdbc:script encoding="utf-8" location="classpath:data.sql"/>
@@ -16,22 +14,15 @@
               p:url="jdbc:postgresql://localhost:5432/votesystem"
               p:username="postgres"
               p:password="root"/>
-
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:packagesToScan="model">
-
-
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"
                   p:showSql="true">
             </bean>
         </property>
     </bean>
-
-    <!-- Transaction manager for a single JPA EntityManagerFactory (alternative to JTA) -->
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"
           p:entityManagerFactory-ref="entityManagerFactory"/>
-
-
 </beans>

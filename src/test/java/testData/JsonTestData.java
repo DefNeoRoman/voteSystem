@@ -1,14 +1,8 @@
 package testData;
 
-import model.Role;
-import model.User;
-
-import java.util.Collections;
-import java.util.HashSet;
-
 public class JsonTestData {
 
-
-   public final static String TEST_MEALS_JSON = "[{\"mealId\":1,\"mealName\":\"макароны\",\"price\":763,\"menuId\":1,\"menuName\":\"завтрак\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":2,\"mealName\":\"картофель\",\"price\":863,\"menuId\":2,\"menuName\":\"обед\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":3,\"mealName\":\"хлеб\",\"price\":773,\"menuId\":3,\"menuName\":\"ужин\",\"menuNames\":[],\"menuIds\":[]}]";
+    public static String MEALS = "[{\\\"mealId\\\":1,\\\"mealName\\\":\\\"макароны\\\",\\\"price\\\":763,\\\"menuId\\\":1,\\\"menuName\\\":\\\"завтрак\\\",\\\"menuNames\\\":[],\\\"menuIds\\\":[]},{\\\"mealId\\\":2,\\\"mealName\\\":\\\"картофель\\\",\\\"price\\\":863,\\\"menuId\\\":2,\\\"menuName\\\":\\\"обед\\\",\\\"menuNames\\\":[],\\\"menuIds\\\":[]},{\\\"mealId\\\":3,\\\"mealName\\\":\\\"хлеб\\\",\\\"price\\\":773,\\\"menuId\\\":3,\\\"menuName\\\":\\\"ужин\\\",\\\"menuNames\\\":[],\\\"menuIds\\\":[]}]";
+    public static String MAIN_DATA = "{\"гостиница\\nvotes:6\":[{\"menuId\":1,\"menuName\":\"завтрак\",\"cookName\":\"Вова\",\"placeId\":2,\"placeName\":null,\"mealTOS\":[{\"mealId\":1,\"mealName\":\"макароны\",\"price\":763,\"menuId\":1,\"menuName\":\"завтрак\",\"menuNames\":[],\"menuIds\":[]}],\"placeNames\":null,\"placeIds\":null},{\"menuId\":3,\"menuName\":\"ужин\",\"cookName\":\"Вася\",\"placeId\":2,\"placeName\":null,\"mealTOS\":[{\"mealId\":3,\"mealName\":\"хлеб\",\"price\":773,\"menuId\":3,\"menuName\":\"ужин\",\"menuNames\":[],\"menuIds\":[]}],\"placeNames\":null,\"placeIds\":null}],\"бар\\nvotes:5\":[{\"menuId\":1,\"menuName\":\"завтрак\",\"cookName\":\"Вова\",\"placeId\":1,\"placeName\":null,\"mealTOS\":[{\"mealId\":1,\"mealName\":\"макароны\",\"price\":763,\"menuId\":1,\"menuName\":\"завтрак\",\"menuNames\":[],\"menuIds\":[]}],\"placeNames\":null,\"placeIds\":null},{\"menuId\":2,\"menuName\":\"обед\",\"cookName\":\"Петя\",\"placeId\":1,\"placeName\":null,\"mealTOS\":[{\"mealId\":2,\"mealName\":\"картофель\",\"price\":863,\"menuId\":2,\"menuName\":\"обед\",\"menuNames\":[],\"menuIds\":[]}],\"placeNames\":null,\"placeIds\":null}],\"столовая\\nvotes:8\":[{\"menuId\":2,\"menuName\":\"обед\",\"cookName\":\"Петя\",\"placeId\":3,\"placeName\":null,\"mealTOS\":[{\"mealId\":2,\"mealName\":\"картофель\",\"price\":863,\"menuId\":2,\"menuName\":\"обед\",\"menuNames\":[],\"menuIds\":[]}],\"placeNames\":null,\"placeIds\":null},{\"menuId\":3,\"menuName\":\"ужин\",\"cookName\":\"Вася\",\"placeId\":3,\"placeName\":null,\"mealTOS\":[{\"mealId\":3,\"mealName\":\"хлеб\",\"price\":773,\"menuId\":3,\"menuName\":\"ужин\",\"menuNames\":[],\"menuIds\":[]}],\"placeNames\":null,\"placeIds\":null}]}";
 
 }
