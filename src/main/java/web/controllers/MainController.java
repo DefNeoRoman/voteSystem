@@ -1,10 +1,7 @@
 package web.controllers;
-
-
 import model.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-
 import org.springframework.web.bind.annotation.*;
 import service.PlaceService;
 import transferObjects.MenuTO;
@@ -33,5 +30,4 @@ public class MainController {
         placeService.update(incPlace);
         return placeService.getAllMainTOs();
     }
-
 }

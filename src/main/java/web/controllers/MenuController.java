@@ -21,7 +21,7 @@ public class MenuController {
     @Autowired
     PlaceService placeService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MenuTO> getAll(Model model) {
         return menuService.getAllMenuTOs();
     }
@@ -37,7 +37,7 @@ public class MenuController {
         return response;
     }
     @GetMapping(value = "edit/{menuId}/{placeId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public MenuTO get(@PathVariable("menuId") Long menuId,
+    public MenuTO getOneMenu(@PathVariable("menuId") Long menuId,
                       @PathVariable("placeId") Long placeId
     ) {
         List<Place> placeList = placeService.getAll();
@@ -72,7 +72,7 @@ public class MenuController {
         return menuService.getAllMenuTOs();
     }
     @DeleteMapping(value = "delete/{menuId}/{placeId}")
-    public List<MenuTO> delete(@PathVariable("menuId") Long menuId,
+    public List<MenuTO> deleteMenu(@PathVariable("menuId") Long menuId,
                                @PathVariable("placeId") Long placeId) {
         Menu upMenu = menuService.get(menuId);
         Place upPlace = placeService.get(placeId);

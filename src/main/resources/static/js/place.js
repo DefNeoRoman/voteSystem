@@ -5,7 +5,7 @@ $(document).ready(function () {
 
         //Какой-то из вышеперечисленных добавил и все заработало
         // со stackoverflow
-        "ajax": {"url": "places", "dataSrc": ""}, // или datasrc
+        "ajax": {"url": "places/getAll", "dataSrc": ""}, // или datasrc
         "processing": true,// или processing
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp

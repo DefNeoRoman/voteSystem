@@ -16,25 +16,18 @@ public class PlaceController {
 
     @Autowired
     PlaceService service;
-
-
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<PlaceTO> getAll() {
-
         return service.getAllTOs();
     }
-
     @GetMapping(value = "/edit/{placeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public PlaceTO getPlaceTO(@PathVariable("placeId") Long placeId) {
-
         return service.getOneTO(placeId);
     }
-
     @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PlaceTO> update(@RequestParam Long id,
+    public List<PlaceTO> updatePlace(@RequestParam Long id,
                                 @RequestParam String name,
                                 @RequestParam Integer vote) {
-
         Place upPlace;
         if (id == null) {
             upPlace = new Place();
@@ -53,10 +46,8 @@ public class PlaceController {
         service.update(upPlace);
         return service.getAllTOs();
     }
-
     @DeleteMapping(value = "/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    public void deletePlace(@PathVariable Long id) {
         service.delete(id);
-
     }
 }

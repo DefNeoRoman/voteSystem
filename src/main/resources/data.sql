@@ -8,18 +8,18 @@ DELETE FROM menumeals;
 DELETE FROM placemenus;
 
 INSERT INTO meals (price, name) VALUES
-  (763,'макароны'),
-  (863,'картофель'),
-  (773,'хлеб');
+  (763,'pasta'),
+  (863,'potatoes'),
+  (773,'bread');
 
 INSERT INTO menus (name, cookname) VALUES
-  ('завтрак','Вова'),
-  ('обед','Петя'),
-  ('ужин','Вася');
+  ('breakfast','Vova'),
+  ('dinner','Peter'),
+  ('supper','Wasa');
 INSERT INTO places (name, vote) VALUES
-  ('бар',5),
-  ('гостиница',6),
-  ('столовая',8);
+  ('bar',5),
+  ('hotel',6),
+  ('room',8);
   INSERT INTO users (name,
                     email,
                     password)

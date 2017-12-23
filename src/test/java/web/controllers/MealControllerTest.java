@@ -1,31 +1,25 @@
 package web.controllers;
 
 import com.SpringBootWebApplication;
-import org.junit.Before;
+import model.Meal;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockFilterChain;
-import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import service.MealService;
-import service.MenuService;
+import transferObjects.MealTO;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
 import java.util.Base64;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static testData.TestData.*;
@@ -34,41 +28,55 @@ import static testData.TestData.*;
 
 @WebMvcTest(MealController.class)
 @ContextConfiguration(classes = {SpringBootWebApplication.class})
-@Import(MyTestsConfiguration.class)
+@Import(TestConfig.class)
 @Transactional
 public class MealControllerTest {
     @Autowired
-    private FilterChainProxy springSecurityFilterChain;
-
-    private MockHttpServletRequest request;
-
-    private MockHttpServletResponse response;
-
-    private MockFilterChain chain;
-    @Autowired
     private MockMvc mvc;
-    @Before
-    public void setup() throws Exception {
-        this.request = new MockHttpServletRequest();
-        this.response = new MockHttpServletResponse();
-        this.chain = new MockFilterChain();
-
-
-    }
+    @Autowired
+    MealService mealService;
     @Test
-    public void requiresAuthentication() throws Exception {
-        this.springSecurityFilterChain.doFilter(this.request, this.response, this.chain);
-        assertThat(this.response.getStatus())
-                .isEqualTo(HttpServletResponse.SC_UNAUTHORIZED);
-    }
-   @Test
     public void getAll() throws Exception {
-       mvc.perform(get("/admin/meals/getAll").header("Authorization", "Basic " + new String(
-               Base64.getEncoder().encode("regUser:$2a$08$bn3BrtjfeohY7xfXF00nFOtHbzKuPBZ0np8/AkSJrDN2HKsNlcKHK".getBytes("UTF-8"))))
+       mvc.perform(
+               get("/admin/meals/getAll")
+               .header("Authorization", "Basic " + new String(
+               Base64.getEncoder().encode(ADMIN_CREDENTIALS.getBytes("UTF-8"))))
                .accept(MediaType.APPLICATION_JSON))
                .andExpect(status().isOk())
                .andExpect(content().json(MEALS));
-
+    }
+    @Test
+    public void getOneMeal() throws Exception {
+        mvc.perform(
+                get("/admin/meals/edit/1/1")
+                .header("Authorization", "Basic " + new String(
+                Base64.getEncoder().encode(ADMIN_CREDENTIALS.getBytes("UTF-8"))))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(MEAL_ONE_MENU_ONE));
+    }
+    @Test
+    public void update() throws Exception {
+        mvc.perform(
+                post("/admin/meals/update?mealId=1&menuId=1&mealName=updatedName&price=1000")
+                .header("Authorization", "Basic " + new String(
+                        Base64.getEncoder().encode(ADMIN_CREDENTIALS.getBytes("UTF-8"))))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+        Meal mealAfter = mealService.get(1L);
+        assertThat(mealAfter.getName()).isEqualTo("updatedName");
+        assertThat(mealAfter.getPrice()).isEqualTo(1000);
     }
 
+    @Test
+    public void deleteMeal()throws Exception {
+        mvc.perform(
+                delete("/admin/meals/delete/1/1")
+                .header("Authorization", "Basic " + new String(
+                        Base64.getEncoder().encode(ADMIN_CREDENTIALS.getBytes("UTF-8"))))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+       List<MealTO> list = mealService.getAll();
+       assertThat(list.size()).isEqualTo(2);
+    }
 }

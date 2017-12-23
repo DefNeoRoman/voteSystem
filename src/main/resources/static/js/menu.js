@@ -12,7 +12,7 @@ $(document).ready(function () {
 
         //Какой-то из вышеперечисленных добавил и все заработало
         // со stackoverflow
-        "ajax": {"url": "menus", "dataSrc": ""}, // или datasrc
+        "ajax": {"url": "menus/getAll", "dataSrc": ""}, // или datasrc
         "processing": true,// или processing
         "serverSide": true,// или serverside
         "sAjaxDataProp": "data",// или sAjaxDataProp
