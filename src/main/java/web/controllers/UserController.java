@@ -19,13 +19,10 @@ public class UserController {
 
         return service.getAll();
     }
-
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public User get(@PathVariable("id") Long id) {
-
         return service.get(id);
     }
-
     @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> update(
             @RequestParam(required = false) Long id,
@@ -84,7 +81,6 @@ public class UserController {
         nUser.setAccountNonLocked(true);
         nUser.setCredentialsNonExpired(true);
         service.update(nUser);
-
         return "redirect:login";
     }
 }

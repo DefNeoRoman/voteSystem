@@ -79,6 +79,4 @@ public class MealController {
         }
         return mealService.getAll();
     }
-
-
 }

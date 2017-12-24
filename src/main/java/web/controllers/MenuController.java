@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import service.MenuService;
 import service.PlaceService;
 import transferObjects.MenuTO;
+
 import java.util.List;
 
 @RestController
@@ -21,7 +22,7 @@ public class MenuController {
     @Autowired
     PlaceService placeService;
 
-    @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<MenuTO> getAll(Model model) {
         return menuService.getAllMenuTOs();
     }
@@ -36,9 +37,10 @@ public class MenuController {
         });
         return response;
     }
+
     @GetMapping(value = "edit/{menuId}/{placeId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public MenuTO getOneMenu(@PathVariable("menuId") Long menuId,
-                      @PathVariable("placeId") Long placeId
+                             @PathVariable("placeId") Long placeId
     ) {
         List<Place> placeList = placeService.getAll();
         Menu menu = menuService.get(menuId);
@@ -52,6 +54,7 @@ public class MenuController {
         });
         return response;
     }
+
     @PostMapping(value = "/update")
     public List<MenuTO> update(@RequestParam(required = false) String menuId,
                                @RequestParam String placeId,
@@ -71,12 +74,12 @@ public class MenuController {
         placeService.update(upPlace);
         return menuService.getAllMenuTOs();
     }
+
     @DeleteMapping(value = "delete/{menuId}/{placeId}")
     public List<MenuTO> deleteMenu(@PathVariable("menuId") Long menuId,
-                               @PathVariable("placeId") Long placeId) {
+                                   @PathVariable("placeId") Long placeId) {
         Menu upMenu = menuService.get(menuId);
         Place upPlace = placeService.get(placeId);
-
         if (upPlace.getMenus().isEmpty()) {
             placeService.delete(placeId);
         } else {

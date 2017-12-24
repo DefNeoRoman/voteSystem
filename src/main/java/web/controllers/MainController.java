@@ -1,4 +1,5 @@
 package web.controllers;
+
 import model.Place;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,7 +15,6 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "/main")
 public class MainController {
-
     @Autowired
     PlaceService placeService;
 

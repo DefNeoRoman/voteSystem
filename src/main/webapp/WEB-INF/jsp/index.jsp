@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -9,10 +8,10 @@
 
 <div class="container">
     <sec:authorize access="hasRole('ADMIN')">
-        <a href="/main"class="btn btn-lg btn-primary" >Admin`s console</a>
+        <a href="/main" class="btn btn-lg btn-primary">Admin`s console</a>
     </sec:authorize>
     <div class="col-md-4">
-      <h1>Place Manager</h1>
+        <h1>Place Manager</h1>
     </div>
     <div class="col-md-4"></div>
     <div class="col-md-4">

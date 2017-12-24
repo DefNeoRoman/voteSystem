@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "admin/places")
 public class PlaceController {
-
     @Autowired
     PlaceService service;
     @GetMapping(value = "/getAll",produces = MediaType.APPLICATION_JSON_VALUE)
