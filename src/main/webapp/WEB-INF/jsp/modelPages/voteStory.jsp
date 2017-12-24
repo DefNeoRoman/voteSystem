@@ -3,15 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html lang="en" xmlns:jsp="http://java.sun.com/JSP/Page">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
+<jsp:include page="../fragments/headTag.jsp"/>
 <body>
 <jsp:include page="../fragments/header.jsp"/>
-vote story
+<div class="container">
+    vote story
+</div>
+
+<jsp:include page="../fragments/footer.jsp"/>
+<script type="text/javascript" src="static/js/votestory.js" defer></script>
 </body>
 </html>

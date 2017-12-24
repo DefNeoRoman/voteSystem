@@ -16,19 +16,15 @@ import service.UserService;
 public class RootController {
     @Autowired
     UserService service;
-
     @RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String welcome() {
-
-
+        //TODO implementing vote logic
         return "index";
     }
-
     @GetMapping("/login")
     public String getLogin(@RequestParam(value = "error", required = false) String error,
                            @RequestParam(value = "logout", required = false) String logout,
                            Model model)
-
     {
         model.addAttribute("error", error != null);
         model.addAttribute("logout", logout != null);
@@ -62,6 +58,7 @@ public class RootController {
 
     @GetMapping("admin/voteStory")
     public String voteStory() {
+
         return "modelPages/voteStory";
     }
 }
