@@ -40,6 +40,11 @@ public class UserController {
         if (id == null) {
             upUser = new User();
             upUser.setAuthorities(new HashSet<>(Collections.singletonList(Role.ROLE_USER)));
+            upUser.setEnabled(true);
+            upUser.setCanVote(true);
+            upUser.setAccountNonExpired(true);
+            upUser.setAccountNonLocked(true);
+            upUser.setCredentialsNonExpired(true);
         } else {
             upUser = service.get(id);
         }
@@ -68,14 +73,18 @@ public class UserController {
     public void delete(@RequestParam Long id) {
         service.delete(id);
     }
-    @PostMapping(value = "/registration",produces = MediaType.APPLICATION_JSON_VALUE)
-    public User registration( @RequestParam(required = false) String name,
-                              @RequestParam String email,
-                              @RequestParam(required = false) String password) {
+    @PostMapping(value = "/registerUser",produces = MediaType.APPLICATION_JSON_VALUE)
+    public String registration( @RequestParam(required = false) String name,
+                                @RequestParam String email,
+                                @RequestParam(required = false) String password) {
         User nUser = new User(name,password, new HashSet<>(Collections.singleton(Role.ROLE_USER)));
         nUser.setEmail(email);
+        nUser.setEnabled(true);
+        nUser.setAccountNonExpired(true);
+        nUser.setAccountNonLocked(true);
+        nUser.setCredentialsNonExpired(true);
         service.update(nUser);
-        User userFromService = service.getByName(name);
-        return userFromService;
+
+        return "redirect:login";
     }
 }

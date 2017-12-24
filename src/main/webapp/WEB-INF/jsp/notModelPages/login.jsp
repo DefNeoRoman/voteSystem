@@ -10,7 +10,7 @@
 
 <div class="container">
 
-    <form name="f" class="navbar-form" method="post">
+    <form class="navbar-form" action="${contextPath}/login" method="post">
         <h2 class="form-heading">Place Manager</h2>
         <div class="col-md-3">
 
@@ -32,7 +32,7 @@
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
                 <p class="button-group">
-                    <a class="btn btn-lg btn-success" href="/registration"> registration </a>
+                    <a class="btn btn-lg btn-success" onclick="add()"> registration </a>
                     <button type="submit" class="btn btn-lg btn-primary"
                             onclick="setCredentials('regular', '12345678')">
                         Enter as User
@@ -83,6 +83,59 @@
 </div>
 </div>
 <!-- /container -->
+<div class="modal fade" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="clear()">&times;
+                </button>
+                <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <form method="post" class="form-horizontal postForm" id="detailsForm" action="javascript:void(null);"
+                      onsubmit="call(this)">
+                    <input type="hidden" id="id" name="id">
+
+
+                    <%--for userName--%>
+                    <div class="form-group">
+                        <label for="name" class="control-label col-xs-3">Name</label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="name" name="name">
+                        </div>
+                    </div>
+                    <%--for userEmail--%>
+                    <div class="form-group">
+                        <label for="email" class="control-label col-xs-3">Email</label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="email" name="email">
+                        </div>
+                    </div>
+                    <%--for password--%>
+                    <div class="form-group">
+                        <label for="email" class="control-label col-xs-3">Password</label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="pass" name="password">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <input class="btn btn-primary" type="submit" value="save">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
 
     function setCredentials(username, password) {
@@ -91,5 +144,6 @@
     }
 </script>
 <jsp:include page="../fragments/footer.jsp"/>
+<script type="text/javascript" src="static/js/register.js" defer></script>
 </body>
 </html>

@@ -1,9 +1,11 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<html lang="en" xmlns:jsp="http://java.sun.com/JSP/Page">
-<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+
+<html lang="en" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:form="http://www.w3.org/1999/xhtml">
+
 
 <jsp:include page="../fragments/headTag.jsp"/>
 <body>
@@ -12,7 +14,6 @@
 
     <form method="post" class="form-horizontal postForm" id="registerForm" action="javascript:void(null);"
           onsubmit="call(this)">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <%--for userName--%>
         <div class="form-group">
             <label for="name" class="control-label col-xs-3">Name</label>

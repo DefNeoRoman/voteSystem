@@ -1,19 +1,23 @@
 package web;
 
 
+import model.Role;
 import model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import service.UserService;
+
+import java.util.Collections;
+import java.util.HashSet;
 
 
 @Controller
 public class RootController {
-
+    @Autowired
+    UserService service;
 
     @RequestMapping(value = "/",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
     public String welcome() {
@@ -75,5 +79,6 @@ public class RootController {
 
         return "notModelPages/register";
     }
+
 
 }

@@ -17,14 +17,13 @@ import service.UserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserService userService;
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable().httpBasic().and()//из-за строки csrf блокировались пост запросы
                 .authorizeRequests()
-                .antMatchers("/webjars/**", "/resources/**", "/static/**", "/registration", "/admin/users/registration").permitAll()
+                .antMatchers("/webjars/**", "/resources/**", "/static/**", "/registration", "/admin/users/registerUser","/registerUser").permitAll()
+                .antMatchers("/").hasAnyRole("ADMIN","USER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -37,6 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder bcryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
