@@ -9,6 +9,7 @@ var menuRow = $("#menuRow");
 var colMd6 = $(".col-md-6");
 var colMd5 = $(".col-md-5");
 var voteButton = $(".vote");
+
 $(document).ready(function () {
     $.get('/main/getData', function (data) {
         var menuArray = [];
@@ -46,15 +47,25 @@ $(document).ready(function () {
     });
 });
 function vote(button) {
-
     var id = $(button).attr('id');
-    console.log(id);
     $.ajax({
         type: 'POST',
-        url: 'main/incVote?id=' + id,
+        url: 'main/incVote?id='+ id,
         success: function (data) {
 
         }
     });
     location.reload();
+}
+function cancel() {
+
+   var id = $("#incredId").val();
+      $.ajax({
+            type: 'POST',
+            url: 'main/decVote?id='+id,
+            success: function (data) {
+
+            }
+        });
+        location.reload();
 }

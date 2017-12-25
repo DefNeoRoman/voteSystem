@@ -29,8 +29,11 @@ public class UserService implements UserDetailsService {
 
         return repository.findOne(searchKey);
     }
-    public void update(User user) {
+    public void save (User user){
         repository.save(prepareToSave(user));
+    }
+    public void update(User user) {
+        repository.save(user);
     }
     public void delete(Long searchKey) {
         repository.delete(searchKey);

@@ -63,7 +63,7 @@ public class UserController {
         upUser.setEnabled(enable);
         upUser.setVote(isVotes);
         upUser.setCanVote(canVotes);
-        service.update(upUser);
+        service.save(upUser);
         return service.getAll();
     }
     @DeleteMapping
@@ -80,7 +80,7 @@ public class UserController {
         nUser.setAccountNonExpired(true);
         nUser.setAccountNonLocked(true);
         nUser.setCredentialsNonExpired(true);
-        service.update(nUser);
+        service.save(nUser);
         return "redirect:login";
     }
 }

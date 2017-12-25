@@ -40,15 +40,25 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-lg btn-primary vote" onclick="vote(this)">
-                vote
-            </button>
+            <c:if test="${!vote}">
+                <button class="btn btn-lg btn-primary vote" onclick="vote(this)">
+                    vote
+                </button>
+            </c:if>
+
         </div>
     </div>
 
 </div>
+<div class="container">
+    <c:if test="${vote}">
+        <button class="btn btn-lg btn-primary cancel" onclick="cancel()">
+            cancel
+        </button>
+    </c:if>
+</div>
 
-
+<input type="hidden" class="form-control" id="incredId" name="incredId" value="${wasIncredId}">
 <jsp:include page="fragments/footer.jsp"/>
 <script type="text/javascript" src="static/js/main.js" defer></script>
 </body>
