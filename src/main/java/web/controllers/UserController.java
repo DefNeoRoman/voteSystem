@@ -71,7 +71,7 @@ public class UserController {
         service.delete(id);
     }
     @PostMapping(value = "/registerUser",produces = MediaType.APPLICATION_JSON_VALUE)
-    public String registration( @RequestParam(required = false) String name,
+    public void registration( @RequestParam(required = false) String name,
                                 @RequestParam String email,
                                 @RequestParam(required = false) String password) {
         User nUser = new User(name,password, new HashSet<>(Collections.singleton(Role.ROLE_USER)));
@@ -81,6 +81,6 @@ public class UserController {
         nUser.setAccountNonLocked(true);
         nUser.setCredentialsNonExpired(true);
         service.save(nUser);
-        return "redirect:login";
+
     }
 }

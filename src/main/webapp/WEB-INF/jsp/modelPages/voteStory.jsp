@@ -7,10 +7,17 @@
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <div class="container">
-    vote story
-</div>
+    VoteStoryPanel
+    <div class="pageContainer">
+        <div class="voteStory">
+            <span class="userName"></span>
+            <span class="placeName"></span>
+            <span class="voteDate"></span>
+        </div>
+    </div>
 
+</div>
 <jsp:include page="../fragments/footer.jsp"/>
-<script type="text/javascript" src="static/js/votestory.js" defer></script>
+<script type="text/javascript" src="../static/js/votestory.js" defer></script>
 </body>
 </html>

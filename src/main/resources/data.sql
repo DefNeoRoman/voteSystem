@@ -35,6 +35,9 @@ VALUES
   ('ROLE_ADMIN', 2),
   ('ROLE_USER', 3),
   ('ROLE_ADMIN', 3);
+INSERT INTO votestory (user_id,place_id)
+ VALUES (1,1);
+
 INSERT INTO menumeals (meal_id, menu_id) VALUES
 (1,1),
 (2,2),

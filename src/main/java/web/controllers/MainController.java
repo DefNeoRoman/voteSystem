@@ -2,6 +2,7 @@ package web.controllers;
 
 import model.Place;
 import model.User;
+import model.VoteStory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -9,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import service.PlaceService;
 import service.UserService;
+import service.VoteStoryService;
 import transferObjects.MenuTO;
 import transferObjects.PlaceTO;
 
@@ -25,6 +27,8 @@ public class MainController {
     PlaceService placeService;
     @Autowired
     UserService userService;
+    @Autowired
+    VoteStoryService voteStoryService;
     private Authentication auth;
 
     @GetMapping(value = "/getData", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,7 +47,7 @@ public class MainController {
         Place incPlace = placeService.get(id);
         incPlace.incVote();
         placeService.update(incPlace);
-
+        voteStoryService.saveOne(currentUser.getId(),incPlace.getId());
     }
     @PostMapping(value = "/decVote", produces = MediaType.APPLICATION_JSON_VALUE)
     public void decVote(@RequestParam Long id) {
@@ -57,7 +61,4 @@ public class MainController {
         placeService.update(incPlace);
         wasIncredId.set(0);
     }
-
-
-
 }

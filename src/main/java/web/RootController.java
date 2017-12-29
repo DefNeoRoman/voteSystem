@@ -49,7 +49,17 @@ public class RootController {
         return "modelPages/users";
     }
     @GetMapping("/main")
-    public String main() {
+    public String main(Model model) {
+        auth  = SecurityContextHolder.getContext().getAuthentication();
+        String userName = auth.getName();
+        User currentUser = userService.getByName(userName);
+        boolean vote = currentUser.isVote();
+        model.addAttribute("wasIncredId",wasIncredId);
+        if(vote){
+            model.addAttribute("vote",true);
+        }else{
+            model.addAttribute("vote",false);
+        }
         return "modelPages/main";
     }
     @GetMapping("admin/meals")

@@ -28,6 +28,15 @@ public class VoteStory {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date voteDate;
 
+    public VoteStory() {
+    }
+
+    public VoteStory(Long userId, Long placeId) {
+        this.userId = userId;
+        this.placeId = placeId;
+        voteDate = new Date();
+    }
+
     public Long getId() {
         return id;
     }

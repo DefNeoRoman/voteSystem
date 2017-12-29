@@ -14,7 +14,6 @@ $(document).ready(function () {
     $.get('/main/getData', function (data) {
         var menuArray = [];
         var mealArray = [];
-        console.log(data);
         $.each(data, function (key, value) {
             placeContainer.empty();
             row.empty();
@@ -55,17 +54,15 @@ function vote(button) {
 
         }
     });
-    location.reload();
+     location.reload();
 }
 function cancel() {
-
    var id = $("#incredId").val();
       $.ajax({
             type: 'POST',
             url: 'main/decVote?id='+id,
             success: function (data) {
-
             }
         });
-        location.reload();
+         location.reload();
 }
