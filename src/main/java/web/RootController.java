@@ -26,13 +26,11 @@ public class RootController {
         auth  = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName();
         User currentUser = userService.getByName(userName);
-        boolean vote = currentUser.isVote();
+
         model.addAttribute("wasIncredId",wasIncredId);
-        if(vote){
-            model.addAttribute("vote",true);
-        }else{
-            model.addAttribute("vote",false);
-        }
+        model.addAttribute("vote",currentUser.isVote());
+        model.addAttribute("canVote",currentUser.isCanVote());
+
         return "index";
     }
     @GetMapping("/login")
@@ -53,13 +51,11 @@ public class RootController {
         auth  = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName();
         User currentUser = userService.getByName(userName);
-        boolean vote = currentUser.isVote();
+
         model.addAttribute("wasIncredId",wasIncredId);
-        if(vote){
-            model.addAttribute("vote",true);
-        }else{
-            model.addAttribute("vote",false);
-        }
+        model.addAttribute("vote",currentUser.isVote());
+        model.addAttribute("canVote",currentUser.isCanVote());
+
         return "modelPages/main";
     }
     @GetMapping("admin/meals")

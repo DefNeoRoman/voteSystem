@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <div class="container">
-    VoteStoryPanel
+   <h1>VoteStoryPanel</h1>
     <div class="pageContainer">
         <div class="voteStory">
             <span class="userName"></span>

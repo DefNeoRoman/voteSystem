@@ -12,7 +12,10 @@
     </sec:authorize>
     <div class="col-md-4">
         <h1>Place Manager</h1>
+        <h1>Current time</h1>
+        <div id="timedisplay"></div>
     </div>
+
     <div class="col-md-4"></div>
     <div class="col-md-4">
         <br>
@@ -55,6 +58,9 @@
         <button class="btn btn-lg btn-primary cancel" onclick="cancel()">
             cancel
         </button>
+    </c:if>
+    <c:if test="${!canVote}">
+        <h2> user can't change his mind</h2>
     </c:if>
 </div>
 

@@ -31,7 +31,7 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mvc;
     @Test
-    @Ignore
+    @Ignore //Each time the passwords are encrypted differently
     public void getAll() throws Exception {
         mvc.perform(get("/admin/users/getAll").header("Authorization", "Basic " + new String(
                 Base64.getEncoder().encode(ADMIN_CREDENTIALS.getBytes("UTF-8"))))

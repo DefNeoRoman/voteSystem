@@ -7,6 +7,11 @@
 <body>
 <jsp:include page="../fragments/header.jsp"/>
 <div class="container">
+    <h1>Current time</h1>
+    <div id="timedisplay"></div>
+</div>
+
+<div class="container">
     <div id="allPlaces">
         <div class="row">
             <div id="placeContainer" class="borderbottom">
@@ -35,6 +40,9 @@
         <button class="btn btn-lg btn-primary cancel" onclick="cancel()">
             cancel
         </button>
+    </c:if>
+    <c:if test="${!canVote}">
+        <h2> user can't change his mind</h2>
     </c:if>
 </div>
 <input type="hidden" class="form-control" id="incredId" name="incredId" value="${wasIncredId}">

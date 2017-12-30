@@ -19,7 +19,7 @@ import web.controllers.UserController;
 public class SpringBootWebApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SpringBootWebApplication.class, args);
-
+        context.getBean(Constants.class).defaultMethod();
     }
 
 }
