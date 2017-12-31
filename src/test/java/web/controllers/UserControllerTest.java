@@ -19,7 +19,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static testData.TestData.ADMIN_CREDENTIALS;
-import static testData.TestData.PLACES;
 import static testData.TestData.USERS;
 
 @RunWith(SpringRunner.class)

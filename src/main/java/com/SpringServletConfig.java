@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-//доступна конфигурация через application.properties
 @ImportResource("classpath:spring/spring-db.xml")
 @EnableWebMvc
 public class SpringServletConfig extends WebMvcConfigurerAdapter {

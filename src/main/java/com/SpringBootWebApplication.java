@@ -7,8 +7,6 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import repository.UserRepository;
-import web.controllers.UserController;
 
 @SpringBootApplication
 @ComponentScan(basePackages = {

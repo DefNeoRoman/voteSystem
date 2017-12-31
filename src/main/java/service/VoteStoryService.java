@@ -1,6 +1,5 @@
 package service;
 
-import model.Place;
 import model.VoteStory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
