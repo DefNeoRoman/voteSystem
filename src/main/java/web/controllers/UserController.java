@@ -26,7 +26,7 @@ public class UserController {
     @PostMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> update(
             @RequestParam(required = false) Long id,
-            @RequestParam String name,
+            @RequestParam String username,
             @RequestParam String email,
             @RequestParam(required = false) String password,
             @RequestParam(required = false) String en,
@@ -36,17 +36,25 @@ public class UserController {
         User upUser;
         if (id == null) {
             upUser = new User();
-            upUser.setAuthorities(new HashSet<>(Collections.singletonList(Role.ROLE_USER)));
+            upUser.setAuthorities(
+                    new HashSet<>(Collections.singletonList(Role.ROLE_USER)));
             upUser.setEnabled(true);
             upUser.setCanVote(true);
+            upUser.setVote(false);
             upUser.setAccountNonExpired(true);
             upUser.setAccountNonLocked(true);
             upUser.setCredentialsNonExpired(true);
         } else {
             upUser = service.get(id);
+            boolean enable = en != null;
+            boolean isVotes = vote != null;
+            boolean canVotes = canvote != null;
+            upUser.setEnabled(enable);
+            upUser.setVote(isVotes);
+            upUser.setCanVote(canVotes);
         }
-        if (name.isEmpty()) {
-            name = "Empty";
+        if (username.isEmpty()) {
+            username = "Empty";
         }
         if (email.isEmpty()) {
             email = "empty";
@@ -54,15 +62,9 @@ public class UserController {
         if (password.isEmpty()) {
             password = "123";
         }
-        boolean enable = en != null;
-        boolean isVotes = vote != null;
-        boolean canVotes = canvote != null;
-        upUser.setUsername(name);
+        upUser.setUsername(username);
         upUser.setPassword(password);
         upUser.setEmail(email);
-        upUser.setEnabled(enable);
-        upUser.setVote(isVotes);
-        upUser.setCanVote(canVotes);
         service.save(upUser);
         return service.getAll();
     }
@@ -76,6 +78,7 @@ public class UserController {
                                 @RequestParam(required = false) String password) {
         User nUser = new User(name,password, new HashSet<>(Collections.singleton(Role.ROLE_USER)));
         nUser.setEmail(email);
+        nUser.setCanVote(true);
         nUser.setEnabled(true);
         nUser.setAccountNonExpired(true);
         nUser.setAccountNonLocked(true);

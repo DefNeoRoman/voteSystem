@@ -58,10 +58,10 @@
 
                     <%--for userName--%>
                     <div class="form-group">
-                        <label for="name" class="control-label col-xs-3">Name</label>
+                        <label for="username" class="control-label col-xs-3">Name</label>
 
                         <div class="col-xs-9">
-                            <input type="text" class="form-control" id="name" name="name">
+                            <input type="text" class="form-control" id="username" name="username">
                         </div>
                     </div>
                     <%--for userEmail--%>
