@@ -8,7 +8,12 @@
         <jdbc:script location="classpath:schema.sql"/>
         <jdbc:script encoding="utf-8" location="classpath:data.sql"/>
     </jdbc:initialize-database>
-
+    <!--<bean id="dataSource"-->
+    <!--class="org.apache.tomcat.jdbc.pool.DataSource"-->
+    <!--p:driverClassName="org.postgresql.Driver"-->
+    <!--p:url="jdbc:postgresql://localhost:5432/votesystem"-->
+    <!--p:username="postgres"-->
+    <!--p:password="root"/>-->
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:packagesToScan="model">
