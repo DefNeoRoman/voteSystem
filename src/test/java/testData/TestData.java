@@ -1,9 +1,5 @@
 package testData;
 
-import model.Meal;
-import model.Menu;
-import model.Place;
-
 public class TestData {
 
     public static final String MEALS = " [{\"mealId\":1,\"mealName\":\"pasta\",\"price\":763,\"menuId\":1,\"menuName\":\"breakfast\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":2,\"mealName\":\"potatoes\",\"price\":863,\"menuId\":2,\"menuName\":\"dinner\",\"menuNames\":[],\"menuIds\":[]},{\"mealId\":3,\"mealName\":\"bread\",\"price\":773,\"menuId\":3,\"menuName\":\"supper\",\"menuNames\":[],\"menuIds\":[]}]";
@@ -16,13 +12,4 @@ public class TestData {
     public static final String MENU_ONE_PLACE_ONE = "{\"menuId\":1,\"menuName\":\"breakfast\",\"cookName\":\"Vova\",\"placeId\":1,\"placeName\":\"bar\",\"mealTOS\":null,\"placeNames\":[\"bar\",\"hotel\",\"room\"],\"placeIds\":[1,2,3]}";
     public static final String PLACE_ONE = "{\"id\":1,\"name\":\"bar\",\"vote\":5}";
 
-    public static final Meal  MEAL_1 = new Meal("testMeal",500);
-    public static final Meal  MEAL_2 = new Meal("testFish",500);
-    public static final Meal  MEAL_3 = new Meal("testButer",500);
-    public static final Menu  MENU_1 = new Menu("dinner","Dori");
-    public static final Menu  MENU_2 = new Menu("lunch","Nori");
-    public static final Menu  MENU_3 = new Menu("supper","Frodo Baggins");
-    public static final Place PLACE_1 = new Place("resto");
-    public static final Place PLACE_2 = new Place("korchma");
-    public static final Place PLACE_3 = new Place("taverna");
 }

@@ -3,5 +3,5 @@ Spring Boot Project
 
 Launch with Spring Boot
 
-create DataBase with name votesystem
+create postgres DataBase with name votesystem
 
