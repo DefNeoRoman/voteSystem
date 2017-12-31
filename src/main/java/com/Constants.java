@@ -18,7 +18,7 @@ public class Constants {
     @Autowired
     UserService userService;
 
-    public static final LocalTime TIME_FOR_VOTE = of(11, 0);
+    public static LocalTime TIME_FOR_VOTE = of(11, 0);
     public static final LocalDate TIME_OF_LAUNCH = LocalDate.now();
     public void defaultMethod(){
         ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
@@ -31,7 +31,9 @@ public class Constants {
             });
 
         }, 0, 1, TimeUnit.DAYS);
-
     }
 
+    public static void setTimeForVote(LocalTime timeForVote) {
+        TIME_FOR_VOTE = timeForVote;
+    }
 }

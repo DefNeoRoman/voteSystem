@@ -24,38 +24,22 @@ public class MealService {
     public List<MealTO> getAll() {
         List<Meal> lm = mealRepository.findAll();
         List<MealTO> lmto = new ArrayList<>();
-        lm.forEach(meal -> {
-            meal.getMenus().forEach(menu -> {
-                lmto.add(new MealTO(meal.getId(),
-                        meal.getName(),
-                        meal.getPrice(),
-                        menu.getId(),
-                        menu.getName()));
-            });
-        });
-
-
+        lm.forEach(meal -> meal.getMenus().forEach(menu -> lmto.add(new MealTO(meal.getId(),
+                meal.getName(),
+                meal.getPrice(),
+                menu.getId(),
+                menu.getName()))));
         return lmto;
     }
-
-    public List<Meal> testGet() {
-        return mealRepository.findAll();
-    }
-
     public void create(Meal object) {
         mealRepository.save(object);
     }
-
-
     public Meal get(Long id) {
-
         return mealRepository.findOne(id);
     }
-
     public void update(Meal object) {
         mealRepository.save(object);
     }
-
     public void delete(Long id) {
         mealRepository.delete(id);
     }

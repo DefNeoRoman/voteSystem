@@ -14,7 +14,6 @@ import java.util.*;
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -192,7 +191,6 @@ public class User implements UserDetails {
     public void setCredentialsNonExpired(boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
     }
-
     @Override
     public String toString() {
         return "User{" +
@@ -201,7 +199,6 @@ public class User implements UserDetails {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", registerDate=" + registerDate +
-
                 ", isVote=" + isVote +
                 ", canVote=" + canVote +
                 ", enabled=" + enabled +

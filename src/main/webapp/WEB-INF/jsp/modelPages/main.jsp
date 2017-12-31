@@ -9,6 +9,15 @@
 <div class="container">
     <h1>Current time</h1>
     <div id="timedisplay"></div>
+    <form method="post" class="form-horizontal postForm" id="changeVoteTime" action="javascript:void(null);"
+          onsubmit="changeVoteTime(this)">
+    <h2>Change vote time</h2>
+    <div class="col-md-1">
+        <input type="text" class="form-control" id="votetime" name="votetime" value="${voteTime}">
+        <input class="btn btn-primary voteButton" type="submit" value="save">
+    </div>
+
+    </form>
 </div>
 
 <div class="container">

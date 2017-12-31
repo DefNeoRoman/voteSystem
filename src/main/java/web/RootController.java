@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import service.UserService;
 
 import java.util.concurrent.atomic.AtomicLong;
+
+import static com.Constants.TIME_FOR_VOTE;
+
 @Controller
 public class RootController {
     private Authentication auth;
@@ -26,7 +29,6 @@ public class RootController {
         auth  = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName();
         User currentUser = userService.getByName(userName);
-
         model.addAttribute("wasIncredId",wasIncredId);
         model.addAttribute("vote",currentUser.isVote());
         model.addAttribute("canVote",currentUser.isCanVote());
@@ -51,7 +53,7 @@ public class RootController {
         auth  = SecurityContextHolder.getContext().getAuthentication();
         String userName = auth.getName();
         User currentUser = userService.getByName(userName);
-
+        model.addAttribute("voteTime",TIME_FOR_VOTE);
         model.addAttribute("wasIncredId",wasIncredId);
         model.addAttribute("vote",currentUser.isVote());
         model.addAttribute("canVote",currentUser.isCanVote());

@@ -14,11 +14,11 @@ import transferObjects.MenuTO;
 import transferObjects.PlaceTO;
 
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import static com.Constants.TIME_FOR_VOTE;
+import static com.Constants.setTimeForVote;
 import static web.RootController.wasIncredId;
 
 
@@ -62,6 +62,7 @@ public class MainController {
         LocalTime currentTime = LocalTime.now();
         if(currentTime.isBefore(TIME_FOR_VOTE)){
             currentUser.setVote(false);
+            currentUser.setCanVote(true);
             userService.update(currentUser);
             Place incPlace = placeService.get(id);
             incPlace.decVote();
@@ -72,5 +73,10 @@ public class MainController {
             userService.update(currentUser);
         }
 
+    }
+    @PostMapping(value = "/changeVoteTime", produces = MediaType.APPLICATION_JSON_VALUE)
+    public void changeVoteTime(@RequestParam String votetime) {
+        System.out.println(votetime);
+        setTimeForVote(LocalTime.parse(votetime));
     }
 }

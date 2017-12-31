@@ -6,9 +6,6 @@ import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-//не нуждается в хранении в локальном репозитории
-//Чтобы заработало Vote Story нужно user menu place уже хранить в базе
-//Так как нужна связка
 @Entity
 @Table(name = "votestory")
 public class VoteStory {

@@ -30,15 +30,13 @@ public class MenuService {
         List<MenuTO> menuTOS = new ArrayList<>();
         List<Menu> menuList = menuRepository.findAll();
 
-        menuList.forEach(menu -> {
-            menu.getPlaces().forEach(place -> {
-                menuTOS.add(new MenuTO(menu.getId(),
-                        menu.getName(),
-                        menu.getCookName(),
-                        place.getId(),
-                        place.getName()));
-            });
-        });
+        menuList.forEach(menu -> menu.getPlaces().forEach(place -> {
+            menuTOS.add(new MenuTO(menu.getId(),
+                    menu.getName(),
+                    menu.getCookName(),
+                    place.getId(),
+                    place.getName()));
+        }));
         return menuTOS;
     }
 
