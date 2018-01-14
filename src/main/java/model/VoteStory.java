@@ -1,8 +1,6 @@
 package model;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.validator.constraints.Range;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -24,44 +22,34 @@ public class VoteStory {
     @NotNull
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date voteDate;
-
     public VoteStory() {
     }
-
     public VoteStory(Long userId, Long placeId) {
         this.userId = userId;
         this.placeId = placeId;
         voteDate = new Date();
     }
-
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
     public Long getUserId() {
         return userId;
     }
-
     public void setUserId(Long userId) {
         this.userId = userId;
     }
-
     public Long getPlaceId() {
         return placeId;
     }
-
     public void setPlaceId(Long placeId) {
         this.placeId = placeId;
     }
-
     public Date getVoteDate() {
         return voteDate;
     }
-
     public void setVoteDate(Date voteDate) {
         this.voteDate = voteDate;
     }

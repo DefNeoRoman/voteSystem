@@ -19,5 +19,4 @@ public class SpringBootWebApplication extends SpringBootServletInitializer {
         ConfigurableApplicationContext context = SpringApplication.run(SpringBootWebApplication.class, args);
         context.getBean(Constants.class).defaultMethod();
     }
-
 }
